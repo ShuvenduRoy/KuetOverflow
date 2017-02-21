@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -21,7 +22,12 @@ namespace KuetOverflow_ASP.NET
 
             app.UseExceptionHandler("/pages/error.html");
 
-            if (env.IsDevelopment())
+            var configuretion = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .AddJsonFile(env.ContentRootPath+"/config.json")
+                .Build();
+
+            if (configuretion.GetValue<bool>("EnableDeveloperExceptions"))
             {
                 app.UseDeveloperExceptionPage();
             }
