@@ -1,6 +1,13 @@
-﻿
+﻿@model IEnumerable<KuetOverflow_ASP.NET.Models.BlogPost>
 @{
     Layout = "_Layout";
 }
 
-Recent Blog Posts
+<h3>Recent Blog Posts</h3>
+
+@foreach (var post in Model)
+{
+    <div>
+        @Html.Partial("_Post", post)
+    </div>
+}
