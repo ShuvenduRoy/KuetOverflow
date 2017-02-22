@@ -55,5 +55,11 @@ namespace KuetOverflow_ASP.NET.Controllers
             return View(posts);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
