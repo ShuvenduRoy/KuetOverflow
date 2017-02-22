@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="media-body">
-        <h4 class="media-heading">@Model.Title</h4>
+        <h4 class="media-heading">@Html.ActionLink(@Model.Title, "Post","Blog", new {id=Model.Id})</h4>
         <p>By  @Model.Author</p>
         <br />
         <p>@Model.Description</p>
