@@ -12,6 +12,7 @@ namespace KuetOverflow_ASP.NET
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -34,6 +35,11 @@ namespace KuetOverflow_ASP.NET
                 if (context.Request.Path.Value.Contains("invalid"))
                     throw new Exception("Error!");
                 await next();
+            });
+
+            app.UseMvc(routers =>
+            {
+                routers.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
             });
 
 
