@@ -1,0 +1,24 @@
+﻿@model KuetOverflow_ASP.NET.Models.BlogPost
+@{
+    Layout = "_Layout";
+}
+
+<div class="col-sm-8">
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" src="" alt="User Image">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@Model.Title</h4>
+            <p>By  @Model.Author</p>
+            <br />
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-4">
+    <h3>Related post goes here</h3>
+</div>
