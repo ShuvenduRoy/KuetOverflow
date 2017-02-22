@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,10 +10,26 @@ namespace KuetOverflow_ASP.NET
 {
     public class Startup
     {
+        private readonly IConfigurationRoot _configuration;
+
+        public Startup(IHostingEnvironment env)
+        {
+            _configuration = new ConfigurationBuilder()
+            .AddEnvironmentVariables()
+            .AddJsonFile(env.ContentRootPath + "/config.json")
+            .Build();
+
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<KuetDataContext>(options =>
+            {
+                var connectinoString = _configuration.GetConnectionString("KuetDataContext");
+                options.UseSqlServer(connectinoString);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -21,12 +38,8 @@ namespace KuetOverflow_ASP.NET
 
             app.UseExceptionHandler("/pages/error.html");
 
-            var configuretion = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .AddJsonFile(env.ContentRootPath+"/config.json")
-                .Build();
 
-            if (configuretion.GetValue<bool>("EnableDeveloperExceptions"))
+            if (_configuration.GetValue<bool>("EnableDeveloperExceptions"))
             {
                 app.UseDeveloperExceptionPage();
             }

@@ -8,6 +8,11 @@ namespace KuetOverflow_ASP.NET.Controllers
 {
     public class BlogController : Controller
     {
+        private readonly KuetDataContext _db;
+        public BlogController(KuetDataContext db)
+        {
+            _db = db;
+        }
 
         public IActionResult Post()
         {
@@ -55,11 +60,23 @@ namespace KuetOverflow_ASP.NET.Controllers
             return View(posts);
         }
 
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create(BlogPost post)
+        {
+            post.Author = "Shuvendu Roy";
+            post.DateTime = DateTime.Today;
+
+            _db.Posts.Add(post);
+            _db.SaveChanges();
+
+            return View();
+        }
     }
 }
