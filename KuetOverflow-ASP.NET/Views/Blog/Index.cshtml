@@ -3,11 +3,18 @@
     Layout = "_Layout";
 }
 
-<h3>Recent Blog Posts</h3>
-
-@foreach (var post in Model)
-{
-    <div>
-        @Html.Partial("_Post", post)
-    </div>
+@section PostButton{
+        <a href="@Url.Action("Create", "Blog")">Write an Article</a>
 }
+
+
+<div class="container">
+    <h3>Recent Blog Posts</h3>
+
+    @foreach (var post in Model)
+    {
+        <div>
+            @Html.Partial("_Post", post)
+        </div>
+    }
+</div>
