@@ -17,4 +17,19 @@
             @Html.Partial("_Post", post)
         </div>
     }
+    
+    <div>
+        <p class="Pager">
+            @if (ViewBag.hasPreviousPage)
+            {
+                <a class="prev" href="@Url.Action("Index", "Blog", new {page = ViewBag.previousPage })">&lt;Previous</a>
+            }
+
+            @if (ViewBag.hasNextPage)
+            {
+                <a class="next" style="text-align: right" href="@Url.Action("Index", "Blog", new {page = ViewBag.nextPage })">Next&gt;</a>
+            }
+        </p>
+    </div>
 </div>
+

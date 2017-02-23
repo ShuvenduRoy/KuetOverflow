@@ -21,9 +21,22 @@ namespace KuetOverflow_ASP.NET.Controllers
             return View(post);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 0)
         {
-            var posts = _db.Posts.ToArray();
+            var pageSize = 2;
+            var totalPosts = _db.Posts.Count();
+            var totalPages = totalPosts / pageSize;
+            var previousPage = page - 1;
+            var nextPage = page + 1;
+
+            ViewBag.previousPage = previousPage;
+            ViewBag.nextPage = nextPage;
+            ViewBag.hasPreviousPage = previousPage >= 0;
+            ViewBag.hasNextPage = nextPage < totalPages;
+
+
+            var posts = _db.Posts.Skip(pageSize * page).Take(pageSize).ToArray();
+
             return View(posts);
         }
 
