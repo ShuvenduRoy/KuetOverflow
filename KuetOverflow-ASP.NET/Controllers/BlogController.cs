@@ -37,6 +37,9 @@ namespace KuetOverflow_ASP.NET.Controllers
 
             var posts = _db.Posts.Skip(pageSize * page).Take(pageSize).ToArray();
 
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView(posts);
+
             return View(posts);
         }
 

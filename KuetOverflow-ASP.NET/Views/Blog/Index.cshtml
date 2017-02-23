@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<KuetOverflow_ASP.NET.Models.BlogPost>
-@{
-    Layout = "_Layout";
-}
 
 @section PostButton{
         <a href="@Url.Action("Create", "Blog")">Write an Article</a>
@@ -11,25 +8,27 @@
 <div class="container">
     <h3>Recent Blog Posts</h3>
 
-    @foreach (var post in Model)
-    {
-        <div>
-            @Html.Partial("_Post", post)
-        </div>
-    }
-    
-    <div>
-        <p class="Pager">
-            @if (ViewBag.hasPreviousPage)
-            {
-                <a class="prev" href="@Url.Action("Index", "Blog", new {page = ViewBag.previousPage })">&lt;Previous</a>
-            }
+    <div id="mainContent">
+        @foreach (var post in Model)
+        {
+            <div>
+                @Html.Partial("_Post", post)
+            </div>
+        }
 
-            @if (ViewBag.hasNextPage)
+        <div>
+            <p class="Pager">
+                @if (ViewBag.hasPreviousPage)
             {
-                <a class="next" style="text-align: right" href="@Url.Action("Index", "Blog", new {page = ViewBag.nextPage })">Next&gt;</a>
-            }
-        </p>
+                    <a class="prev" href="@Url.Action("Index", "Blog", new {page = ViewBag.previousPage })">&lt;Previous</a>
+                }
+
+                @if (ViewBag.hasNextPage)
+            {
+                    <a class="next" style="text-align: right" href="@Url.Action("Index", "Blog", new {page = ViewBag.nextPage })">Next&gt;</a>
+                }
+            </p>
+        </div>
     </div>
 </div>
 
