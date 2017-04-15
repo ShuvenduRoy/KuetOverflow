@@ -1,6 +1,0 @@
-﻿{
-  "ConnectionStrings": {
-    "KuetDataContext": "Server=(localdb)\\mssqllocaldb;Database=KuetOverflow;Trusted_Connection=True;"
-  },
-  "EnableDeveloperExceptions": true
-}

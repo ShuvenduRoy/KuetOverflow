@@ -1,9 +1,0 @@
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\bin\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.deps.json
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\bin\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.runtimeconfig.json
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\bin\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.runtimeconfig.dev.json
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\bin\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.dll
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\obj\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.AssemblyInfo.cs
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\bin\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.pdb
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\obj\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.dll
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\obj\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.pdb
-C:\PROJECTS\Visual Studio 2017\KuetOverflow-ASP.NET\KuetOverflow-ASP.NET\obj\Debug\netcoreapp1.0\KuetOverflow-ASP.NET.csprojResolveAssemblyReference.cache
