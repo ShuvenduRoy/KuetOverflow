@@ -54,13 +54,20 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LastName,FirstMidName,EnrollmentDate")] Student student)
+        public async Task<IActionResult> Create([Bind("LastName,FirstMidName,EnrollmentDate")] Student student)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _context.Add(student);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("","Unable to add this item");
             }
             return View(student);
         }
@@ -117,7 +124,7 @@ namespace KuetOverflow.Controllers
         }
 
         // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? saveChangedError = false)
         {
             if (id == null)
             {
@@ -125,10 +132,17 @@ namespace KuetOverflow.Controllers
             }
 
             var student = await _context.Students
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();
+            }
+
+            if (saveChangedError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Deletion failed";
             }
 
             return View(student);
@@ -139,10 +153,25 @@ namespace KuetOverflow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            var student = await _context.Students
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+
+            if (student == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToAction("Delete", new {id = id, saveChangedError = true});
+            }
         }
 
         private bool StudentExists(int id)
