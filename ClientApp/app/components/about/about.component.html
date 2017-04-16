@@ -2,23 +2,19 @@
 
 <p>Here is some of the statitical summary</p>
 
-<!--<p *ngIf="!forecasts"><em>Loading...</em></p>-->
-<!---->
-<!--<table class='table' *ngIf="forecasts">-->
-<!--    <thead>-->
-<!--        <tr>-->
-<!--            <th>Date</th>-->
-<!--            <th>Temp. (C)</th>-->
-<!--            <th>Temp. (F)</th>-->
-<!--            <th>Summary</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--        <tr *ngFor="let forecast of forecasts">-->
-<!--            <td>{{ forecast.dateFormatted }}</td>-->
-<!--            <td>{{ forecast.temperatureC }}</td>-->
-<!--            <td>{{ forecast.temperatureF }}</td>-->
-<!--            <td>{{ forecast.summary }}</td>-->
-<!--        </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
+<p *ngIf="!aboutData"><em>Loading...</em></p>
+
+<table class='table' *ngIf="aboutData">
+    <thead>
+        <tr>
+            <th>Enrollment Date </th>
+            <th>Students</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of aboutData">
+            <td>{{ data.enrollmentDate }}</td>
+            <td>{{ data.studentCount }}</td>
+        </tr>
+    </tbody>
+</table>
