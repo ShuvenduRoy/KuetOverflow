@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 
 namespace KuetOverflow.Controllers
 {
@@ -17,9 +18,38 @@ namespace KuetOverflow.Controllers
         }
 
         // GET: Instructors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id, int? courseID)
         {
-            return View(await _context.Instructors.ToListAsync());
+            var viewModel = new InstructorIndexData();
+            viewModel.Instructors = await _context.Instructors
+                .Include(i => i.OfficeAssignment)
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(c => c.Course)
+                        .ThenInclude(c => c.Department)
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(c => c.Course)
+                        .ThenInclude(c => c.Enrollments)
+                            .ThenInclude(e => e.Student)
+                .AsNoTracking()
+                .OrderBy(i => i.LastName)
+                .ToListAsync();
+
+            if (id != null)
+            {
+                ViewData["InstructorID"] = id.Value;
+                Instructor instructor = viewModel.Instructors.Where(
+                    i => i.ID == id.Value).Single();
+                viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
+            }
+
+            if (courseID != null)
+            {
+                ViewData["CourseID"] = courseID.Value;
+                viewModel.Enrollments = viewModel.Courses.Where(
+                    x => x.CourseID == courseID).Single().Enrollments;
+            }
+
+            return View(viewModel);
         }
 
         // GET: Instructors/Details/5
