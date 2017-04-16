@@ -22,7 +22,9 @@ namespace KuetOverflow.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            var schoolContext = _context.Courses.Include(c => c.Department);
+            var schoolContext = _context.Courses.Include(c => c.Department)
+                .Include(c => c.Department)
+                .AsNoTracking();
             return View(await schoolContext.ToListAsync());
         }
 
