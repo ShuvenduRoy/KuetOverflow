@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KuetOverflow.Data;
@@ -19,6 +20,21 @@ namespace KuetOverflow.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [Route("api/home/about")]
+        [HttpGet("[action]")]
+        public IEnumerable<EnrollmentDateGroup> AboutData()
+        {
+            IQueryable<EnrollmentDateGroup> data = from student in _context.Students
+                                                   group student by student.EnrollmentDate
+                                                   into dataGroup
+                                                   select new EnrollmentDateGroup()
+                                                   {
+                                                       EnrollmentDate = dataGroup.Key,
+                                                       StudentCount = dataGroup.Count()
+                                                   };
+            return data;
         }
 
         public async Task<ActionResult> About()
