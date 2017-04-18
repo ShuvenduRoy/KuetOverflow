@@ -19,7 +19,7 @@ namespace KuetOverflow.Controllers
             _context = context;    
         }
 
-        // GET: Courses
+
         public async Task<IActionResult> Index()
         {
             var schoolContext = _context.Courses.Include(c => c.Department)
@@ -28,7 +28,7 @@ namespace KuetOverflow.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
-        // GET: Courses/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,16 +47,14 @@ namespace KuetOverflow.Controllers
             return View(course);
         }
 
-        // GET: Courses/Create
+
         public IActionResult Create()
         {
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID");
+            PopulateDepartmentsDropDownList();
             return View();
         }
 
-        // POST: Courses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseID,Title,Credits,DepartmentID")] Course course)
@@ -67,11 +65,11 @@ namespace KuetOverflow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID", course.DepartmentID);
+            PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
 
-        // GET: Courses/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,13 +82,10 @@ namespace KuetOverflow.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID", course.DepartmentID);
+            PopulateDepartmentsDropDownList();
             return View(course);
         }
 
-        // POST: Courses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CourseID,Title,Credits,DepartmentID")] Course course)
@@ -124,7 +119,6 @@ namespace KuetOverflow.Controllers
             return View(course);
         }
 
-        // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,7 +137,7 @@ namespace KuetOverflow.Controllers
             return View(course);
         }
 
-        // POST: Courses/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -157,6 +151,14 @@ namespace KuetOverflow.Controllers
         private bool CourseExists(int id)
         {
             return _context.Courses.Any(e => e.CourseID == id);
+        }
+
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            var departmentQuery = from d in _context.Departments
+                orderby d.Name
+                select d;
+            ViewBag.DepartmentID = new SelectList(departmentQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
         }
     }
 }
