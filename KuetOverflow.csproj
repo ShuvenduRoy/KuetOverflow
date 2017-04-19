@@ -40,7 +40,9 @@
     <Content Include="wwwroot\css\theme.css" />
     <Content Include="wwwroot\css\theme.js" />
     <Content Include="wwwroot\facebook.png" />
-    <Content Include="wwwroot\feature1.png" />
+    <Content Include="wwwroot\feature1.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\feature2.png" />
     <Content Include="wwwroot\ga.js" />
     <Content Include="wwwroot\google.png" />
