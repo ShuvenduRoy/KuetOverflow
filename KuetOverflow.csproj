@@ -36,6 +36,9 @@
     <Content Include="wwwroot\apple.png" />
     <Content Include="wwwroot\behavior_legacy.js" />
     <Content Include="wwwroot\bootstrap.min.js" />
+    <Content Include="wwwroot\css\animate.css" />
+    <Content Include="wwwroot\css\theme.css" />
+    <Content Include="wwwroot\css\theme.js" />
     <Content Include="wwwroot\facebook.png" />
     <Content Include="wwwroot\feature1.png" />
     <Content Include="wwwroot\feature2.png" />
@@ -48,6 +51,9 @@
     <Content Include="wwwroot\images\slider\slide-right.png" />
     <Content Include="wwwroot\images\static-hero.png" />
     <Content Include="wwwroot\jquery.min.js" />
+    <Content Include="wwwroot\js\bootstrap.min.js" />
+    <Content Include="wwwroot\js\jquery.min.js" />
+    <Content Include="wwwroot\js\theme.js" />
     <Content Include="wwwroot\logo.png" />
     <Content Include="wwwroot\saved_resource.html" />
     <Content Include="wwwroot\screen_preview_legacy.css" />
