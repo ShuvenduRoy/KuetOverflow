@@ -1,26 +1,97 @@
-<br /><br /><hr />
+<div class="clients-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Join With Up</h3>
+                <p>
+                    See the imforamtion page for more details and go to the admission page for registration
+                </p>
 
-<h1>Weather forecast</h1>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>This component demonstrates fetching data from the server.</p>
+<div class="main-footer main-footer--white">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 menu">
+                <h3>Overview</h3>
+                <ul>
+                    <li>
+                        <a href="#">Features</a>
+                    </li>
+                    <li>
+                        <a href="#/services.html">Services</a>
+                    </li>
+                    <li>
+                        <a href="#/pricing.html">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="#/support.html">Support</a>
+                    </li>
+                    <li>
+                        <a href="#/blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#/blog.html">Coming soon</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 menu">
+                <h3>Menu</h3>
+                <ul>
+                    <li>
+                        <a href="#">About us</a>
+                    </li>
+                    <li>
+                        <a href="#/services.html">Contact us</a>
+                    </li>
+                    <li>
+                        <a href="#/aboutus.html">Jobs</a>
+                        <!--<a href="#/aboutus.html" class="hiring">
+                            We're hiring!
+                        </a>-->
+                    </li>
+                    <li>
+                        <a href="#/support.html">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#/blog.html">Status</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-2 menu">
+                <h3>Social</h3>
+                <ul>
+                    <li>
+                        <a href="#">Youtube</a>
+                    </li>
+                    <li>
+                        <a href="#/services.html">Facebook</a>
+                    </li>
+                    <li>
+                        <a href="#/pricing.html">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4 newsletter">
+                <div class="signup clearfix">
+                    <p>
+                        Sign up for the newsletter and we'll inform you of updates, offers and more.
+                    </p>
+                    <form>
+                        <input type="text" name="email" class="form-control" placeholder="Your email address">
+                        <input type="submit" value="Sign up">
+                    </form>
+                </div>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table' *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.dateFormatted }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
-        </tr>
-    </tbody>
-</table>
+            </div>
+        </div>
+        <div class="row credits">
+            <div class="col-md-12">
+                Copyright © 2016. Bikash
+            </div>
+        </div>
+    </div>
+</div>
