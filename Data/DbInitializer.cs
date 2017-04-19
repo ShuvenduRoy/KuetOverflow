@@ -20,22 +20,22 @@ namespace KuetOverflow.Data
 
             var students = new Student[]
             {
-                new Student { FirstMidName = "Carson",   LastName = "Alexander",
-                    EnrollmentDate = DateTime.Parse("2010-09-01") },
-                new Student { FirstMidName = "Meredith", LastName = "Alonso",
-                    EnrollmentDate = DateTime.Parse("2012-09-01") },
-                new Student { FirstMidName = "Arturo",   LastName = "Anand",
-                    EnrollmentDate = DateTime.Parse("2013-09-01") },
-                new Student { FirstMidName = "Gytis",    LastName = "Barzdukas",
-                    EnrollmentDate = DateTime.Parse("2012-09-01") },
-                new Student { FirstMidName = "Yan",      LastName = "Li",
-                    EnrollmentDate = DateTime.Parse("2012-09-01") },
-                new Student { FirstMidName = "Peggy",    LastName = "Justice",
-                    EnrollmentDate = DateTime.Parse("2011-09-01") },
-                new Student { FirstMidName = "Laura",    LastName = "Norman",
-                    EnrollmentDate = DateTime.Parse("2013-09-01") },
-                new Student { FirstMidName = "Nino",     LastName = "Olivetto",
-                    EnrollmentDate = DateTime.Parse("2005-09-01") }
+                new Student { FirstMidName = "Shuvendu",   LastName = "Roy",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Tushar", LastName = "Pranto",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Mehedi",   LastName = "Hasan",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Tawhid",    LastName = "Jwader",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "AbuSaleh",      LastName = "Asif",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Dibbendu",    LastName = "Sapto",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Arapn",    LastName = "Bhoumic",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") },
+                new Student { FirstMidName = "Monoarul",     LastName = "Amit",
+                    EnrollmentDate = DateTime.Parse("2015-09-01") }
             };
 
             foreach (Student s in students)
@@ -47,15 +47,15 @@ namespace KuetOverflow.Data
             var instructors = new Instructor[]
             {
                 new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie",
-                    HireDate = DateTime.Parse("1995-03-11") },
+                    HireDate = DateTime.Parse("2015-03-11") },
                 new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",
-                    HireDate = DateTime.Parse("2002-07-06") },
+                    HireDate = DateTime.Parse("2015-07-06") },
                 new Instructor { FirstMidName = "Roger",   LastName = "Harui",
-                    HireDate = DateTime.Parse("1998-07-01") },
+                    HireDate = DateTime.Parse("2016-07-01") },
                 new Instructor { FirstMidName = "Candace", LastName = "Kapoor",
-                    HireDate = DateTime.Parse("2001-01-15") },
+                    HireDate = DateTime.Parse("2016-01-15") },
                 new Instructor { FirstMidName = "Roger",   LastName = "Zheng",
-                    HireDate = DateTime.Parse("2004-02-12") }
+                    HireDate = DateTime.Parse("2014-02-12") }
             };
 
             foreach (Instructor i in instructors)
@@ -66,17 +66,17 @@ namespace KuetOverflow.Data
 
             var departments = new Department[]
             {
-                new Department { Name = "English",     Budget = 350000,
-                    StartDate = DateTime.Parse("2007-09-01"),
+                new Department { Name = "CSE",     Budget = 350000,
+                    StartDate = DateTime.Parse("2015-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Abercrombie").ID },
-                new Department { Name = "Mathematics", Budget = 100000,
-                    StartDate = DateTime.Parse("2007-09-01"),
+                new Department { Name = "EEE", Budget = 100000,
+                    StartDate = DateTime.Parse("2015-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Fakhouri").ID },
-                new Department { Name = "Engineering", Budget = 350000,
-                    StartDate = DateTime.Parse("2007-09-01"),
+                new Department { Name = "ECE", Budget = 350000,
+                    StartDate = DateTime.Parse("2015-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Harui").ID },
-                new Department { Name = "Economics",   Budget = 100000,
-                    StartDate = DateTime.Parse("2007-09-01"),
+                new Department { Name = "IEM",   Budget = 100000,
+                    StartDate = DateTime.Parse("2015-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Kapoor").ID }
             };
 
@@ -88,26 +88,26 @@ namespace KuetOverflow.Data
 
             var courses = new Course[]
             {
-                new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3,
-                    DepartmentID = departments.Single( s => s.Name == "Engineering").DepartmentID
+                new Course {CourseID = 1050, Title = "Web Lab",      Credits = 3,
+                    DepartmentID = departments.Single( s => s.Name == "ECE").DepartmentID
                 },
-                new Course {CourseID = 4022, Title = "Microeconomics", Credits = 3,
-                    DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID
+                new Course {CourseID = 4022, Title = "Database", Credits = 3,
+                    DepartmentID = departments.Single( s => s.Name == "IEM").DepartmentID
                 },
-                new Course {CourseID = 4041, Title = "Macroeconomics", Credits = 3,
-                    DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID
+                new Course {CourseID = 4041, Title = "Database", Credits = 3,
+                    DepartmentID = departments.Single( s => s.Name == "IEM").DepartmentID
                 },
                 new Course {CourseID = 1045, Title = "Calculus",       Credits = 4,
-                    DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID
+                    DepartmentID = departments.Single( s => s.Name == "EEE").DepartmentID
                 },
-                new Course {CourseID = 3141, Title = "Trigonometry",   Credits = 4,
-                    DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID
+                new Course {CourseID = 3141, Title = "Theory of computation",   Credits = 4,
+                    DepartmentID = departments.Single( s => s.Name == "EEE").DepartmentID
                 },
-                new Course {CourseID = 2021, Title = "Composition",    Credits = 3,
-                    DepartmentID = departments.Single( s => s.Name == "English").DepartmentID
+                new Course {CourseID = 2021, Title = "Machine Learning",    Credits = 3,
+                    DepartmentID = departments.Single( s => s.Name == "CSE").DepartmentID
                 },
-                new Course {CourseID = 2042, Title = "Literature",     Credits = 4,
-                    DepartmentID = departments.Single( s => s.Name == "English").DepartmentID
+                new Course {CourseID = 2042, Title = "Artificial Intelligence",     Credits = 4,
+                    DepartmentID = departments.Single( s => s.Name == "CSE").DepartmentID
                 },
             };
 
@@ -139,35 +139,35 @@ namespace KuetOverflow.Data
             var courseInstructors = new CourseAssignment[]
             {
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Object oriented Programming" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Kapoor").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Web Lab" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Harui").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Database" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Zheng").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Networking" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Zheng").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Artificial Intelligence" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Fakhouri").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Theory of computation" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Harui").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Machine Learning" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Abercrombie").ID
                     },
                 new CourseAssignment {
-                    CourseID = courses.Single(c => c.Title == "Literature" ).CourseID,
+                    CourseID = courses.Single(c => c.Title == "Artificial Intelligence" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Abercrombie").ID
                     },
             };
@@ -181,57 +181,57 @@ namespace KuetOverflow.Data
             var enrollments = new Enrollment[]
             {
                 new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
+                    StudentID = students.Single(s => s.LastName == "Roy").ID,
+                    CourseID = courses.Single(c => c.Title == "Web Lab" ).CourseID,
                     Grade = Grade.A
                 },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
+                    StudentID = students.Single(s => s.LastName == "Roy").ID,
+                    CourseID = courses.Single(c => c.Title == "Database" ).CourseID,
                     Grade = Grade.C
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
+                    StudentID = students.Single(s => s.LastName == "Roy").ID,
+                    CourseID = courses.Single(c => c.Title == "Database" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                        StudentID = students.Single(s => s.LastName == "Alonso").ID,
+                        StudentID = students.Single(s => s.LastName == "Pranto").ID,
                     CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                        StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
+                        StudentID = students.Single(s => s.LastName == "Pranto").ID,
+                    CourseID = courses.Single(c => c.Title == "Theory of computation" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
+                    StudentID = students.Single(s => s.LastName == "Pranto").ID,
+                    CourseID = courses.Single(c => c.Title == "Machine Learning" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Anand").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
+                    StudentID = students.Single(s => s.LastName == "Hasan").ID,
+                    CourseID = courses.Single(c => c.Title == "Web Lab" ).CourseID
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Anand").ID,
-                    CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
+                    StudentID = students.Single(s => s.LastName == "Hasan").ID,
+                    CourseID = courses.Single(c => c.Title == "Database").CourseID,
                     Grade = Grade.B
                     },
                 new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Barzdukas").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
+                    StudentID = students.Single(s => s.LastName == "Jwader").ID,
+                    CourseID = courses.Single(c => c.Title == "Web Lab").CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Li").ID,
-                    CourseID = courses.Single(c => c.Title == "Composition").CourseID,
+                    StudentID = students.Single(s => s.LastName == "Asif").ID,
+                    CourseID = courses.Single(c => c.Title == "Machine Learning").CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Justice").ID,
-                    CourseID = courses.Single(c => c.Title == "Literature").CourseID,
+                    StudentID = students.Single(s => s.LastName == "Sapto").ID,
+                    CourseID = courses.Single(c => c.Title == "Artificial Intelligence").CourseID,
                     Grade = Grade.B
                     }
             };

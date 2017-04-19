@@ -62,7 +62,7 @@ namespace KuetOverflow.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             return View(await PagingList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
 //            return View(await students.AsNoTracking().ToListAsync());
         }
