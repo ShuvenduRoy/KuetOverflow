@@ -40,6 +40,7 @@
     <Content Include="wwwroot\css\theme.css" />
     <Content Include="wwwroot\css\theme.js" />
     <Content Include="wwwroot\facebook.png" />
+    <Content Include="wwwroot\feature1.jpg" />
     <Content Include="wwwroot\feature1.png">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -52,7 +53,11 @@
     <Content Include="wwwroot\images\slider-bg.png" />
     <Content Include="wwwroot\images\slider\slide-left.png" />
     <Content Include="wwwroot\images\slider\slide-right.png" />
+    <Content Include="wwwroot\images\stacik-hero.jpg" />
+    <Content Include="wwwroot\images\stacic-hero.png" />
     <Content Include="wwwroot\images\static-hero.png" />
+    <Content Include="wwwroot\images\static-hero0.png" />
+    <Content Include="wwwroot\images\tablet_smart_phone_hi_tech_icons_hand_96123_1920x1080.jpg" />
     <Content Include="wwwroot\jquery.min.js" />
     <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
