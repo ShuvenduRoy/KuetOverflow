@@ -7451,6 +7451,11 @@ a:focus, button:focus {
               width: 100%; } }
 
 /* pages */
+
+.back-image{
+	background-image: url("feature2.png");
+}
+
 .index-hero {
   overflow: hidden;
   background: #4B4848;
