@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using KuetOverflow.Data;
+using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,14 +15,25 @@ namespace KuetOverflow.Controllers
     public class HomeController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public HomeController(SchoolContext context)
+        public HomeController(SchoolContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var email = Request.Cookies["email"];//"bikash11roy@gmail.com";//
+            var pass = Request.Cookies["password"];//"SR42@bikash";//
+
+            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(pass))
+            {
+                await _signInManager.PasswordSignInAsync(email, pass, false, lockoutOnFailure: false);
+
+            }
+
             return View();
         }
 
