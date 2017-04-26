@@ -9,7 +9,11 @@
 <ul>
     @foreach (var question in Model)
     {
-        <li>@question.Title</li>
+        <li>
+            <a asp-controller="Questions" asp-action="Details" asp-route-id="@question.ID">
+                @question.Title
+            </a>
+        </li>
     }
     
 </ul>
