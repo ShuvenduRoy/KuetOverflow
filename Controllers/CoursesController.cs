@@ -28,6 +28,14 @@ namespace KuetOverflow.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
+        public async Task<IActionResult> StudentIndex()
+        {
+            var schoolContext = _context.Courses.Include(c => c.Department)
+                .Include(c => c.Department)
+                .AsNoTracking();
+            return View(await schoolContext.ToListAsync());
+        }
+
 
         public async Task<IActionResult> Details(int? id)
         {

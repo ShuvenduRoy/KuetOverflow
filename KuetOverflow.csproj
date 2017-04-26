@@ -93,6 +93,9 @@
   <ItemGroup>
     <Folder Include="Views\Admin\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Shared\_StudentLayout.cshtml" />
+  </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec Command="npm install" />

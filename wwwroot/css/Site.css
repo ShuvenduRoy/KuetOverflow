@@ -2,7 +2,10 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
+#studentHeader {
+    background-image: url("../images/feature3.PNG");
+    width: auto;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
