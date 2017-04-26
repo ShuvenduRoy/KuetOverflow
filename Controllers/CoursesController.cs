@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
@@ -16,7 +18,7 @@ namespace KuetOverflow.Controllers
 
         public CoursesController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
 
@@ -33,6 +35,10 @@ namespace KuetOverflow.Controllers
             var schoolContext = _context.Courses.Include(c => c.Department)
                 .Include(c => c.Department)
                 .AsNoTracking();
+
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var username = this.User.FindFirstValue(ClaimTypes.Name);
+
             return View(await schoolContext.ToListAsync());
         }
 
