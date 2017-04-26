@@ -1,0 +1,15 @@
+﻿@model IEnumerable<KuetOverflow.Models.Question>
+@{
+    ViewBag.Title = "Courses";
+    Layout = "_StudentLayout";
+}
+<br /><br />
+<h2>Queations</h2>
+
+<ul>
+    @foreach (var question in Model)
+    {
+        <li>@question.Title</li>
+    }
+    
+</ul>

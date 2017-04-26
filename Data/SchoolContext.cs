@@ -16,7 +16,6 @@ namespace KuetOverflow.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
-        public DbSet<Question> Questions { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<CourseAssignment> CourseAssignments { get; set; }
 

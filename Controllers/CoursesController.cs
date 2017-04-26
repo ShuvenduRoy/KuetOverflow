@@ -34,12 +34,27 @@ namespace KuetOverflow.Controllers
         {
             var schoolContext = _context.Courses.Include(c => c.Department)
                 .Include(c => c.Department)
+                .Include(c => c.Questions)
                 .AsNoTracking();
 
             var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var username = this.User.FindFirstValue(ClaimTypes.Name);
 
             return View(await schoolContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> CourseQuestions(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var questions = _context.Question
+                
+                .ToListAsync();
+
+            return View(await questions);
         }
 
 
