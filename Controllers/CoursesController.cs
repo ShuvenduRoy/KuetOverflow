@@ -51,7 +51,7 @@ namespace KuetOverflow.Controllers
             }
 
             var questions = _context.Question
-                
+                .Where(q => q.CourseID == id)
                 .ToListAsync();
 
             return View(await questions);
