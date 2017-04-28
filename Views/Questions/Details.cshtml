@@ -1,4 +1,4 @@
-@model KuetOverflow.Models.Question
+@model KuetOverflow.Models.SchoolViewModels.QuestionViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -12,38 +12,48 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CourseID)
+            @Html.DisplayNameFor(model => model.Question.CourseID)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CourseID)
+            @Html.DisplayFor(model => model.Question.CourseID)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Question.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Question.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Question.UserName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserName)
+            @Html.DisplayFor(model => model.Question.UserName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Question.UserId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.Question.UserId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.Question.DateTime)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DateTime)
+            @Html.DisplayFor(model => model.Question.DateTime)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Question.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<h2>Answers</h2>
+
+@foreach (var answer in Model.Answers)
+{
+    <div>
+        <h4>@answer.UserName</h4>
+        <p>@answer.Title</p>
+    </div>
+}

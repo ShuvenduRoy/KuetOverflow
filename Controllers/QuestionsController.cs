@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 
 namespace KuetOverflow.Controllers
 {
@@ -35,12 +36,20 @@ namespace KuetOverflow.Controllers
 
             var question = await _context.Question
                 .SingleOrDefaultAsync(m => m.ID == id);
+            QuestionViewModel qvm = new QuestionViewModel();
+            qvm.Question = question;
+
+            var answers = await _context.Answer
+                .Where(a => a.QuestionID == id)
+                .ToListAsync();
+            qvm.Answers = answers;
+
             if (question == null)
             {
                 return NotFound();
             }
 
-            return View(question);
+            return View(qvm);
         }
 
         // GET: Questions/Create
