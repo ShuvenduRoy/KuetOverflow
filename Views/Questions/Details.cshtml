@@ -1,14 +1,13 @@
 @model KuetOverflow.Models.SchoolViewModels.QuestionViewModel
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Kuet Overflow";
+    Layout = "_StudentLayout";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Question</h4>
+    <h2>@Model.Question.Title</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
