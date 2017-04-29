@@ -76,7 +76,7 @@ namespace KuetOverflow.Controllers
             {
                 _context.Add(question);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("CourseQuestions", "Courses", new {id=question.CourseID});
             }
             return View(question);
         }
