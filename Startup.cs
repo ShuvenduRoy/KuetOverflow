@@ -1,3 +1,4 @@
+using System;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Services;
@@ -43,6 +44,15 @@ namespace KuetOverflow
 
             services.AddMvc();
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.CookieHttpOnly = true;
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -68,6 +78,7 @@ namespace KuetOverflow
 
             app.UseStaticFiles();
             app.UseIdentity();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

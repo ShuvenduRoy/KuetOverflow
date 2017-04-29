@@ -65,8 +65,9 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CourseID,Title")] Question question)
+        public async Task<IActionResult> Create([Bind("ID,Title,Description ")] Question question)
         {
+            question.CourseID = int.Parse(TempData["course"].ToString());
             question.DateTime = DateTime.Now;
             question.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             question.UserName = User.Identity.Name;

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
@@ -49,6 +50,9 @@ namespace KuetOverflow.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["course"] = id;
+            TempData["course"] = id;
 
             var questions = _context.Question
                 .Where(q => q.CourseID == id)
