@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
@@ -15,7 +17,7 @@ namespace KuetOverflow.Controllers
     {
         private readonly SchoolContext _context;
 
-        public QuestionsController(SchoolContext context)
+        public QuestionsController(SchoolContext context )
         {
             _context = context;    
         }
@@ -63,8 +65,12 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CourseID,Title,UserName,UserId,DateTime")] Question question)
+        public async Task<IActionResult> Create([Bind("ID,CourseID,Title")] Question question)
         {
+            question.DateTime = DateTime.Now;
+            question.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            question.UserName = User.Identity.Name;
+
             if (ModelState.IsValid)
             {
                 _context.Add(question);
