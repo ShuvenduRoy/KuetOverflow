@@ -23,17 +23,19 @@
             @Html.DisplayFor(model => model.Question.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Question.UserName)
+            @Html.DisplayNameFor(model => model.Question.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Question.Description)
+        </dd>
+
+        <dt>
+            Asked by: 
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Question.UserName)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.UserId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.UserId)
-        </dd>
+        
         <dt>
             @Html.DisplayNameFor(model => model.Question.DateTime)
         </dt>
