@@ -66,7 +66,8 @@ namespace KuetOverflow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Title,Description ")] Question question)
         {
-            question.CourseID = int.Parse(TempData["course"].ToString());
+            int n = int.Parse(TempData["course"].ToString());
+            question.CourseID = n;
             question.DateTime = DateTime.Now;
             question.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             question.UserName = User.Identity.Name;

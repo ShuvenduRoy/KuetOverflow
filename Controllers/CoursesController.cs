@@ -52,8 +52,8 @@ namespace KuetOverflow.Controllers
                 return NotFound();
             }
 
-            ViewData["course"] = id;
             TempData["course"] = id;
+
 
             var model = new QuestionLectureViewModel();
             model.Questions = await _context.Question
