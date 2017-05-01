@@ -11,7 +11,7 @@
         @foreach (var lecture in Model.Lectures)
         {
             <li>
-                <a asp-controller="Questions" asp-action="Details" asp-route-id="@lecture.ID">
+                <a asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID">
                     @lecture.Title
                 </a>
             </li>
