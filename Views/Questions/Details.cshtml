@@ -7,9 +7,23 @@
 
 
 <div>
-    <h2>@Model.Question.Title</h2>
-    <hr />
-    <dl class="dl-horizontal">
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" src="~/apple.png" alt="bikash">
+                
+            </a>
+            @Html.DisplayFor(model => model.Question.UserName)
+            <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+        </div>
+        <div class="media-body">
+            
+            <br/>
+            <h2 class="media-heading">@Html.DisplayFor(model => model.Question.Title)</h2>
+            <p>@Html.DisplayFor(model => model.Question.Description)</p>
+        </div>
+    </div>
+    @*<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Question.CourseID)
         </dt>
@@ -42,7 +56,7 @@
         <dd>
             @Html.DisplayFor(model => model.Question.DateTime)
         </dd>
-    </dl>
+    </dl>*@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Question.ID">Edit</a> |
