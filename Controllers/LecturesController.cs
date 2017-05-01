@@ -54,8 +54,10 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CourseId,Title,Body,UpdateTime")] Lecture lecture)
+        public async Task<IActionResult> Create([Bind("ID,CourseId,Title,Body")] Lecture lecture)
         {
+            lecture.UpdateTime = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(lecture);
@@ -86,8 +88,10 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseId,Title,Body,UpdateTime")] Lecture lecture)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseId,Title,Body")] Lecture lecture)
         {
+            lecture.UpdateTime = DateTime.Now;
+
             if (id != lecture.ID)
             {
                 return NotFound();
