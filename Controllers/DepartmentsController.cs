@@ -36,6 +36,7 @@ namespace KuetOverflow.Controllers
 
             var department = await _context.Departments
                 .Include(d => d.Administrator)
+                .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.DepartmentID == id);
             if (department == null)
             {
@@ -77,7 +78,10 @@ namespace KuetOverflow.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Departments.SingleOrDefaultAsync(m => m.DepartmentID == id);
+            var department = await _context.Departments
+                .Include(i => i.Administrator)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.DepartmentID == id);
             if (department == null)
             {
                 return NotFound();
@@ -87,39 +91,85 @@ namespace KuetOverflow.Controllers
         }
 
         // POST: Departments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from over posting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DepartmentID,Name,Budget,StartDate,InstructorID,RowVersion")] Department department)
+        public async Task<IActionResult> Edit(int? id, byte[] rowVersion)
         {
-            if (id != department.DepartmentID)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var departmentToUpdate = await _context.Departments.Include(i => i.Administrator).SingleOrDefaultAsync(m => m.DepartmentID == id);
+
+            if (departmentToUpdate == null)
+            {
+                Department deletedDepartment = new Department();
+                await TryUpdateModelAsync(deletedDepartment);
+                ModelState.AddModelError(string.Empty,
+                    "Unable to save changes. The department was deleted by another user.");
+                ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", deletedDepartment.InstructorID);
+                return View(deletedDepartment);
+            }
+
+            _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVersion;
+
+            if (await TryUpdateModelAsync<Department>(
+                departmentToUpdate,
+                "",
+                s => s.Name, s => s.StartDate, s => s.Budget, s => s.InstructorID))
             {
                 try
                 {
-                    _context.Update(department);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
-                    if (!DepartmentExists(department.DepartmentID))
+                    var exceptionEntry = ex.Entries.Single();
+                    var clientValues = (Department)exceptionEntry.Entity;
+                    var databaseEntry = exceptionEntry.GetDatabaseValues();
+                    if (databaseEntry == null)
                     {
-                        return NotFound();
+                        ModelState.AddModelError(string.Empty,
+                            "Unable to save changes. The department was deleted by another user.");
                     }
                     else
                     {
-                        throw;
+                        var databaseValues = (Department)databaseEntry.ToObject();
+
+                        if (databaseValues.Name != clientValues.Name)
+                        {
+                            ModelState.AddModelError("Name", $"Current value: {databaseValues.Name}");
+                        }
+                        if (databaseValues.Budget != clientValues.Budget)
+                        {
+                            ModelState.AddModelError("Budget", $"Current value: {databaseValues.Budget:c}");
+                        }
+                        if (databaseValues.StartDate != clientValues.StartDate)
+                        {
+                            ModelState.AddModelError("StartDate", $"Current value: {databaseValues.StartDate:d}");
+                        }
+                        if (databaseValues.InstructorID != clientValues.InstructorID)
+                        {
+                            Instructor databaseInstructor = await _context.Instructors.SingleOrDefaultAsync(i => i.ID == databaseValues.InstructorID);
+                            ModelState.AddModelError("InstructorID", $"Current value: {databaseInstructor?.FullName}");
+                        }
+
+                        ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                                                               + "was modified by another user after you got the original value. The "
+                                                               + "edit operation was canceled and the current values in the database "
+                                                               + "have been displayed. If you still want to edit this record, click "
+                                                               + "the Save button again. Otherwise click the Back to List hyperlink.");
+                        departmentToUpdate.RowVersion = (byte[])databaseValues.RowVersion;
+                        ModelState.Remove("RowVersion");
                     }
                 }
-                return RedirectToAction("Index");
             }
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
-            return View(department);
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", departmentToUpdate.InstructorID);
+            return View(departmentToUpdate);
         }
 
         // GET: Departments/Delete/5
