@@ -60,3 +60,37 @@
         <p>@answer.Title</p>
     </div>
 }
+
+
+<form asp-controller="Answers" asp-action="CreateByUser">
+    <div class="form-horizontal">
+        <hr />
+        <h4>Add an answer</h4>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*<div class="form-group">
+            <label asp-for="QuestionID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="QuestionID" class="form-control" />
+                <span asp-validation-for="QuestionID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <textarea name="Title"></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+</form>

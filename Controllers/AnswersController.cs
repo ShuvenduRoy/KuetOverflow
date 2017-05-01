@@ -69,6 +69,24 @@ namespace KuetOverflow.Controllers
             return View(answer);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateByUser([Bind("ID,Title")] Answer answer)
+        {
+            answer.QuestionID = int.Parse(TempData["que"].ToString());
+            answer.DateTime = DateTime.Now;
+            answer.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            answer.UserName = User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                _context.Add(answer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Questions", new { id = answer.QuestionID });
+                
+            }
+            return RedirectToAction("Index");
+        }
+
         // GET: Answers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

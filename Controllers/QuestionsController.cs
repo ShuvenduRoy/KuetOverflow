@@ -36,6 +36,8 @@ namespace KuetOverflow.Controllers
                 return NotFound();
             }
 
+            TempData["que"] = id;
+
             var question = await _context.Question
                 .SingleOrDefaultAsync(m => m.ID == id);
             QuestionViewModel qvm = new QuestionViewModel();
