@@ -32,6 +32,9 @@ namespace KuetOverflow.Data
 
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(c => new { c.CourseID, c.InstructorID });
+
+            modelBuilder.Entity<Department>()
+                .Property(p => p.RowVersion).IsConcurrencyToken();
         }
 
         public DbSet<KuetOverflow.Models.Question> Question { get; set; }
