@@ -41,6 +41,6 @@ namespace KuetOverflow.Data
 
         public DbSet<KuetOverflow.Models.Answer> Answer { get; set; }
 
-        public DbSet<KuetOverflow.Models.Lecture> Class { get; set; }
+        public DbSet<KuetOverflow.Models.Lecture> Lectures { get; set; }
     }
 }
