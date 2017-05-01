@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CourseID)
+                @Html.DisplayNameFor(model => model.CourseNo)
             </th>
             <th>
                 Course Title
@@ -31,8 +31,8 @@
             
                 <tr>
                     <td>
-                        <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
-                            @Html.DisplayFor(modelItem => item.CourseID)
+                        <a asp-action="CourseQuestions" asp-route-id="@item.CourseNo">
+                            @Html.DisplayFor(modelItem => item.CourseNo)
                         </a>
                         
                     </td>
