@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KuetOverflow.Models.Question>
+﻿@model KuetOverflow.Models.SchoolViewModels.QuestionLectureViewModel
 @{
     ViewBag.Title = "Courses";
     Layout = "_StudentLayout";
@@ -6,7 +6,18 @@
 
 
 <div class="col-md-3">
-    <h2>Lecturees</h2>
+    <h2>Lectures</h2>
+    <ul>
+        @foreach (var lecture in Model.Lectures)
+        {
+            <li>
+                <a asp-controller="Questions" asp-action="Details" asp-route-id="@lecture.ID">
+                    @lecture.Title
+                </a>
+            </li>
+        }
+
+    </ul>
 </div>
 
 
@@ -16,7 +27,7 @@
     <input type="button" class="btn btn-primary" value="Ask Question" onclick="@("window.location.href='" + @Url.Action("Create", "Questions") + "'");" />
     <br/><br/>
     <ul>
-        @foreach (var question in Model)
+        @foreach (var question in Model.Questions)
         {
             <li>
                 <a asp-controller="Questions" asp-action="Details" asp-route-id="@question.ID">

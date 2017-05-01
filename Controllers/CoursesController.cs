@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Identity;
 
@@ -54,11 +55,18 @@ namespace KuetOverflow.Controllers
             ViewData["course"] = id;
             TempData["course"] = id;
 
-            var questions = _context.Question
+            var model = new QuestionLectureViewModel();
+            model.Questions = await _context.Question
                 .Where(q => q.CourseID == id)
+                .AsNoTracking()
+                .ToListAsync();
+            model.Lectures = await _context.Lecture
+                .Where(l => l.CourseId == id)
+                .AsNoTracking()
                 .ToListAsync();
 
-            return View(await questions);
+
+            return View(model);
         }
 
 
