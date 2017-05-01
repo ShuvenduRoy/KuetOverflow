@@ -1,11 +1,11 @@
 @model IEnumerable<KuetOverflow.Models.Department>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Departments";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Departments</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.RowVersion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Administrator.FirstMidName)
+                @Html.DisplayFor(modelItem => item.Administrator.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DepartmentID">Edit</a> |
