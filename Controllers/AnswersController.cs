@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using System.Security.Claims;
 
 namespace KuetOverflow.Controllers
 {
@@ -54,8 +55,11 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,QuestionID,Title,UserName,UserId,DateTime")] Answer answer)
+        public async Task<IActionResult> Create([Bind("ID,QuestionID,Title")] Answer answer)
         {
+            answer.DateTime = DateTime.Now;
+            answer.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            answer.UserName = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 _context.Add(answer);
