@@ -8,8 +8,8 @@ using KuetOverflow.Data;
 namespace KuetOverflow.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20170428170439_Databasemodified")]
-    partial class Databasemodified
+    [Migration("20170501202646_CourseModelChagedToHaveCourseNo")]
+    partial class CourseModelChagedToHaveCourseNo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,7 +39,10 @@ namespace KuetOverflow.Migrations
 
             modelBuilder.Entity("KuetOverflow.Models.Course", b =>
                 {
-                    b.Property<int>("CourseID");
+                    b.Property<int>("CourseID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CourseNo");
 
                     b.Property<int>("Credits");
 
@@ -80,6 +83,10 @@ namespace KuetOverflow.Migrations
 
                     b.Property<string>("Name")
                         .HasMaxLength(50);
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<DateTime>("StartDate");
 

@@ -38,7 +38,10 @@ namespace KuetOverflow.Migrations
 
             modelBuilder.Entity("KuetOverflow.Models.Course", b =>
                 {
-                    b.Property<int>("CourseID");
+                    b.Property<int>("CourseID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CourseNo");
 
                     b.Property<int>("Credits");
 

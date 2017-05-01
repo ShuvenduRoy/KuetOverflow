@@ -88,25 +88,25 @@ namespace KuetOverflow.Data
 
             var courses = new Course[]
             {
-                new Course {CourseID = 1050, Title = "Web Lab",      Credits = 3,
+                new Course {CourseNo = "1050", Title = "Web Lab",      Credits = 3,
                     DepartmentID = departments.Single( s => s.Name == "ECE").DepartmentID
                 },
-                new Course {CourseID = 4022, Title = "Database", Credits = 3,
+                new Course {CourseNo = "4022", Title = "Database", Credits = 3,
                     DepartmentID = departments.Single( s => s.Name == "IEM").DepartmentID
                 },
-                new Course {CourseID = 4041, Title = "Database", Credits = 3,
+                new Course {CourseNo = "4041", Title = "Database", Credits = 3,
                     DepartmentID = departments.Single( s => s.Name == "IEM").DepartmentID
                 },
-                new Course {CourseID = 1045, Title = "Calculus",       Credits = 4,
+                new Course {CourseNo = "1045", Title = "Calculus",       Credits = 4,
                     DepartmentID = departments.Single( s => s.Name == "EEE").DepartmentID
                 },
-                new Course {CourseID = 3141, Title = "Theory of computation",   Credits = 4,
+                new Course {CourseNo = "3141", Title = "Theory of computation",   Credits = 4,
                     DepartmentID = departments.Single( s => s.Name == "EEE").DepartmentID
                 },
-                new Course {CourseID = 2021, Title = "Machine Learning",    Credits = 3,
+                new Course {CourseNo = "2021", Title = "Machine Learning",    Credits = 3,
                     DepartmentID = departments.Single( s => s.Name == "CSE").DepartmentID
                 },
-                new Course {CourseID = 2042, Title = "Artificial Intelligence",     Credits = 4,
+                new Course {CourseNo = "2042", Title = "Artificial Intelligence",     Credits = 4,
                     DepartmentID = departments.Single( s => s.Name == "CSE").DepartmentID
                 },
             };

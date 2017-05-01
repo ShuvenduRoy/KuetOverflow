@@ -6,9 +6,12 @@ namespace KuetOverflow.Models
 {
     public class Course
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Number")]
         public int CourseID { get; set; }
+
+        [Display(Name = "Course Number")]
+        public string CourseNo { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
         public string Title { get; set; }
