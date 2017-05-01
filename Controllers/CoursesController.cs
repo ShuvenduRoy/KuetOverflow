@@ -121,7 +121,7 @@ namespace KuetOverflow.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourseNo,Title,Credits,DepartmentID")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("CourseID,CourseNo,Title,Credits,DepartmentID")] Course course)
         {
             if (id != course.CourseID)
             {
