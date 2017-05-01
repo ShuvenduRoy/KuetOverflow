@@ -40,5 +40,7 @@ namespace KuetOverflow.Data
         public DbSet<KuetOverflow.Models.Question> Question { get; set; }
 
         public DbSet<KuetOverflow.Models.Answer> Answer { get; set; }
+
+        public DbSet<KuetOverflow.Models.Lecture> Class { get; set; }
     }
 }
