@@ -104,7 +104,7 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseID,Title,UserName,UserId,DateTime")] Question question)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseID,Title,Description,UserName,UserId,DateTime")] Question question)
         {
             if (id != question.ID)
             {
@@ -129,7 +129,7 @@ namespace KuetOverflow.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new {id=id});
             }
             return View(question);
         }
