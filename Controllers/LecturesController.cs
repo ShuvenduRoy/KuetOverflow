@@ -125,7 +125,7 @@ namespace KuetOverflow.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new {id=id});
             }
             return View(lecture);
         }
