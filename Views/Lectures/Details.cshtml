@@ -1,3 +1,4 @@
+@using KuetOverflow.Models
 @model KuetOverflow.Models.SchoolViewModels.LectureCommentViewModel
 
 @{
@@ -26,3 +27,23 @@
     <a asp-action="Edit" asp-route-id="@Model.Lecture.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<hr/>
+<h2>Discussion</h2>
+@foreach(var comment in Model.Comments)
+    {
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="~/apple.png" alt="bikash">
+                </a>
+                @Html.DisplayFor(model => comment.UserName)
+            </div>
+            <div class="media-body">
+            
+                <br/>
+                <p class="media-heading">@Html.DisplayFor(model => comment.Body)</p>
+                <i>@comment.DateTime</i>
+            </div>
+        </div>
+    }
