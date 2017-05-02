@@ -43,6 +43,8 @@ namespace KuetOverflow.Data
 
         public DbSet<KuetOverflow.Models.Lecture> Lecture { get; set; }
 
+        public DbSet<KuetOverflow.Models.Comment> Comment { get; set; }
+
 
     }
 }
