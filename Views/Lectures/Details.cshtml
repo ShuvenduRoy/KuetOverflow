@@ -1,27 +1,28 @@
-@model KuetOverflow.Models.Lecture
+@model KuetOverflow.Models.SchoolViewModels.LectureCommentViewModel
 
 @{
     ViewData["Title"] = "Details";
     Layout = "_StudentLayout";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h2>@Html.DisplayFor(model => model.Title)</h2>
+    <h2>@Html.DisplayFor(model => model.Lecture.Title)</h2>
     <hr />
-    @Html.DisplayFor(model => model.Body)
+    @Html.DisplayFor(model => model.Lecture.Body)
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdateTime)
+            @Html.DisplayNameFor(model => model.Lecture.UpdateTime)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UpdateTime)
+            @Html.DisplayFor(model => model.Lecture.UpdateTime)
         </dd>
     </dl>
 </div>
+
+
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Lecture.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

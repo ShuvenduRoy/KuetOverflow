@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 
 namespace KuetOverflow.Controllers
 {
@@ -35,14 +36,21 @@ namespace KuetOverflow.Controllers
 
             TempData["lecture"] = id;
 
-            var lecture = await _context.Lecture
+            var model = new LectureCommentViewModel();
+
+            model.Lecture = await _context.Lecture
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (lecture == null)
+            model.Comments = await _context.Comment
+                .Where(c => c.LectureID == id)
+                .AsNoTracking()
+                .ToListAsync();
+
+            if (model.Lecture == null)
             {
                 return NotFound();
             }
 
-            return View(lecture);
+            return View(model);
         }
 
         // GET: Lectures/Create
