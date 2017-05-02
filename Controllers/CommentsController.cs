@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -63,6 +64,25 @@ namespace KuetOverflow.Controllers
                 return RedirectToAction("Index");
             }
             return View(comment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateByUser([Bind("ID,Body")] Comment comment)
+        {
+            comment.LectureID= int.Parse(TempData["lecture"].ToString());
+            comment.DateTime = DateTime.Now;
+            comment.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            comment.UserName = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(comment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Lectures", new { id = comment.LectureID });
+                
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Comments/Edit/5
@@ -149,5 +169,6 @@ namespace KuetOverflow.Controllers
         {
             return _context.Comment.Any(e => e.ID == id);
         }
+
     }
 }
