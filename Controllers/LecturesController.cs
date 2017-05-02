@@ -33,6 +33,8 @@ namespace KuetOverflow.Controllers
                 return NotFound();
             }
 
+            TempData["lecture"] = id;
+
             var lecture = await _context.Lecture
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (lecture == null)
