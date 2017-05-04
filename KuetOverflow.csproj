@@ -62,6 +62,7 @@
     <Content Include="wwwroot\images\feature1.jpg" />
     <Content Include="wwwroot\images\feature1.png" />
     <Content Include="wwwroot\images\feature3.PNG" />
+    <Content Include="wwwroot\images\feature33.PNG" />
     <Content Include="wwwroot\images\slider-bg.png" />
     <Content Include="wwwroot\images\slider\slide-left.png" />
     <Content Include="wwwroot\images\slider\slide-right.png" />
