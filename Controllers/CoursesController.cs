@@ -56,6 +56,7 @@ namespace KuetOverflow.Controllers
 
 
             var model = new QuestionLectureViewModel();
+            model.CourseId = (int) id;
             model.Questions = await _context.Question
                 .Where(q => q.CourseID == id)
                 .AsNoTracking()

@@ -7,6 +7,17 @@
 
 <div class="col-md-2">
     <h3>Lectures</h3>
+    <ul>
+        @foreach (var lecture in Model.Lectures)
+        {
+            <li>
+                <a asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID" asp-route-course_id="@Model.Course_ID">
+                    @lecture.Title
+                </a>
+            </li>
+        }
+
+    </ul>
 </div>
 
 <div class="col-lg-10">

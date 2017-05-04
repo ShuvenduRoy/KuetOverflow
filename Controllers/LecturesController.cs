@@ -27,7 +27,7 @@ namespace KuetOverflow.Controllers
         }
 
         // GET: Lectures/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int course_id)
         {
             if (id == null)
             {
@@ -47,6 +47,12 @@ namespace KuetOverflow.Controllers
 
             var viewModel = new Lecture_LectureListViewModel();
             viewModel.LectureCommentViewModel = model;
+            viewModel.Course_ID = course_id;
+
+            viewModel.Lectures = await _context.Lecture
+                .Where(l => l.CourseId == course_id)
+                .AsNoTracking()
+                .ToListAsync();
 
             if (model.Lecture == null)
             {
