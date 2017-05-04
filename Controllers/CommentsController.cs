@@ -68,7 +68,7 @@ namespace KuetOverflow.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateByUser([Bind("ID,Body")] Comment comment)
+        public async Task<IActionResult> CreateByUser([Bind("ID,Body")] Comment comment, int course_id)
         {
             comment.LectureID= int.Parse(TempData["lecture"].ToString());
             comment.DateTime = DateTime.Now;
@@ -79,7 +79,7 @@ namespace KuetOverflow.Controllers
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Lectures", new { id = comment.LectureID });
+                return RedirectToAction("Details", "Lectures", new { id = comment.LectureID, course_id=course_id });
                 
             }
             return RedirectToAction("Index");

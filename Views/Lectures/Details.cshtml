@@ -62,7 +62,7 @@
         </div>
     }
 
-    <form asp-controller="Comments" asp-action="CreateByUser">
+    <form asp-controller="Comments" asp-action="CreateByUser" asp-route-course_id="@Model.Course_ID">
 
         <textarea rows="4" cols="150" name="Body"></textarea>
 
