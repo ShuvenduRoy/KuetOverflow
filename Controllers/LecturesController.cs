@@ -45,12 +45,15 @@ namespace KuetOverflow.Controllers
                 .AsNoTracking()
                 .ToListAsync();
 
+            var viewModel = new Lecture_LectureListViewModel();
+            viewModel.LectureCommentViewModel = model;
+
             if (model.Lecture == null)
             {
                 return NotFound();
             }
 
-            return View(model);
+            return View(viewModel);
         }
 
         // GET: Lectures/Create

@@ -1,35 +1,40 @@
-@model KuetOverflow.Models.SchoolViewModels.LectureCommentViewModel
+@model KuetOverflow.Models.SchoolViewModels.Lecture_LectureListViewModel
 
 @{
     ViewData["Title"] = "Details";
     Layout = "_StudentLayout";
 }
 
-<div>
-    <h2>@Html.DisplayFor(model => model.Lecture.Title)</h2>
-    <hr />
-    @Html.DisplayFor(model => model.Lecture.Body)
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lecture.UpdateTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lecture.UpdateTime)
-        </dd>
-    </dl>
+<div class="col-md-2">
+    <h3>Lectures</h3>
 </div>
 
+<div class="col-lg-10">
+    <div>
+        <h2>@Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.Title)</h2>
+        <hr />
+        @Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.Body)
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LectureCommentViewModel.Lecture.UpdateTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.UpdateTime)
+            </dd>
+        </dl>
+    </div>
 
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Lecture.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
 
-<hr/>
-<h2 style="text-align: center">Discussion</h2>
-@foreach(var comment in Model.Comments)
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.LectureCommentViewModel.Lecture.ID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    <hr/>
+    <h2 style="text-align: center">Discussion</h2>
+    @foreach(var comment in Model.LectureCommentViewModel.Comments)
     {
         <div class="media">
             <div class="media-left">
@@ -46,14 +51,15 @@
         </div>
     }
 
-<form asp-controller="Comments" asp-action="CreateByUser">
+    <form asp-controller="Comments" asp-action="CreateByUser">
 
-    <textarea rows="4" cols="150" name="Body"></textarea>
+        <textarea rows="4" cols="150" name="Body"></textarea>
 
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" value="Comment" class="btn btn-default"/>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Comment" class="btn btn-default"/>
+            </div>
         </div>
-    </div>
 
-</form>
+    </form>
+</div>
