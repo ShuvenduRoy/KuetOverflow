@@ -10,7 +10,7 @@
     <ul>
         @foreach (var lecture in Model.Lectures)
         {
-            <li class="pager">
+            <li id="paging">
                 
                     
                     <a href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
