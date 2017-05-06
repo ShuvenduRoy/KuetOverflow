@@ -1,0 +1,55 @@
+@model KuetOverflow.Models.SchoolViewModels.Lecture_LectureListViewModel
+
+
+<div>
+    <h2>@Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.Title)</h2>
+    <hr />
+    @Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.Body)
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LectureCommentViewModel.Lecture.UpdateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LectureCommentViewModel.Lecture.UpdateTime)
+        </dd>
+    </dl>
+</div>
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LectureCommentViewModel.Lecture.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<hr/>
+<h2 style="text-align: center">Discussion</h2>
+@foreach(var comment in Model.LectureCommentViewModel.Comments)
+{
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" src="~/apple.png" alt="bikash">
+            </a>
+                
+        </div>
+        <div class="media-body">
+            <b> @Html.DisplayFor(model => comment.UserName)</b>
+            <p class="media-heading">@Html.DisplayFor(model => comment.Body)</p>
+            <i>@comment.DateTime</i>
+        </div>
+    </div>
+}
+
+<form asp-controller="Comments" asp-action="CreateByUser" asp-route-course_id="@Model.Course_ID">
+
+    <textarea rows="4" cols="150" name="Body"></textarea>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Comment" class="btn btn-default"/>
+        </div>
+    </div>
+
+</form>
