@@ -5,21 +5,26 @@
     Layout = "_StudentLayout";
 }
 
-<div class="col-md-2">
+<div id="lectureList" class="col-md-2">
     <h3>Lectures</h3>
     <ul>
         @foreach (var lecture in Model.Lectures)
         {
             <li>
-                <a asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID" asp-route-course_id="@Model.Course_ID">
-                    @lecture.Title
-                </a>
+                <p class="pager">
+                    
+                    <a href="@Url.Action("Details", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
+                        @lecture.Title
+                    </a>
+                    
+                </p>
+
             </li>
         }
 
     </ul>
 </div>
 
-<div class="col-lg-10">
+<div id="mainContent" class="col-lg-10">
     @Html.Partial("_Lecture")
 </div>
