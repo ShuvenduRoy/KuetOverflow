@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KuetOverflow.Migrations
 {
-    public partial class CourseModelChagedToHaveCourseNo : Migration
+    public partial class DatabaseRecreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,23 @@ namespace KuetOverflow.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comment",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Body = table.Column<string>(nullable: true),
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    LectureID = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comment", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Instructor",
                 columns: table => new
                 {
@@ -42,14 +59,31 @@ namespace KuetOverflow.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "Lecture",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Body = table.Column<string>(nullable: true),
+                    CourseId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    UpdateTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lecture", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Student",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
                     EnrollmentDate = table.Column<DateTime>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false)
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    UserID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,7 +138,7 @@ namespace KuetOverflow.Migrations
                     CourseID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CourseNo = table.Column<string>(nullable: true),
-                    Credits = table.Column<int>(nullable: false),
+                    Credits = table.Column<double>(nullable: false),
                     DepartmentID = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: true)
                 },
@@ -231,10 +265,16 @@ namespace KuetOverflow.Migrations
                 name: "Answer");
 
             migrationBuilder.DropTable(
+                name: "Comment");
+
+            migrationBuilder.DropTable(
                 name: "CourseAssignment");
 
             migrationBuilder.DropTable(
                 name: "Enrollment");
+
+            migrationBuilder.DropTable(
+                name: "Lecture");
 
             migrationBuilder.DropTable(
                 name: "OfficeAssignment");

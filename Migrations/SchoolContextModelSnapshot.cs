@@ -213,8 +213,9 @@ namespace KuetOverflow.Migrations
 
             modelBuilder.Entity("KuetOverflow.Models.Student", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID");
+
+                    b.Property<string>("Email");
 
                     b.Property<DateTime>("EnrollmentDate");
 
@@ -226,6 +227,8 @@ namespace KuetOverflow.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 

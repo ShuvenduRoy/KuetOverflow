@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using KuetOverflow.Models;
 
 namespace KuetOverflow.Data
@@ -20,21 +18,21 @@ namespace KuetOverflow.Data
 
             var students = new Student[]
             {
-                new Student { FirstMidName = "Shuvendu",   LastName = "Roy",
+                new Student {ID =1407001, FirstMidName = "Shuvendu",   LastName = "Roy", Email = "bikash11roy@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Tushar", LastName = "Pranto",
+                new Student {ID = 1407002, FirstMidName = "Tushar", LastName = "Pranto", Email = "Pranto@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Mehedi",   LastName = "Hasan",
+                new Student {ID = 1407005,  FirstMidName = "Mehedi",   LastName = "Hasan", Email = "Mehedi@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Tawhid",    LastName = "Jwader",
+                new Student {ID = 1407004,  FirstMidName = "Tawhid",    LastName = "Jwader", Email = "Tawhid@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "AbuSaleh",      LastName = "Asif",
+                new Student {ID = 1407007,  FirstMidName = "AbuSaleh",      LastName = "Asif", Email = "AbuSaleh@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Dibbendu",    LastName = "Sapto",
+                new Student {ID = 1407008,  FirstMidName = "Dibbendu",    LastName = "Sapto", Email = "Dibbendu@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Arapn",    LastName = "Bhoumic",
+                new Student {ID = 1407028,  FirstMidName = "Arapn",    LastName = "Bhoumic", Email = "Arapn@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") },
-                new Student { FirstMidName = "Monoarul",     LastName = "Amit",
+                new Student {ID = 1407019,  FirstMidName = "Monoarul",     LastName = "Amit", Email = "Monoarul@gmail.com",
                     EnrollmentDate = DateTime.Parse("2015-09-01") }
             };
 

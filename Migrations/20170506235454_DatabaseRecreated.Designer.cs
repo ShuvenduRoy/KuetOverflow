@@ -8,8 +8,8 @@ using KuetOverflow.Data;
 namespace KuetOverflow.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20170501203719_CreditDatatypeChanged")]
-    partial class CreditDatatypeChanged
+    [Migration("20170506235454_DatabaseRecreated")]
+    partial class DatabaseRecreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,26 @@ namespace KuetOverflow.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Answer");
+                });
+
+            modelBuilder.Entity("KuetOverflow.Models.Comment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<DateTime>("DateTime");
+
+                    b.Property<int>("LectureID");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("KuetOverflow.Models.Course", b =>
@@ -138,6 +158,24 @@ namespace KuetOverflow.Migrations
                     b.ToTable("Instructor");
                 });
 
+            modelBuilder.Entity("KuetOverflow.Models.Lecture", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<int>("CourseId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<DateTime>("UpdateTime");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Lecture");
+                });
+
             modelBuilder.Entity("KuetOverflow.Models.OfficeAssignment", b =>
                 {
                     b.Property<int>("InstructorID");
@@ -176,8 +214,9 @@ namespace KuetOverflow.Migrations
 
             modelBuilder.Entity("KuetOverflow.Models.Student", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID");
+
+                    b.Property<string>("Email");
 
                     b.Property<DateTime>("EnrollmentDate");
 
@@ -189,6 +228,8 @@ namespace KuetOverflow.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 

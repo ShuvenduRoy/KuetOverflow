@@ -7,6 +7,7 @@ namespace KuetOverflow.Models
 {
     public class Student
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters")]
@@ -22,6 +23,11 @@ namespace KuetOverflow.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        public string UserID { get; set; } = "null";
 
         public ICollection<Enrollment> Enrollments { get; set; }
 
