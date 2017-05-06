@@ -10,14 +10,14 @@
     <ul>
         @foreach (var lecture in Model.Lectures)
         {
-            <li>
-                <p class="pager">
+            <li class="pager">
+                
                     
                     <a href="@Url.Action("Details", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
                         @lecture.Title
                     </a>
                     
-                </p>
+                
 
             </li>
         }
@@ -26,5 +26,5 @@
 </div>
 
 <div id="mainContent" class="col-lg-10">
-    @Html.Partial("_Lecture")
+    @Html.Partial("_Details")
 </div>
