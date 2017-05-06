@@ -13,7 +13,7 @@
             <li class="pager">
                 
                     
-                    <a href="@Url.Action("Details", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
+                    <a href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
                         @lecture.Title
                     </a>
                     
@@ -26,5 +26,5 @@
 </div>
 
 <div id="mainContent" class="col-lg-10">
-    @Html.Partial("_Details")
+    @Html.Partial("Lecture")
 </div>

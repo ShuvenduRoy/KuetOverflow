@@ -4,7 +4,7 @@
     $('#lectureList').on('click', '.pager a', function () {
         var url = $(this).attr('href');
 
-        $('#mainContent').load(url,true);
+        $('#mainContent').load(url);
 
         //jQuery.ajax({
         //    url: url,

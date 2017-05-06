@@ -65,6 +65,41 @@ namespace KuetOverflow.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> Lecture(int? id, int course_id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            TempData["lecture"] = id;
+
+            var model = new LectureCommentViewModel();
+
+            model.Lecture = await _context.Lecture
+                .SingleOrDefaultAsync(m => m.ID == id);
+            model.Comments = await _context.Comment
+                .Where(c => c.LectureID == id)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var viewModel = new Lecture_LectureListViewModel();
+            viewModel.LectureCommentViewModel = model;
+            viewModel.Course_ID = course_id;
+
+            viewModel.Lectures = await _context.Lecture
+                .Where(l => l.CourseId == course_id)
+                .AsNoTracking()
+                .ToListAsync();
+
+            if (model.Lecture == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView(viewModel);
+        }
+
         // GET: Lectures/Create
         public IActionResult Create()
         {
