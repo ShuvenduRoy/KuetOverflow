@@ -14,12 +14,12 @@ namespace KuetOverflow.Models
         public DateTime DateTime { get; set; }
 
         [NotMapped]
-        public bool Star { get; set; } = true;
+        public bool Star { get; set; } = false;
 
         [NotMapped]
-        public bool UpVote { get; set; } = true;
+        public bool UpVote { get; set; } = false;
 
         [NotMapped]
-        public bool DownVote { get; set; } = true;
+        public bool DownVote { get; set; } = false;
     }
 }
