@@ -45,6 +45,10 @@ namespace KuetOverflow.Data
 
         public DbSet<KuetOverflow.Models.Comment> Comment { get; set; }
 
+        public DbSet<Star> Stars { get; set; }
+
+        public DbSet<Vote> Votes{ get; set; }
+
 
     }
 }
