@@ -44,9 +44,16 @@ namespace KuetOverflow.Controllers
                 .Where(v=> v.QuestionID == id)
                 .ToListAsync();
 
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             foreach (var vote in votes)
             {
                 question.TotalVote += vote.Value;
+
+                if (vote.UserID == UserId)
+                {
+                    question.Vote = vote.Value;
+                }
             }
 
             var answers = await _context.Answer
