@@ -165,5 +165,10 @@ namespace KuetOverflow.Controllers
         {
             return _context.Question.Any(e => e.ID == id);
         }
+
+        public IActionResult UpVote(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,7 +1,10 @@
 ﻿@model KuetOverflow.Models.Question
 
 <br/>
-<span class="glyphicon glyphicon-triangle-top @(@Model.Vote > 0 ? "green_icon" : "")" aria-hidden="true"></span>
+<a href="@Url.Action("UpVote", "Questions", new {id=Model.ID})">
+    <span class="glyphicon glyphicon-triangle-top @(@Model.Vote > 0 ? "green_icon" : "")" aria-hidden="true"></span>
+</a>
+
 <span>@Model.TotalVote</span>
 <span class="glyphicon glyphicon-triangle-bottom  @(@Model.Vote < 0 ? "red_icon": "")" aria-hidden="true"></span>
 <span class="glyphicon @(@Model.Star? "glyphicon glyphicon-star pink_icon" : "glyphicon glyphicon-star-empty")" aria-hidden="true"></span>
