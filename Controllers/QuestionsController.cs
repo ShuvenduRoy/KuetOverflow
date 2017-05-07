@@ -44,6 +44,10 @@ namespace KuetOverflow.Controllers
                 .Where(v=> v.QuestionID == id)
                 .ToListAsync();
 
+            var stars = await _context.Stars
+                .Where(s => s.QuestionID == id)
+                .ToListAsync();
+
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             foreach (var vote in votes)
@@ -54,6 +58,12 @@ namespace KuetOverflow.Controllers
                 {
                     question.Vote = vote.Value;
                 }
+            }
+
+            foreach (var star in stars)
+            {
+                if (star.UserID == UserId)
+                    question.Star = true;
             }
 
             var answers = await _context.Answer
