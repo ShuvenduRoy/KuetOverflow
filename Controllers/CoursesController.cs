@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -9,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
@@ -34,15 +30,32 @@ namespace KuetOverflow.Controllers
 
         public async Task<IActionResult> StudentIndex()
         {
-            var schoolContext = _context.Courses.Include(c => c.Department)
-                .Include(c => c.Department)
-                .Include(c => c.Questions)
-                .AsNoTracking();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var username = this.User.FindFirstValue(ClaimTypes.Name);
+            var student = _context.Students
+                .Where(s => s.UserID == userId)
+                .AsNoTracking()
+                .SingleOrDefault();
 
-            return View(await schoolContext.ToListAsync());
+            //var schoolContext = _context.Courses.Include(c => c.Department)
+            //    .Include(c => c.Department)
+            //    .Include(c => c.Questions)
+            //    .AsNoTracking()
+            //    .ToListAsync();
+
+            var courseEnrollment = _context.Enrollments
+                .Where(e => e.StudentID == student.ID)
+                .Include(e => e.Course)
+                    .ThenInclude(c => c.Department)
+                .Include(e => e.Course)
+                    .ThenInclude(c => c.Questions)
+                .AsNoTracking()
+                .ToListAsync();
+
+            //var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var username = this.User.FindFirstValue(ClaimTypes.Name);
+
+            return View(await courseEnrollment);
         }
 
         public async Task<IActionResult> CourseQuestions(int? id)

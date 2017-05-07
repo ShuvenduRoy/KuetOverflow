@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KuetOverflow.Models.Course>
+﻿@model IEnumerable<KuetOverflow.Models.Enrollment>
 @{
     ViewBag.Title = "Courses";
     Layout = "_StudentLayout";
@@ -11,16 +11,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CourseNo)
+                @Html.DisplayNameFor(model => model.Course.CourseNo)
             </th>
             <th>
                 Course Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Credits)
+                @Html.DisplayNameFor(model => model.Course.Credits)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Department)
+                @Html.DisplayNameFor(model => model.Course.Department)
             </th>
             <th></th>
         </tr>
@@ -32,20 +32,20 @@
                 <tr>
                     <td>
                         <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
-                            @Html.DisplayFor(modelItem => item.CourseNo)
+                            @Html.DisplayFor(modelItem => item.Course.CourseNo)
                         </a>
                         
                     </td>
                     <td>
                         <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
-                            @Html.DisplayFor(modelItem => item.Title)
+                            @Html.DisplayFor(modelItem => item.Course.Title)
                         </a>
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Credits)
+                        @Html.DisplayFor(modelItem => item.Course.Credits)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Department.Name)
+                        @Html.DisplayFor(modelItem => item.Course.Department.Name)
                     </td>
                     @*<td>
                 <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
