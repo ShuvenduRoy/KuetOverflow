@@ -40,6 +40,15 @@ namespace KuetOverflow.Controllers
             QuestionViewModel qvm = new QuestionViewModel();
             qvm.Question = question;
 
+            var votes = await _context.Votes
+                .Where(v=> v.QuestionID == id)
+                .ToListAsync();
+
+            foreach (var vote in votes)
+            {
+                question.TotalVote += vote.Value;
+            }
+
             var answers = await _context.Answer
                 .Where(a => a.QuestionID == id)
                 .ToListAsync();
@@ -170,6 +179,18 @@ namespace KuetOverflow.Controllers
         {
             var question = await _context.Question
                 .SingleOrDefaultAsync(q => q.ID == id);
+
+
+            var votes = await _context.Votes
+                .Where( v=> v.QuestionID == id)
+                .ToListAsync();
+
+            foreach (var vote in votes)
+            {
+                question.TotalVote += vote.Value;
+            }
+
+
             question.TotalVote += 1;
             question.Vote = 1;
             

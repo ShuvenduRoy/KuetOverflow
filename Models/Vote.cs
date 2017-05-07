@@ -1,4 +1,7 @@
-﻿namespace KuetOverflow.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace KuetOverflow.Models
 {
     public class Vote
     {
