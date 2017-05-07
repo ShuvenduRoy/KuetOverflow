@@ -10,10 +10,10 @@
     <div class="media">
         <div class="media-left">
             <br/>
-            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-triangle-top @(@Model.Question.UpVote ? "green_icon" : "")" aria-hidden="true"></span>
             12
-            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-triangle-bottom  @(@Model.Question.DownVote ? "red_icon": "")" aria-hidden="true"></span>
+            <span class="glyphicon @(@Model.Question.Star? "glyphicon glyphicon-star pink_icon" : "glyphicon glyphicon-star-empty")" aria-hidden="true"></span>
         </div>
         <div class="media-body">
             
@@ -30,40 +30,6 @@
             <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
         </div>
     </div>
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.CourseID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.CourseID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.Description)
-        </dd>
-
-        <dt>
-            Asked by: 
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.UserName)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.DateTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Question.DateTime)
-        </dd>
-    </dl>*@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Question.ID">Edit</a> |

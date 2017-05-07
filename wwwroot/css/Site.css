@@ -44,3 +44,14 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.green_icon {
+    color: green;   
+}
+
+.red_icon {
+    color: red;
+}
+
+.pink_icon {
+    color: blueviolet;
+}
