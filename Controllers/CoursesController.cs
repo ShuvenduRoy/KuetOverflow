@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KuetOverflow.Controllers
 {
@@ -28,6 +29,7 @@ namespace KuetOverflow.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
+        [Authorize]
         public async Task<IActionResult> StudentIndex()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
