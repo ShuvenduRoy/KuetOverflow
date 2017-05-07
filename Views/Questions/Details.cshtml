@@ -9,18 +9,25 @@
 <div>
     <div class="media">
         <div class="media-left">
-            <a href="#">
-                <img class="media-object" src="~/apple.png" alt="bikash">
-                
-            </a>
-            @Html.DisplayFor(model => model.Question.UserName)
-            <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+            <br/>
+            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+            12
+            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true"></span>
         </div>
         <div class="media-body">
             
             <br/>
-            <h2 class="media-heading">@Html.DisplayFor(model => model.Question.Title)</h2>
+            <h3 class="media-heading">@Html.DisplayFor(model => model.Question.Title)</h3>
             <p>@Html.DisplayFor(model => model.Question.Description)</p>
+            
+            <br/>
+            <a href="#">
+                <img class="media-object" src="~/apple.png" alt="bikash">
+
+            </a>
+            @Html.DisplayFor(model => model.Question.UserName)
+            <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
         </div>
     </div>
     @*<dl class="dl-horizontal">
@@ -63,7 +70,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<h2>Answers</h2>
+<h3>Answers</h3>
 
 @foreach (var answer in Model.Answers)
 {
@@ -81,7 +88,7 @@
 <form asp-controller="Answers" asp-action="CreateByUser">
 
         <hr />
-        <h2>Add an answer</h2>
+        <h3>Add an answer</h3>
             
         <textarea rows="6" cols="150" name="Title"></textarea>
 
