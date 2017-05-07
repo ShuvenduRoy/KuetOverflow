@@ -25,14 +25,18 @@
     <thead>
     <tr>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Last Name</a>
+            Student Id
         </th>
         <th>
             First Name
         </th>
+
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]">EnrollmentDate</a>
-                    
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Last Name</a>
+        </th>
+
+        <th>
+            Email
         </th>
         <th></th>
     </tr>
@@ -41,13 +45,19 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.ID)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.FirstMidName)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
