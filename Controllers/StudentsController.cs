@@ -58,7 +58,7 @@ namespace KuetOverflow.Controllers
                     break;
 
                 default:
-                    students = students.OrderBy(s => s.LastName);
+                    students = students.OrderBy(s => s.ID);
                     break;
             }
 
