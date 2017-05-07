@@ -40,6 +40,8 @@ namespace KuetOverflow.Controllers
             QuestionViewModel qvm = new QuestionViewModel();
             qvm.Question = question;
 
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var votes = await _context.Votes
                 .Where(v=> v.QuestionID == id)
                 .ToListAsync();
@@ -48,7 +50,14 @@ namespace KuetOverflow.Controllers
                 .Where(s => s.QuestionID == id)
                 .ToListAsync();
 
-            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            foreach (var star in stars)
+            {
+                if (star.UserID == UserId)
+                    question.Star = true;
+            }
+
+
 
             foreach (var vote in votes)
             {
@@ -60,11 +69,6 @@ namespace KuetOverflow.Controllers
                 }
             }
 
-            foreach (var star in stars)
-            {
-                if (star.UserID == UserId)
-                    question.Star = true;
-            }
 
             var answers = await _context.Answer
                 .Where(a => a.QuestionID == id)
@@ -203,6 +207,20 @@ namespace KuetOverflow.Controllers
                 .ToListAsync();
 
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var stars = await _context.Stars
+                .Where(s => s.QuestionID == id)
+                .ToListAsync();
+
+
+            foreach (var star in stars)
+            {
+                if (star.UserID == UserId)
+                    question.Star = true;
+            }
+
+
             Vote UserVote = new Vote();
             UserVote.UserID = UserId;
             UserVote.QuestionID = id;
@@ -257,6 +275,18 @@ namespace KuetOverflow.Controllers
 
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+
+            var stars = await _context.Stars
+                .Where(s => s.QuestionID == id)
+                .ToListAsync();
+
+
+            foreach (var star in stars)
+            {
+                if (star.UserID == UserId)
+                    question.Star = true;
+            }
+
             Vote UserVote = new Vote();
             UserVote.UserID = UserId;
             UserVote.QuestionID = id;
@@ -299,6 +329,75 @@ namespace KuetOverflow.Controllers
 
         }
 
+
+        public async Task<IActionResult> StarClicked(int id)
+        {
+            var question = await _context.Question
+                .SingleOrDefaultAsync(q => q.ID == id);
+
+
+            var votes = await _context.Votes
+                .Where(v => v.QuestionID == id)
+                .ToListAsync();
+
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var stars = await _context.Stars
+                .Where(s => s.QuestionID == id)
+                .ToListAsync();
+
+            foreach (var vote in votes)
+            {
+                question.TotalVote += vote.Value;
+
+                if (vote.UserID == UserId)
+                {
+                    question.Vote = vote.Value;
+                }
+            }
+
+
+            int starid = -1;
+            foreach (var star in stars)
+            {
+                if (star.UserID == UserId)
+                {
+                    question.Star = true;
+                    starid = star.ID;
+                }
+                    
+            }
+
+
+            question.Star = !question.Star;
+
+            if (starid > 0)
+            {
+                var remove_star = _context.Stars.SingleOrDefault(s => s.ID == starid);
+                _context.Stars.Remove(remove_star);
+                await _context.SaveChangesAsync();
+
+                question.Star = false;
+            }
+
+            else
+            {
+                Star Newstar = new Star();
+                Newstar.QuestionID = id;
+                Newstar.UserID = UserId;
+
+                _context.Stars.Add(Newstar);
+                await _context.SaveChangesAsync();
+                question.Star = true;
+            }
+
+
+
+            return PartialView("_Vote", question);
+
+
+        }
 
     }
 }
