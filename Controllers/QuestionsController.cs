@@ -166,9 +166,17 @@ namespace KuetOverflow.Controllers
             return _context.Question.Any(e => e.ID == id);
         }
 
-        public IActionResult UpVote(int id)
+        public async Task<IActionResult> UpVote(int id)
         {
-            throw new NotImplementedException();
+            var question = await _context.Question
+                .SingleOrDefaultAsync(q => q.ID == id);
+            question.TotalVote += 1;
+            question.Vote = 1;
+            
+
+            return  PartialView("_Vote", question);
+
+
         }
     }
 }
