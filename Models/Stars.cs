@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace KuetOverflow.Models
+﻿namespace KuetOverflow.Models
 {
     public class Stars
     {
+        public int ID { get; set; }
+        public int QuestionID { get; set; }
+        public string UserID { get; set; }
     }
 }
