@@ -17,9 +17,9 @@ namespace KuetOverflow.Models
         public bool Star { get; set; } = false;
 
         [NotMapped]
-        public bool UpVote { get; set; } = false;
+        public int Vote{ get; set; } = 0;
 
         [NotMapped]
-        public bool DownVote { get; set; } = false;
+        public int TotalVote { get; set; } = 0;
     }
 }
