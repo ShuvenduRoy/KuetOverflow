@@ -185,15 +185,42 @@ namespace KuetOverflow.Controllers
                 .Where( v=> v.QuestionID == id)
                 .ToListAsync();
 
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Vote UserVote = new Vote();
+            UserVote.UserID = UserId;
+            UserVote.QuestionID = id;
+
             foreach (var vote in votes)
             {
                 question.TotalVote += vote.Value;
+
+                if (vote.UserID == UserId)
+                {
+                    question.Vote = vote.Value;
+                    UserVote.ID = vote.ID;
+                    UserVote.Value = vote.Value;
+                }
+            }
+
+            if (question.Vote < 1)
+            {
+                question.Vote += 1;
+                UserVote.Value = question.Vote;
+                question.TotalVote += 1;
+
+                if (UserVote.ID == 0)
+                {
+                    _context.Add(UserVote);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    _context.Update(UserVote);
+                    await _context.SaveChangesAsync();
+                }
             }
 
 
-            question.TotalVote += 1;
-            question.Vote = 1;
-            
 
             return  PartialView("_Vote", question);
 
