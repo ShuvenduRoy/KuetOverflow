@@ -215,24 +215,17 @@ namespace KuetOverflow.Controllers
                 UserVote.Value = question.Vote;
                 question.TotalVote += 1;
 
-                if (UserVote.ID == 0)
+
+                if (UserVote.ID != 0)
                 {
-                    _context.Add(UserVote);
+                    var vote = await _context.Votes.SingleOrDefaultAsync(m => m.ID == UserVote.ID);
+                    _context.Votes.Remove(vote);
                     await _context.SaveChangesAsync();
+
+                    UserVote.ID = 0;
                 }
-                else
-                {
-                    try
-                    {
-                        _context.Update(UserVote);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
-                }
+
+                _context.Add(UserVote);await _context.SaveChangesAsync();
             }
 
 
@@ -276,34 +269,17 @@ namespace KuetOverflow.Controllers
                 UserVote.Value = question.Vote;
                 question.TotalVote -= 1;
 
-                if (UserVote.ID == 0)
+                if (UserVote.ID != 0)
                 {
-                    _context.Add(UserVote);
+                    var vote = await _context.Votes.SingleOrDefaultAsync(m => m.ID == UserVote.ID);
+                    _context.Votes.Remove(vote);
                     await _context.SaveChangesAsync();
+
+                    UserVote.ID = 0;
                 }
-                else
-                {
-                    if (ModelState.IsValid)
-                    {
-                        try
-                        {
-                            _context.Update(UserVote);
-                            await _context.SaveChangesAsync();
-                        }
-                        catch (DbUpdateConcurrencyException)
-                        {
-                            if (!QuestionExists(question.ID))
-                            {
-                                return NotFound();
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
-                        return RedirectToAction("Details", new { id = id });
-                    }
-                }
+               
+                _context.Add(UserVote);
+                await _context.SaveChangesAsync();
             }
 
 
