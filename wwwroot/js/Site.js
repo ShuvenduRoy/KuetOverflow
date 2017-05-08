@@ -35,7 +35,9 @@ $(document).ready(function() {
         html: true,
         title: "Notification",
         content: function() {
-            return "hi";
+            var compiled = _.template("hello <%= name %>");
+            var html = compiled({ name: "Bikash" });
+            return html;
         },
         placement: "bottom"
 
