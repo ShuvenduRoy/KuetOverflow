@@ -80,6 +80,7 @@
     <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
     <Content Include="wwwroot\js\theme.js" />
+    <Content Include="wwwroot\js\underscore-min.js" />
     <Content Include="wwwroot\logo.png" />
     <Content Include="wwwroot\saved_resource.html" />
     <Content Include="wwwroot\screen_preview_legacy.css" />
