@@ -114,7 +114,26 @@ namespace KuetOverflow.Controllers
             var notification = new Notification();
             notification.Time = DateTime.Now;
             notification.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            notification.Body = this.User.Identity.Name + " has adde a new lecture \n" + lecture.Title;
+            notification.Body = this.User.Identity.Name + " has adde a new lecture: \\n" + lecture.Title;
+
+            var enrollments = _context.Enrollments
+                .Where(e => e.CourseID == lecture.CourseId)
+                .Select(s => s.Student.UserID)
+                .AsNoTracking()
+                .ToList();
+
+            if (enrollments != null)
+            {
+                foreach (var enrollment in enrollments)
+                {
+                    var UserNotification = new UserNotification();
+                    UserNotification.UserId = enrollment;
+                    UserNotification.Notification = notification;
+
+                    _context.UserNotifications.Add(UserNotification);
+                }
+            }
+                
 
             if (ModelState.IsValid)
             {
