@@ -26,7 +26,10 @@
 $(document).ready(function() {
     $.getJSON("/api/notifications",
         function(notifications) {
-            $(".js-notifications-count").text(notifications.length).removeClass("hide");
+            $(".js-notifications-count").text(notifications.length)
+                .addClass("animated bounceInDown")
+                .removeClass("hide");
+                
         });
 });
 
