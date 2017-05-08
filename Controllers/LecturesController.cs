@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -110,9 +111,15 @@ namespace KuetOverflow.Controllers
         {
             lecture.UpdateTime = DateTime.Now;
 
+            var notification = new Notification();
+            notification.Time = DateTime.Now;
+            notification.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            notification.Body = this.User.Identity.Name + " has adde a new lecture \n" + lecture.Title;
+
             if (ModelState.IsValid)
             {
                 _context.Add(lecture);
+                _context.Notifications.Add(notification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

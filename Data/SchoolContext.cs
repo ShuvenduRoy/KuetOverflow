@@ -18,6 +18,14 @@ namespace KuetOverflow.Data
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<CourseAssignment> CourseAssignments { get; set; }
+        public DbSet<Question> Question { get; set; }
+        public DbSet<Answer> Answer { get; set; }
+        public DbSet<Lecture> Lecture { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Star> Stars { get; set; }
+        public DbSet<Vote> Votes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,19 +43,13 @@ namespace KuetOverflow.Data
 
             modelBuilder.Entity<Department>()
                 .Property(p => p.RowVersion).IsConcurrencyToken();
+
+            modelBuilder.Entity<UserNotification>()
+                .HasKey(n => new {n.UserId, n.NotificationId});
         }
 
-        public DbSet<KuetOverflow.Models.Question> Question { get; set; }
 
-        public DbSet<KuetOverflow.Models.Answer> Answer { get; set; }
 
-        public DbSet<KuetOverflow.Models.Lecture> Lecture { get; set; }
-
-        public DbSet<KuetOverflow.Models.Comment> Comment { get; set; }
-
-        public DbSet<Star> Stars { get; set; }
-
-        public DbSet<Vote> Votes{ get; set; }
 
 
     }
