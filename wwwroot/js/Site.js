@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(function() {
     jQuery.ajaxSetup({ async: true });
 
     $('#lectureList').on('click',
@@ -12,15 +12,22 @@
         });
     $('#vote').on('click',
         'a',
-        function () {
+        function() {
             var url = $(this).attr('href');
 
             $('#vote').load(url);
 
             return false;
         });
-   
 
-})
+
+});
+
+$(document).ready(function() {
+    $.getJSON("/api/notifications",
+        function(notifications) {
+            $(".js-notifications-count").text(notifications.length).removeClass("hide");
+        });
+});
 
 
