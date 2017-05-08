@@ -29,8 +29,17 @@ $(document).ready(function() {
             $(".js-notifications-count").text(notifications.length)
                 .addClass("animated bounceInDown")
                 .removeClass("hide");
-                
         });
+
+    $(".notification").popover({
+        html: true,
+        title: "Notification",
+        content: function() {
+            return "hi";
+        },
+        placement: "bottom"
+
+    });
 });
 
 
