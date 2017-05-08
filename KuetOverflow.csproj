@@ -98,6 +98,8 @@
     <Content Include="wwwroot\yahoo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\Api\" />
+    <Folder Include="Controllers\Api\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
