@@ -25,23 +25,26 @@
 
 $(document).ready(function() {
     $.getJSON("/api/notifications",
-        function(notifications) {
+        function (notifications) {
+            console.log(notifications);
             $(".js-notifications-count").text(notifications.length)
                 .addClass("animated bounceInDown")
                 .removeClass("hide");
+
+            $(".notification").popover({
+                html: true,
+                title: "Notification",
+                content: function () {
+                    var compiled = _.template($("#notifications-template").html());
+                    var html = compiled({ notifications: notifications });
+                    return html;
+                },
+                placement: "bottom"
+
+            });
         });
 
-    $(".notification").popover({
-        html: true,
-        title: "Notification",
-        content: function() {
-            var compiled = _.template("hello <%= name %>");
-            var html = compiled({ name: "Bikash" });
-            return html;
-        },
-        placement: "bottom"
-
-    });
+   
 });
 
 
