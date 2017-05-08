@@ -9,51 +9,52 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Course.CourseNo)
-            </th>
-            <th>
-                Course Title
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course.Credits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course.Department)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseNo)
+        </th>
+        <th>
+            Course Title
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Credits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Department)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+    @foreach (var item in Model)
+    {
             
-                <tr>
-                    <td>
-                        <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
-                            @Html.DisplayFor(modelItem => item.Course.CourseNo)
-                        </a>
+        <tr>
+            <td>
+                <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
+                    @Html.DisplayFor(modelItem => item.Course.CourseNo)
+                </a>
                         
-                    </td>
-                    <td>
-                        <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
-                            @Html.DisplayFor(modelItem => item.Course.Title)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Course.Credits)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Course.Department.Name)
-                    </td>
-                    @*<td>
+            </td>
+            <td>
+                <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Credits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Department.Name)
+            </td>
+            @*<td>
                 <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
             </td>*@
-                </tr>
+        </tr>
 
-        }
+    }
     </tbody>
 </table>
+

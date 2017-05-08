@@ -8,10 +8,17 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            <li class="notification">
+                <a href="#">
+                    <i class="glyphicon glyphicon-globe" style="color: white"></i>
+                    <span class="badge js-notifications-count hide"></span>
+                </a>
+            </li>
+
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
                     <span style="color: white">Hello @UserManager.GetUserName(User)!</span>
-                    
+
                 </a>
             </li>
             <li>

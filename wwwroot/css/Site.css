@@ -76,10 +76,23 @@ input[type="checkbox"].input-validation-error {
     font-size: 20px;
 }
 
+.glyphicon.glyphicon-globe {
+    font-size: 20px;
+}
 
 
 .glyphicon.glyphicon-star-empty {
     font-size: 20px;
 }
 
+.notification {
+    position: relative;
+}
 
+
+.notification .badge {
+    position: absolute;
+    top: 8px;
+    right: -1px;
+    background: #a80a0a;
+}
