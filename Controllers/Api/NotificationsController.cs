@@ -4,7 +4,9 @@ using System.Security.Claims;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace KuetOverflow.Controllers.Api
 {
@@ -14,10 +16,12 @@ namespace KuetOverflow.Controllers.Api
     public class NotificationsController : Controller
     {
         private SchoolContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public NotificationsController(SchoolContext context)
+        public NotificationsController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IEnumerable<Notification> GetNotifications()
@@ -29,7 +33,7 @@ namespace KuetOverflow.Controllers.Api
                 .ToList();
 
             return notifications;
-
+           
         }
     }
 }
