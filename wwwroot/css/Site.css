@@ -115,3 +115,9 @@ ul.notifications > li:last-child {
 ul.notifications .highlight {
     font-weight: bold;
 }
+
+
+.popover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
