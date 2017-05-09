@@ -1,6 +1,6 @@
 using System;
 
-namespace KuetOverflow.Controllers.Api
+namespace KuetOverflow.Dtos
 {
     public class NotificationDto
     {
