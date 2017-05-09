@@ -27,7 +27,7 @@ $(document).ready(function() {
     $.getJSON("/api/notifications",
         function (notifications) {
             console.log(notifications);
-            $(".js-notifications-count").text(notifications.length)
+            $("#js-notifications-count").text(notifications.length)
                 .addClass("animated bounceInDown")
                 .removeClass("hide");
 
