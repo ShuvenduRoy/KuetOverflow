@@ -24,7 +24,7 @@ namespace KuetOverflow.Controllers.Api
             _userManager = userManager;
         }
 
-        public IEnumerable<Notification> GetNotifications()
+        public IEnumerable<NotificationDto> GetNotifications()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var notifications = _context.UserNotifications
@@ -32,8 +32,16 @@ namespace KuetOverflow.Controllers.Api
                 .Select(un => un.Notification)
                 .ToList();
 
-            return notifications;
-           
+            return notifications.Select(n=>new NotificationDto()
+            {
+                Body = n.Body,
+                Time = n.Time,
+                User = new UserDto()
+                {
+                    Name = _userManager.FindByIdAsync(n.UserId).Result.UserName
+                }
+            });
+
         }
     }
 }
