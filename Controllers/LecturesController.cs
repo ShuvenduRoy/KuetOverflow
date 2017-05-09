@@ -109,7 +109,7 @@ namespace KuetOverflow.Controllers
             var notification = new Notification();
             notification.Time = DateTime.Now;
             notification.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            notification.Body = " has added a new lecture: <br/>" + lecture.Title;
+            notification.Body = " has added a new lecture: <i>" + lecture.Title + "</i>";
 
             var enrollments = _context.Enrollments
                 .Where(e => e.CourseID == lecture.CourseId)

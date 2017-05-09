@@ -61,7 +61,7 @@
     <ul class="notifications">
         <% 
             _.each(notifications, function(notification){%>
-                <li><%= notification.user.name %><%= notification.body %></li>       
+                <li><span class="highlight"><%= notification.user.name %></span><%= notification.body %></li>       
          <%});
         %>
     </ul>
