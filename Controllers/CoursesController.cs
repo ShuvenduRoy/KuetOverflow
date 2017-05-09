@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -39,11 +40,6 @@ namespace KuetOverflow.Controllers
                 .AsNoTracking()
                 .SingleOrDefault();
 
-            //var schoolContext = _context.Courses.Include(c => c.Department)
-            //    .Include(c => c.Department)
-            //    .Include(c => c.Questions)
-            //    .AsNoTracking()
-            //    .ToListAsync();
 
             var courseEnrollment = _context.Enrollments
                 .Where(e => e.StudentID == student.ID)
@@ -54,10 +50,18 @@ namespace KuetOverflow.Controllers
                 .AsNoTracking()
                 .ToListAsync();
 
-            //var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var username = this.User.FindFirstValue(ClaimTypes.Name);
 
-            return View(await courseEnrollment);
+            try
+            {
+                return View(await courseEnrollment);
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+
+
+
         }
 
         public async Task<IActionResult> CourseQuestions(int? id)
