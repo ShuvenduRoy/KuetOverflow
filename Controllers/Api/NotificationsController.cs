@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -36,6 +37,7 @@ namespace KuetOverflow.Controllers.Api
             {
                 Body = n.Body,
                 Time = n.Time,
+                TimeDiffrence = DateTime.Now - n.Time,
                 User = new UserDto()
                 {
                     Name = _userManager.FindByIdAsync(n.UserId).Result.UserName
