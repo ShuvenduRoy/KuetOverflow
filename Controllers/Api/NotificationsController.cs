@@ -37,7 +37,7 @@ namespace KuetOverflow.Controllers.Api
             {
                 Body = n.Body,
                 Time = n.Time,
-                TimeDiffrence = DateTime.Now - n.Time,
+                TimeDiffrence = n.DateConverter(DateTime.Now - n.Time),
                 User = new UserDto()
                 {
                     Name = _userManager.FindByIdAsync(n.UserId).Result.UserName
@@ -45,5 +45,6 @@ namespace KuetOverflow.Controllers.Api
             });
 
         }
+
     }
 }

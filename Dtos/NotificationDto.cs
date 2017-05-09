@@ -6,7 +6,7 @@ namespace KuetOverflow.Dtos
     {
         public string Body { get; set; }
         public DateTime Time { get; set; }
-        public TimeSpan TimeDiffrence { get; set; }
+        public String TimeDiffrence { get; set; }
         public UserDto User { get; set; }
     }
 }
