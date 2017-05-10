@@ -18,12 +18,14 @@
             <p>@Html.DisplayFor(model => model.Question.Description)</p>
             
             <br/>
-            <a href="#">
-                <img class="media-object" src="~/apple.png" alt="bikash">
-
-            </a>
-            @Html.DisplayFor(model => model.Question.UserName)
-            <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+            <div id="user-image-div" style="float: left">
+                <img class="user-image" src="https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/13010692_822939711171166_6804841189335939805_n.jpg?oh=f1182d5d344ed48a9c12a7b124b1c7f1&oe=59BE2076" />
+            </div>
+            <div>
+                asked by
+                <p>@Html.DisplayFor(model => model.Question.UserName)</p>
+                <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+            </div>
         </div>
     </div>
 </div>
