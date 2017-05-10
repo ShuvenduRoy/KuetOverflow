@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using KuetOverflow.Data;
 using KuetOverflow.Dtos;
 using KuetOverflow.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +46,20 @@ namespace KuetOverflow.Controllers.Api
                 }
             });
 
+        }
+
+        [HttpPost]
+        public OkResult MarkAsRead()
+        {
+            var Userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var notifications = _context.UserNotifications
+                .Where(un => un.UserId == Userid && !un.IsRead)
+                .ToList();
+
+            notifications.ForEach(n => n.Read());
+            _context.SaveChanges();
+
+            return Ok();
         }
 
     }

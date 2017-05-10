@@ -17,5 +17,10 @@ namespace KuetOverflow.Models
         public bool IsRead { get; set; }
 
         public Notification Notification { get; set; }
+
+        public void Read()
+        {
+            this.IsRead = true;
+        }
     }
 }
