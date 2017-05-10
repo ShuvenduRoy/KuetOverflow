@@ -2,18 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using KuetOverflow.Data;
 using KuetOverflow.Dtos;
 using KuetOverflow.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KuetOverflow.Controllers.Api
 {
-    [Authorize]
+
     [Produces("application/json")]
     [Route("api/Notifications")]
     public class NotificationsController : Controller
@@ -31,7 +28,7 @@ namespace KuetOverflow.Controllers.Api
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var notifications = _context.UserNotifications
-                .Where(n => n.UserId == userId)
+                .Where(n => n.UserId == userId && n.IsRead==false)
                 .Select(un => un.Notification)
                 .ToList();
 
@@ -49,7 +46,8 @@ namespace KuetOverflow.Controllers.Api
         }
 
         [HttpPost]
-        public OkResult MarkAsRead()
+        [Route("MarkAsRead")]
+        public void MarkAsRead()
         {
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var notifications = _context.UserNotifications
@@ -59,8 +57,9 @@ namespace KuetOverflow.Controllers.Api
             notifications.ForEach(n => n.Read());
             _context.SaveChanges();
 
-            return Ok();
         }
+
+
 
     }
 }

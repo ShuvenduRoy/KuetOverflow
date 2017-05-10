@@ -43,6 +43,12 @@ $(document).ready(function() {
 
             }).on("shown.bs.popover", function() {
                 console.log("pop over shown");
+                $.post("/api/notifications/MarkAsRead")
+                    .done(function() {
+                        $("#js-notifications-count").text(notifications.length)
+                            .addClass("hide");
+
+                    });
             });
         });
 
