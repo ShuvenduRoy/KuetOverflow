@@ -41,6 +41,8 @@ $(document).ready(function() {
                 },
                 placement: "bottom"
 
+            }).on("shown.bs.popover", function() {
+                console.log("pop over shown");
             });
         });
 
