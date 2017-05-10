@@ -7,22 +7,18 @@
 
 <div id="lectureList" class="col-md-2">
     <h3>Lectures</h3>
-    <ul>
+    
+    <div id="paging" class="list-group">
+        
         @foreach (var lecture in Model.Lectures)
         {
-            <li id="paging">
-                
-                    
-                    <a href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
-                        @lecture.Title
-                    </a>
-                    
-                
-
-            </li>
+            <a class="list-group-item" href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
+                @lecture.Title
+            </a>
         }
 
-    </ul>
+    </div>
+
 </div>
 
 <div id="mainContent" class="col-lg-10">

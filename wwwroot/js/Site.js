@@ -3,7 +3,10 @@
 
     $('#lectureList').on('click',
         '#paging a',
-        function() {
+        function () {
+            $(".list-group-item").removeClass("active");
+            $(this).addClass("active");
+
             var url = $(this).attr('href');
 
             $('#mainContent').load(url);
