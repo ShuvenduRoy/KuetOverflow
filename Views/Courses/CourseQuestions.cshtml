@@ -5,7 +5,7 @@
 }
 
 
-<div class="list-group col-md-3">
+<div class="list-group col-md-2">
     <h2>Lectures</h2>
     <div>
         @foreach (var lecture in Model.Lectures)
@@ -19,21 +19,7 @@
 </div>
 
 
-<div class="col-md-9">
-    <h2>Queations</h2>
-
-    <input type="button" class="btn btn-primary" value="Ask Question" onclick="@("window.location.href='" + @Url.Action("Create", "Questions") + "'");" />
-    <br/><br/>
-    <ul>
-        @foreach (var question in Model.Questions)
-        {
-            <li>
-                <a asp-controller="Questions" asp-action="Details" asp-route-id="@question.ID">
-                    @question.Title
-                </a>
-            </li>
-        }
-    
-    </ul>
+<div class="col-md-10">
+    @Html.Partial("QuestionList", Model.Questions)
 </div>
 

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<KuetOverflow.Models.Question>
+
+<h2>Queations</h2>
+
+<input type="button" class="btn btn-primary" value="Ask Question" onclick="@("window.location.href='" + @Url.Action("Create", "Questions") + "'");" />
+<br/><br/>
+<ul>
+    @foreach (var question in Model)
+    {
+        <li>
+            <a asp-controller="Questions" asp-action="Details" asp-route-id="@question.ID">
+                @question.Title
+            </a>
+        </li>
+    }
+    
+</ul>
+
