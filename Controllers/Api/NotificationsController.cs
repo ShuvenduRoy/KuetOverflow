@@ -51,9 +51,9 @@ namespace KuetOverflow.Controllers.Api
         [HttpPost]
         public OkResult MarkAsRead()
         {
-            var Userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var notifications = _context.UserNotifications
-                .Where(un => un.UserId == Userid && !un.IsRead)
+                .Where(un => un.UserId == UserId && !un.IsRead)
                 .ToList();
 
             notifications.ForEach(n => n.Read());
