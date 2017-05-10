@@ -9,9 +9,17 @@
 {
     <div class="media">
         <div class="media-left">
-            <a href="#">
-                <img class="media-object" src="..." alt="...">
-            </a>
+            <div>
+                <p class="voteStrong gray  no-margin">@question.TotalVote</p>
+                <p class=" no-margin" style="text-align: center">votes</p>
+            </div>
+            
+            <div class="green-border">
+                <p class="voteStrong no-margin">@question.TotalAnswers</p>
+                <p class=" no-margin">answers</p>
+            </div>
+
+            <span>@question.Views</span> views
         </div>
         <div class="media-body">
             <h4 class="media-heading">
@@ -20,16 +28,17 @@
                 </a>
             </h4>
             @question.Description
-        </div>
-        <div class="row">
-            <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
 
-            </div>
-            <div class="col-md-4">
-                asked by
-                <p>@question.UserName</p>
+                </div>
+                <div class="col-md-4">
+                    asked by
+                    <p>@question.UserName</p>
+                </div>
             </div>
         </div>
+        
     </div>
     <hr/>
 }

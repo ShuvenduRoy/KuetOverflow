@@ -257,7 +257,8 @@ namespace KuetOverflow.Controllers
             }
 
 
-
+            _context.Update(question);
+            await _context.SaveChangesAsync();
             return  PartialView("_Vote", question);
 
 
@@ -319,11 +320,11 @@ namespace KuetOverflow.Controllers
                 }
                
                 _context.Add(UserVote);
-                await _context.SaveChangesAsync();
+                
             }
 
-
-
+            _context.Update(question);
+            await _context.SaveChangesAsync();
             return PartialView("_Vote", question);
 
 
