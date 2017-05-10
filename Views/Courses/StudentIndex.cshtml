@@ -16,10 +16,11 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <span class="badge">2</span>
-                        @Html.DisplayFor(model => item.Course.Title)
+                        <a asp-action="CourseQuestions" asp-route-id="@item.CourseID">
+                            @Html.DisplayFor(model => item.Course.Title)
+                        </a>
                     </li>
                 </ul>
-
             }
         }
 
