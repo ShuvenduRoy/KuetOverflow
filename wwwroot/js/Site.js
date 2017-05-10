@@ -24,9 +24,9 @@
         });
 
     $('#user-image-div').on('click',
-        'a',
+        'img',
         function () {
-            var url = $(this).attr('href');
+            var url = $(this).attr('src');
             $.getJSON(url, function (data) {
                 console.log(data);
             });
@@ -68,7 +68,18 @@ $(document).ready(function() {
             }
 
         });
-    
+
+    $('#user-image-div').ready(function() {
+        var url = $('#user-image-div').attr("src");
+        console.log(url);
+
+        $.getJSON(url,
+            function(data) {
+                console.log(data);
+                $('#user-image-div').attr("src", data.picture.data.url);
+            });
+    });
+
 });
 
 
