@@ -116,6 +116,16 @@ ul.notifications .highlight {
     font-weight: bold;
 }
 
+.list-group {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+#coueselist {
+    padding: 0;
+    margin: 0;
+    margin-right: 25px;
+}
 
 .popover {
     box-shadow: none;
