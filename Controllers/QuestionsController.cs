@@ -43,7 +43,7 @@ namespace KuetOverflow.Controllers
             QuestionViewModel qvm = new QuestionViewModel();
             qvm.Question = question;
 
-            qvm.Question.UserImage = _userManager.FindByIdAsync(question.UserId).Result.ImageUrl;
+            qvm.Question.UserImage = "https://graph.facebook.com/"+ _userManager.FindByIdAsync(question.UserId).Result.FbProfile+ "/?fields=picture&type=large";
 
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
