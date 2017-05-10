@@ -58,18 +58,6 @@ namespace KuetOverflow.Controllers
             }
 
 
-
-            foreach (var vote in votes)
-            {
-                question.TotalVote += vote.Value;
-
-                if (vote.UserID == UserId)
-                {
-                    question.Vote = vote.Value;
-                }
-            }
-
-
             var answers = await _context.Answer
                 .Where(a => a.QuestionID == id)
                 .ToListAsync();
@@ -227,7 +215,6 @@ namespace KuetOverflow.Controllers
 
             foreach (var vote in votes)
             {
-                question.TotalVote += vote.Value;
 
                 if (vote.UserID == UserId)
                 {
@@ -237,10 +224,10 @@ namespace KuetOverflow.Controllers
                 }
             }
 
-            if (question.Vote < 1)
+            if (UserVote.Value< 1)
             {
                 question.Vote += 1;
-                UserVote.Value = question.Vote;
+                UserVote.Value +=1;
                 question.TotalVote += 1;
 
 
@@ -294,8 +281,6 @@ namespace KuetOverflow.Controllers
 
             foreach (var vote in votes)
             {
-                question.TotalVote += vote.Value;
-
                 if (vote.UserID == UserId)
                 {
                     question.Vote = vote.Value;
