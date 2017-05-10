@@ -9,16 +9,19 @@ using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CoursesController(SchoolContext context)
+        public CoursesController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
 
@@ -80,6 +83,11 @@ namespace KuetOverflow.Controllers
                 .Where(q => q.CourseID == id)
                 .AsNoTracking()
                 .ToListAsync();
+            foreach (var question in model.Questions)
+            {
+                question.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(question.UserId).Result.FbProfile + "/?fields=picture&type=large";
+            }
+
             model.Lectures = await _context.Lecture
                 .Where(l => l.CourseId == id)
                 .AsNoTracking()
