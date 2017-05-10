@@ -12,6 +12,10 @@ namespace KuetOverflow.Models
         public string UserName { get; set; }
         public string UserId { get; set; }
         public DateTime DateTime { get; set; }
+        public int TotalVote { get; set; } = 0;
+        public int TotalAnswers { get; set; }
+        public int TotalStars { get; set; }
+        public int Views { get; set; }
 
         [NotMapped]
         public bool Star { get; set; } = false;
@@ -19,7 +23,5 @@ namespace KuetOverflow.Models
         [NotMapped]
         public int Vote{ get; set; } = 0;
 
-        [NotMapped]
-        public int TotalVote { get; set; } = 0;
     }
 }
