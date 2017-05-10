@@ -5,19 +5,17 @@
 }
 
 
-<div class="col-md-3">
+<div class="list-group col-md-3">
     <h2>Lectures</h2>
-    <ul>
+    <div>
         @foreach (var lecture in Model.Lectures)
         {
-            <li>
-                <a asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID"  asp-route-course_id="@Model.CourseId">
+            <a class="list-group-item" asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID" asp-route-course_id="@Model.CourseId">
                     @lecture.Title
-                </a>
-            </li>
+            </a>
         }
 
-    </ul>
+    </div>
 </div>
 
 
