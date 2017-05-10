@@ -27,29 +27,32 @@ $(document).ready(function() {
     $.getJSON("/api/notifications",
         function (notifications) {
             console.log(notifications);
-            $("#js-notifications-count").text(notifications.length)
-                .addClass("animated bounceInDown")
-                .removeClass("hide");
+            if (notifications.length > 0) {
+                $("#js-notifications-count").text(notifications.length)
+                    .addClass("animated bounceInDown")
+                    .removeClass("hide");
 
-            $(".notification").popover({
-                html: true,
-                title: "Notification",
-                content: function () {
-                    var compiled = _.template($("#notifications-template").html());
-                    var html = compiled({ notifications: notifications });
-                    return html;
-                },
-                placement: "bottom"
+                $(".notification").popover({
+                    html: true,
+                    title: "Notification",
+                    content: function () {
+                        var compiled = _.template($("#notifications-template").html());
+                        var html = compiled({ notifications: notifications });
+                        return html;
+                    },
+                    placement: "bottom"
 
-            }).on("shown.bs.popover", function() {
-                console.log("pop over shown");
-                $.post("/api/notifications/MarkAsRead")
-                    .done(function() {
-                        $("#js-notifications-count").text(notifications.length)
-                            .addClass("hide");
+                }).on("shown.bs.popover", function () {
+                    console.log("pop over shown");
+                    $.post("/api/notifications/MarkAsRead")
+                        .done(function () {
+                            $("#js-notifications-count").text(notifications.length)
+                                .addClass("hide");
 
-                    });
-            });
+                        });
+                });
+            }
+
         });
 
    
