@@ -121,12 +121,6 @@ ul.notifications .highlight {
     margin-bottom: 0;
 }
 
-#coueselist {
-    padding: 0;
-    margin: 0;
-    margin-right: 25px;
-}
-
 .popover {
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -135,4 +129,5 @@ ul.notifications .highlight {
 .container {
     margin-left: 30px;
     margin-right: 30px;
+    width: auto;
 }

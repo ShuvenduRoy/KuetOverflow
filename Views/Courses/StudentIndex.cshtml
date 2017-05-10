@@ -4,21 +4,34 @@
     Layout = "_StudentLayout";
 }
 <br/><br/>
-<h2>Courses</h2>
 
-<div id="coueselist" class="col-md-2">
-    @if (!(Model == null))
-    {        
-        foreach (var item in Model)
+
+<div class="row">
+    <div class="col-md-2">
+        <h2>Courses</h2>
+        @if (!(Model == null))
         {
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="badge">2</span>
-                    @Html.DisplayFor(model => item.Course.Title)
-                </li>
-            </ul>
+            foreach (var item in Model)
+            {
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">2</span>
+                        @Html.DisplayFor(model => item.Course.Title)
+                    </li>
+                </ul>
 
+            }
         }
-    }
+
+    </div>
+
+    <div class="col-md-5">
+        <h2>Time line</h2>
+
+    </div>
+
+    <div class="col-md-5">
+        <h2>Popular Questions</h2>
+    </div>
 
 </div>
