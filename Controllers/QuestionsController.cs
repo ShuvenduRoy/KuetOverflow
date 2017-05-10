@@ -46,6 +46,14 @@ namespace KuetOverflow.Controllers
                 .Where(v=> v.QuestionID == id)
                 .ToListAsync();
 
+            foreach (var vote in votes)
+            {
+                if (vote.UserID == UserId)
+                {
+                    question.Vote = vote.Value;
+                }
+            }
+
             var stars = await _context.Stars
                 .Where(s => s.QuestionID == id)
                 .ToListAsync();
