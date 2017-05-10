@@ -18,8 +18,8 @@
             <p>@Html.DisplayFor(model => model.Question.Description)</p>
             
             <br/>
-            <div id="user-image-div" style="float: left">
-                <img class="user-image" src="https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/13010692_822939711171166_6804841189335939805_n.jpg?oh=f1182d5d344ed48a9c12a7b124b1c7f1&oe=59BE2076" />
+            <div style="float: left">
+                <img id="user-image-div" class="user-image" src="@Model.Question.UserImage" />
             </div>
             <div>
                 asked by

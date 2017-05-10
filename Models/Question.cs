@@ -23,5 +23,8 @@ namespace KuetOverflow.Models
         [NotMapped]
         public int Vote{ get; set; } = 0;
 
+        [NotMapped]
+        public string UserImage { get; set; } = "";
+
     }
 }

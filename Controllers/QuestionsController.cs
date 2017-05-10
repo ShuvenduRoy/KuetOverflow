@@ -7,16 +7,19 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
     public class QuestionsController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public QuestionsController(SchoolContext context )
+        public QuestionsController(SchoolContext context , UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Questions
@@ -39,6 +42,8 @@ namespace KuetOverflow.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             QuestionViewModel qvm = new QuestionViewModel();
             qvm.Question = question;
+
+            qvm.Question.UserImage = _userManager.FindByIdAsync(question.UserId).Result.ImageUrl;
 
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 

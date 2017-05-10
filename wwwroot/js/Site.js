@@ -23,6 +23,17 @@
             return false;
         });
 
+    $('#user-image-div').on('click',
+        'a',
+        function () {
+            var url = $(this).attr('href');
+            $.getJSON(url, function (data) {
+                console.log(data);
+            });
+
+            return false;
+        });
+
 
 });
 
@@ -57,8 +68,7 @@ $(document).ready(function() {
             }
 
         });
-
-   
+    
 });
 
 
