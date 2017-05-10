@@ -5,7 +5,7 @@
     <span class="glyphicon glyphicon-triangle-top @(@Model.Vote > 0 ? "green_icon" : "")" aria-hidden="true"></span>
 </a>
 
-<span>@Model.TotalVote</span>
+<span style="font-size: 20px">@Model.TotalVote</span>
 
 <a href="@Url.Action("DownVote", "Questions", new {id=Model.ID})">
     <span class="glyphicon glyphicon-triangle-bottom  @(@Model.Vote < 0 ? "red_icon": "")" aria-hidden="true"></span>

@@ -63,17 +63,17 @@ input[type="checkbox"].input-validation-error {
 
 
 .glyphicon.glyphicon-triangle-top {
-    font-size: 20px;
+    font-size: 35px;
 }
 
 
 .glyphicon.glyphicon-triangle-bottom {
-    font-size: 20px;
+    font-size: 35px;
 }
 
 
 .glyphicon.glyphicon-star {
-    font-size: 20px;
+    font-size: 35px;
 }
 
 .glyphicon.glyphicon-globe {
@@ -82,7 +82,7 @@ input[type="checkbox"].input-validation-error {
 
 
 .glyphicon.glyphicon-star-empty {
-    font-size: 20px;
+    font-size: 35px;
 }
 
 .notification {
