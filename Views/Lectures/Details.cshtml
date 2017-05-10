@@ -12,7 +12,7 @@
         
         @foreach (var lecture in Model.Lectures)
         {
-            <a class="list-group-item" href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
+            <a class="list-group-item @(lecture.ID.ToString() == TempData["cur_id"].ToString() ? "active": "") " href="@Url.Action("Lecture", "Lectures", new {id = @lecture.ID, course_id = @Model.Course_ID})">
                 @lecture.Title
             </a>
         }

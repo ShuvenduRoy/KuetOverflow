@@ -32,6 +32,7 @@ namespace KuetOverflow.Controllers
             }
 
             TempData["lecture"] = id;
+            TempData["cur_id"] = id;
 
             var model = new LectureCommentViewModel();
 
