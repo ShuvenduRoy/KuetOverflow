@@ -153,3 +153,8 @@ ul.notifications .highlight {
     border: 1px solid #45A163;
     padding: 3px;
 }
+
+.user-image {
+    height: 40px;
+    padding-right: 15px;
+}
