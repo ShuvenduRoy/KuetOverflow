@@ -18,18 +18,18 @@
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    @*<div class="col-md-10">
-                        <input asp-for="Body" class="form-control"/>
-                        <span asp-validation-for="Body" class="text-danger"></span>
-                    </div>*@
-                    <textarea rows="6" cols="150" name="Body"></textarea>
+                    
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" name="Body" class="form-control" placeholder="Whats happenging...">
+                            <span class="input-group-btn">
+                                <button type="submit" value="Create" class="btn btn-default">Tweet</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default"/>
-                    </div>
-                </div>
             </div>
         </form>
         
