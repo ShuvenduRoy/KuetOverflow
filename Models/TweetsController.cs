@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,14 @@ namespace KuetOverflow.Models
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tweet.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var tweets = _context.Tweet
+                .Where(t => t.UserId == userId)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return View(await tweets);
         }
 
         // GET: Tweets/Details/5
@@ -50,8 +59,13 @@ namespace KuetOverflow.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Body,UserId,DateTime")] Tweet tweet)
+        public async Task<IActionResult> Create([Bind("Id,Body")] Tweet tweet)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            tweet.UserId = userId;
+            tweet.DateTime = DateTime.Now;
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(tweet);
