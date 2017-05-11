@@ -4,24 +4,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
+using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
     public class ActivitiesController : Controller
     {
         private readonly SchoolContext _context;
+        public UserManager<ApplicationUser> _UserManager { get; set; }
 
-        public ActivitiesController(SchoolContext context)
+        public ActivitiesController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _UserManager = userManager;
         }
 
         // GET: Activities
         public async Task<IActionResult> Index()
         {
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var activity = new Activity();
+            activity.UserID = UserId;
+            activity.UserName = _UserManager.FindByIdAsync(activity.UserID).Result.UserName;
 
             activity.Questions = await _context.Question
                 .Where(q => q.UserId == UserId)

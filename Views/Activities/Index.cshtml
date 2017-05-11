@@ -2,15 +2,42 @@
 @model KuetOverflow.Models.SchoolViewModels.Activity
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Activity";
+    Layout = "_StudentLayout";
 }
 
-<h2>Index</h2>
+<div>
+    <h2>@Model.UserName</h2>
+</div>
 
-<ul>
-    @foreach (var item in Model.Questions)
-    {
-        <li>@item.Title</li>
-    }
-</ul>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Questions</h3>
+        <ul>
+            @foreach (var item in Model.Questions)
+            {
+                <li>
+                    <a asp-controller="Questions" asp-action="Details" asp-route-id="@item.ID">
+                        @item.Title
+                    </a>
+                </li>
+                
+            }
+        </ul>
+    </div>
+    
+    <div class="col-md-6">
+        <h3>Answers</h3>
+        
+        <ul>
+            @foreach (var item in Model.Answers)
+            {
+                <li>
+                    <a asp-controller="Questions" asp-action="Details" asp-route-id="@item.QuestionID">
+                        @item.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
