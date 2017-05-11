@@ -5,6 +5,7 @@ using System.Security.Claims;
 using KuetOverflow.Data;
 using KuetOverflow.Dtos;
 using KuetOverflow.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace KuetOverflow.Controllers.Api
 
     [Produces("application/json")]
     [Route("api/Notifications")]
+    [Authorize]
     public class NotificationsController : Controller
     {
         private SchoolContext _context;

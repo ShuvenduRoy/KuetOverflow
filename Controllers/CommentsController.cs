@@ -1,16 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KuetOverflow.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
         private readonly SchoolContext _context;

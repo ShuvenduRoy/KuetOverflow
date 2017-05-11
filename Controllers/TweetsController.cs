@@ -2,13 +2,16 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using KuetOverflow.Data;
+using KuetOverflow.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KuetOverflow.Data;
-using Microsoft.AspNetCore.Identity;
 
-namespace KuetOverflow.Models
+namespace KuetOverflow.Controllers
 {
+    [Authorize]
     public class TweetsController : Controller
     {
         private readonly SchoolContext _context;
@@ -24,10 +27,9 @@ namespace KuetOverflow.Models
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = PrincipalExtensions.FindFirstValue(this.User, ClaimTypes.NameIdentifier);
 
-            var tweets = await _context.Tweet
-                .Where(t => t.UserId == userId)
+            var tweets = await Queryable.Where<Tweet>(_context.Tweet, t => t.UserId == userId)
                 .AsNoTracking()
                 .ToListAsync();
 
@@ -48,8 +50,7 @@ namespace KuetOverflow.Models
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var tweet = await EntityFrameworkQueryableExtensions.SingleOrDefaultAsync<Tweet>(_context.Tweet, m => m.Id == id);
             if (tweet == null)
             {
                 return NotFound();
@@ -71,7 +72,7 @@ namespace KuetOverflow.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Body")] Tweet tweet)
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = PrincipalExtensions.FindFirstValue(this.User, ClaimTypes.NameIdentifier);
             tweet.UserId = userId;
             tweet.DateTime = DateTime.Now;
             
@@ -93,7 +94,7 @@ namespace KuetOverflow.Models
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet.SingleOrDefaultAsync(m => m.Id == id);
+            var tweet = await EntityFrameworkQueryableExtensions.SingleOrDefaultAsync<Tweet>(_context.Tweet, m => m.Id == id);
             if (tweet == null)
             {
                 return NotFound();
@@ -144,8 +145,7 @@ namespace KuetOverflow.Models
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var tweet = await EntityFrameworkQueryableExtensions.SingleOrDefaultAsync<Tweet>(_context.Tweet, m => m.Id == id);
             if (tweet == null)
             {
                 return NotFound();
@@ -159,7 +159,7 @@ namespace KuetOverflow.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tweet = await _context.Tweet.SingleOrDefaultAsync(m => m.Id == id);
+            var tweet = await EntityFrameworkQueryableExtensions.SingleOrDefaultAsync<Tweet>(_context.Tweet, m => m.Id == id);
             _context.Tweet.Remove(tweet);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -167,7 +167,7 @@ namespace KuetOverflow.Models
 
         private bool TweetExists(int id)
         {
-            return _context.Tweet.Any(e => e.Id == id);
+            return Queryable.Any<Tweet>(_context.Tweet, e => e.Id == id);
         }
     }
 }

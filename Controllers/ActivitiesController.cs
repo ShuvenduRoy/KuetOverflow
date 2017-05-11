@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private readonly SchoolContext _context;

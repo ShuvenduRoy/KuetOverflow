@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly SchoolContext _context;
@@ -33,7 +34,7 @@ namespace KuetOverflow.Controllers
             return View(await schoolContext.ToListAsync());
         }
 
-        [Authorize]
+        
         public async Task<IActionResult> StudentIndex()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
