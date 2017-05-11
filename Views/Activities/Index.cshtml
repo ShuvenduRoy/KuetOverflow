@@ -1,0 +1,16 @@
+@using System.Collections.Generic
+@model KuetOverflow.Models.SchoolViewModels.Activity
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<ul>
+    @foreach (var item in Model.Questions)
+    {
+        <li>@item.Title</li>
+    }
+</ul>

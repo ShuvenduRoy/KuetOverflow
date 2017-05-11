@@ -1,5 +1,6 @@
 ﻿using KuetOverflow.Models;
 using Microsoft.EntityFrameworkCore;
+using KuetOverflow.Models.SchoolViewModels;
 
 
 namespace KuetOverflow.Data
@@ -47,6 +48,8 @@ namespace KuetOverflow.Data
             modelBuilder.Entity<UserNotification>()
                 .HasKey(n => new {n.UserId, n.NotificationId});
         }
+
+        public DbSet<KuetOverflow.Models.SchoolViewModels.Activity> Activity { get; set; }
 
 
 
