@@ -1,19 +1,46 @@
+@using System.Collections.Generic
 @model KuetOverflow.Models.SchoolViewModels.Activity
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Activity";
+    Layout = "_StudentLayout";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Activity</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+    <div style="float: left">
+        <img id="user-image-div" class="user-image" src="@Model.UserImage" />
+    </div>
+    <h2>@Model.UserName</h2>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Questions</h3>
+        <ul>
+            @foreach (var item in Model.Questions)
+            {
+                <li>
+                    <a asp-controller="Questions" asp-action="Details" asp-route-id="@item.ID">
+                        @item.Title
+                    </a>
+                </li>
+
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <h3>Answers</h3>
+
+        <ul>
+            @foreach (var item in Model.Answers)
+            {
+                <li>
+                    <a asp-controller="Questions" asp-action="Details" asp-route-id="@item.QuestionID">
+                        @item.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
 </div>

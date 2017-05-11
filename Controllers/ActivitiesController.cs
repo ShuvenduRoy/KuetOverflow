@@ -29,6 +29,7 @@ namespace KuetOverflow.Controllers
             var activity = new Activity();
             activity.UserID = UserId;
             activity.UserName = _UserManager.FindByIdAsync(activity.UserID).Result.UserName;
+            activity.UserImage = "https://graph.facebook.com/" + _UserManager.FindByIdAsync(activity.UserID).Result.FbProfile + "/?fields=picture&type=large";
 
             activity.Questions = await _context.Question
                 .Where(q => q.UserId == UserId)
@@ -44,19 +45,25 @@ namespace KuetOverflow.Controllers
         }
 
         // GET: Activities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var activity = await _context.Activity
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (activity == null)
-            {
-                return NotFound();
-            }
+            var UserId = id;
+
+            var activity = new Activity();
+            activity.UserID = UserId;
+            activity.UserName = _UserManager.FindByIdAsync(activity.UserID).Result.UserName;
+            activity.UserImage = "https://graph.facebook.com/" + _UserManager.FindByIdAsync(activity.UserID).Result.FbProfile + "/?fields=picture&type=large";
+
+            activity.Questions = await _context.Question
+                .Where(q => q.UserId == UserId)
+                .AsNoTracking()
+                .ToListAsync();
+
+            activity.Answers = await _context.Answer
+                .Where(a => a.UserId == UserId)
+                .AsNoTracking()
+                .ToListAsync();
 
             return View(activity);
         }
