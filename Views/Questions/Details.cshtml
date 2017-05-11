@@ -6,60 +6,87 @@
 }
 
 
-<div>
-    <div class="media">
-        <div id="vote" class="media-left">
-            @Html.Partial("_Vote", Model.Question)
-        </div>
-        <div class="media-body">
+<div class="row">
+    <div class="col-md-8">
+        <div>
+            <div class="media">
+                <div id="vote" class="media-left">
+                    @Html.Partial("_Vote", Model.Question)
+                </div>
+                <div class="media-body">
             
-            <br/>
-            <h3 class="media-heading">@Html.DisplayFor(model => model.Question.Title)</h3>
-            <p>@Html.DisplayFor(model => model.Question.Description)</p>
+                    <br/>
+                    <h3 class="media-heading">@Html.DisplayFor(model => model.Question.Title)</h3>
+                    <p>@Html.DisplayFor(model => model.Question.Description)</p>
             
-            <br/>
-            <div style="float: left">
-                <img id="user-image-div" class="user-image" src="@Model.Question.UserImage" />
-            </div>
-            <div>
-                asked by
-                <p>@Html.DisplayFor(model => model.Question.UserName)</p>
-                <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+                    <br/>
+                    <div style="float: left">
+                        <img id="user-image-div" class="user-image" src="@Model.Question.UserImage" />
+                    </div>
+                    <div>
+                        asked by
+                        <p>@Html.DisplayFor(model => model.Question.UserName)</p>
+                        <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
+                    </div>
+                </div>
             </div>
         </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Question.ID">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        <h3>Answers</h3>
+
+        @foreach (var answer in Model.Answers)
+        {
+            <hr/>
+            <div class="media">
+                <div class="media-left">
+            
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @answer.Title
+                    </h4>
+                    @answer.Title
+                    <div class="row">
+                        <div class="col-md-8">
+                    
+                        </div>
+                        <div class="col-md-4">
+                            <div style="float: left">
+                                <img id="user-image-div" class="user-image" src="@answer.UserImage" />
+                            </div>
+                            <div>
+                                asked by
+                                <p>@answer.UserName</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        }
+
+
+
+        <form asp-controller="Answers" asp-action="CreateByUser">
+
+            <hr />
+            <h3>Add an answer</h3>
+            
+            <textarea rows="6" cols="150" name="Title"></textarea>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Add Answer" class="btn btn-default"/>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h4>Realted questions</h4>
     </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Question.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-
-<h3>Answers</h3>
-
-@foreach (var answer in Model.Answers)
-{
-
-    <hr/>
-    <div>
-        <h4>@answer.UserName</h4>
-        <p>@answer.Title</p>
-    </div>
-    <br/>
-}
-
-
-
-<form asp-controller="Answers" asp-action="CreateByUser">
-
-        <hr />
-        <h3>Add an answer</h3>
-            
-        <textarea rows="6" cols="150" name="Title"></textarea>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Add Answer" class="btn btn-default"/>
-            </div>
-        </div>
-
-</form>

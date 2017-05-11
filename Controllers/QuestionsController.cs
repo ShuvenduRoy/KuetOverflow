@@ -76,6 +76,12 @@ namespace KuetOverflow.Controllers
                 .ToListAsync();
             qvm.Answers = answers;
 
+            foreach (var answer in qvm.Answers)
+            {
+                answer.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(answer.UserId).Result.FbProfile + "/?fields=picture&type=large";
+                answer.UserName = _userManager.FindByIdAsync(answer.UserId).Result.UserName;
+            }
+
             if (question == null)
             {
                 return NotFound();
