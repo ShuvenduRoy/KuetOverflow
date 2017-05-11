@@ -69,14 +69,14 @@ $(document).ready(function() {
 
         });
 
-    $('#user-image-div').ready(function() {
-        var url = $('#user-image-div').attr("src");
+    $('.user-image').each(function(i, obj) {
+        var url = $(obj).attr("src");
         console.log(url);
 
         $.getJSON(url,
             function(data) {
                 console.log(data);
-                $('#user-image-div').attr("src", data.picture.data.url);
+                $(obj).attr("src", data.picture.data.url);
             });
     });
 
