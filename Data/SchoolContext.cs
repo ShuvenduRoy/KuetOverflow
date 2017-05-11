@@ -51,6 +51,8 @@ namespace KuetOverflow.Data
 
         public DbSet<KuetOverflow.Models.SchoolViewModels.Activity> Activity { get; set; }
 
+        public DbSet<KuetOverflow.Models.Tweet> Tweet { get; set; }
+
 
 
 
