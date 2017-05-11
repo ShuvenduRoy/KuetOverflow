@@ -354,7 +354,6 @@ namespace KuetOverflow.Controllers
 
             foreach (var vote in votes)
             {
-                question.TotalVote += vote.Value;
 
                 if (vote.UserID == UserId)
                 {
