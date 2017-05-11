@@ -7,17 +7,21 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
     public class LecturesController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public LecturesController(SchoolContext context)
+        public LecturesController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager; 
         }
+
 
         public async Task<IActionResult> Index()
         {
@@ -42,6 +46,12 @@ namespace KuetOverflow.Controllers
                 .Where(c => c.LectureID == id)
                 .AsNoTracking()
                 .ToListAsync();
+
+            foreach (var comment in model.Comments)
+            {
+                comment.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(comment.UserId).Result.FbProfile + "/?fields=picture&type=large";
+                comment.UserName = _userManager.FindByIdAsync(comment.UserId).Result.UserName;
+            }
 
             var viewModel = new Lecture_LectureListViewModel();
             viewModel.LectureCommentViewModel = model;
