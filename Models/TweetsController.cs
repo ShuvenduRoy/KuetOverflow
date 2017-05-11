@@ -5,29 +5,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Models
 {
     public class TweetsController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TweetsController(SchoolContext context)
+        public TweetsController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
+
 
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var tweets = _context.Tweet
+            var tweets = await _context.Tweet
                 .Where(t => t.UserId == userId)
                 .AsNoTracking()
                 .ToListAsync();
 
-            return View(await tweets);
+            foreach (var tweet in tweets)
+            {
+                tweet.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
+                tweet.UserName = _userManager.FindByIdAsync(tweet.UserId).Result.UserName;
+            }
+
+            return View(tweets);
         }
 
         // GET: Tweets/Details/5
