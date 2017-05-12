@@ -49,39 +49,19 @@
     <Content Remove="wwwroot/js\jquery-3.1.1.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\animate.css" />
-    <Content Include="wwwroot\apple.png" />
-    <Content Include="wwwroot\behavior_legacy.js" />
-    <Content Include="wwwroot\bootstrap.min.js" />
     <Content Include="wwwroot\css\animate.css" />
-    <Content Include="wwwroot\css\theme.css" />
-    <Content Include="wwwroot\css\theme.js" />
-    <Content Include="wwwroot\facebook.png" />
-    <Content Include="wwwroot\feature1.jpg" />
-    <Content Include="wwwroot\feature1.png">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\feature2.png" />
     <Content Include="wwwroot\ga.js" />
-    <Content Include="wwwroot\google.png" />
     <Content Include="wwwroot\images\feature1.jpg" />
     <Content Include="wwwroot\images\feature1.png" />
     <Content Include="wwwroot\images\feature3.PNG" />
-    <Content Include="wwwroot\images\feature33.PNG" />
     <Content Include="wwwroot\images\slider-bg.png" />
     <Content Include="wwwroot\images\slider\slide-left.png" />
     <Content Include="wwwroot\images\slider\slide-right.png" />
-    <Content Include="wwwroot\images\stacik-hero.jpg" />
-    <Content Include="wwwroot\images\stacic-hero.png" />
     <Content Include="wwwroot\images\static-hero.png" />
     <Content Include="wwwroot\images\static-hero0.png" />
-    <Content Include="wwwroot\images\tablet_smart_phone_hi_tech_icons_hand_96123_1920x1080.jpg" />
-    <Content Include="wwwroot\index.html" />
-    <Content Include="wwwroot\jquery.min.js" />
     <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
     <Content Include="wwwroot\js\moment.js" />
-    <Content Include="wwwroot\js\theme.js" />
     <Content Include="wwwroot\js\underscore-min.js" />
     <Content Include="wwwroot\logo.png" />
     <Content Include="wwwroot\public\animate.css" />
@@ -127,18 +107,7 @@
     <Content Include="wwwroot\public\yahoo.png" />
     <Content Include="wwwroot\saved_resource.html" />
     <Content Include="wwwroot\screen_preview_legacy.css" />
-    <Content Include="wwwroot\slide1.png" />
-    <Content Include="wwwroot\slide2.png" />
-    <Content Include="wwwroot\slide3.png" />
-    <Content Include="wwwroot\slide4.png" />
-    <Content Include="wwwroot\slide5.png" />
     <Content Include="wwwroot\social-dbl.png" />
-    <Content Include="wwwroot\social-tw.png" />
-    <Content Include="wwwroot\stripe.png" />
-    <Content Include="wwwroot\testimonial2.jpg" />
-    <Content Include="wwwroot\testimonial3.jpg" />
-    <Content Include="wwwroot\theme.css" />
-    <Content Include="wwwroot\theme.js" />
     <Content Include="wwwroot\yahoo.png" />
   </ItemGroup>
   <ItemGroup>
