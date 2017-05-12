@@ -36,7 +36,7 @@ namespace KuetOverflow.Controllers
 
             }
 
-            return View();
+            return Redirect("/public/index.html");
         }
 
         [Route("api/home/about")]
