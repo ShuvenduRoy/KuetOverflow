@@ -15,7 +15,7 @@
 </head>
 
 <body style="padding-top: 0">
-<header class="navbar navbar-inverse hero" role="banner" style="background-image: url('images/feature3.PNG')">
+<header class="navbar navbar-inverse hero" role="banner">
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">Kuet Overflow</a>
+            <a href="/public/index.html" class="navbar-brand">Kuet Overflow</a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right">
@@ -31,16 +31,11 @@
 
                 <ul class='nav navbar-nav'>
                     <li [routerLinkActive]="['link-active']">
-                        <a href="/">
+                        <a href="/public/index.html">
                             <span style="color: white" class='glyphicon glyphicon-home'></span> <span style="color: white">Home</span>
                         </a>
                     </li>
 
-                    <li [routerLinkActive]="['link-active']">
-                        <a href="/about">
-                            <span style="color: white" class='glyphicon glyphicon-tags'></span> <span style="color: white">About</span>
-                        </a>
-                    </li>
 
 
                     <li [routerLinkActive]="['link-active']">
