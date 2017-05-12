@@ -76,6 +76,7 @@
     <Content Include="wwwroot\images\static-hero.png" />
     <Content Include="wwwroot\images\static-hero0.png" />
     <Content Include="wwwroot\images\tablet_smart_phone_hi_tech_icons_hand_96123_1920x1080.jpg" />
+    <Content Include="wwwroot\index.html" />
     <Content Include="wwwroot\jquery.min.js" />
     <Content Include="wwwroot\js\bootstrap.min.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
@@ -83,6 +84,47 @@
     <Content Include="wwwroot\js\theme.js" />
     <Content Include="wwwroot\js\underscore-min.js" />
     <Content Include="wwwroot\logo.png" />
+    <Content Include="wwwroot\public\animate.css" />
+    <Content Include="wwwroot\public\apple.png" />
+    <Content Include="wwwroot\public\behavior_legacy.js" />
+    <Content Include="wwwroot\public\bootstrap.min.js" />
+    <Content Include="wwwroot\public\facebook.png" />
+    <Content Include="wwwroot\public\feature1.png" />
+    <Content Include="wwwroot\public\feature2.png" />
+    <Content Include="wwwroot\public\ga.js" />
+    <Content Include="wwwroot\public\google.png" />
+    <Content Include="wwwroot\public\images\feature3.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\public\images\feature1.jpg" />
+    <Content Include="wwwroot\public\images\feature1.png" />
+    <Content Include="wwwroot\public\images\slider-bg.png" />
+    <Content Include="wwwroot\public\images\slider\feature3.PNG">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\public\images\slider\slide-left.png" />
+    <Content Include="wwwroot\public\images\slider\slide-right.png" />
+    <Content Include="wwwroot\public\images\static-hero.png" />
+    <Content Include="wwwroot\public\images\Thumbs.db" />
+    <Content Include="wwwroot\public\index.html" />
+    <Content Include="wwwroot\public\jquery.min.js" />
+    <Content Include="wwwroot\public\logo.png" />
+    <Content Include="wwwroot\public\saved_resource.html" />
+    <Content Include="wwwroot\public\screen_preview_legacy.css" />
+    <Content Include="wwwroot\public\slide1.png" />
+    <Content Include="wwwroot\public\slide2.png" />
+    <Content Include="wwwroot\public\slide3.png" />
+    <Content Include="wwwroot\public\slide4.png" />
+    <Content Include="wwwroot\public\slide5.png" />
+    <Content Include="wwwroot\public\social-dbl.png" />
+    <Content Include="wwwroot\public\social-tw.png" />
+    <Content Include="wwwroot\public\stripe.png" />
+    <Content Include="wwwroot\public\testimonial2.jpg" />
+    <Content Include="wwwroot\public\testimonial3.jpg" />
+    <Content Include="wwwroot\public\theme.css" />
+    <Content Include="wwwroot\public\theme.js" />
+    <Content Include="wwwroot\public\Thumbs.db" />
+    <Content Include="wwwroot\public\yahoo.png" />
     <Content Include="wwwroot\saved_resource.html" />
     <Content Include="wwwroot\screen_preview_legacy.css" />
     <Content Include="wwwroot\slide1.png" />
