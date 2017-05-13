@@ -36,6 +36,10 @@ namespace KuetOverflow.Controllers.Api
 
             _context.Add(follow);
             _context.SaveChanges();
+
+            user.Follower += 1;
+            _context.Update(user);
+            _context.SaveChanges();
         }
     }
 }
