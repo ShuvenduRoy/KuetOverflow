@@ -95,6 +95,9 @@ $(document).ready(function() {
 
         $.post(url).done(function() {
             console.log('done');
+            $('#addFollower').addClass('btn-danger')
+                .html('Unfollow')
+                .removeClass('btn-primary');
         });
     });
 
