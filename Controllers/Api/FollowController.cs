@@ -28,16 +28,28 @@ namespace KuetOverflow.Controllers.Api
             var user = _context.TwitterUsers
                 .SingleOrDefault(u => u.UserID == userId);
 
-            Follow follow = new Follow
+            var followHistory = _context.Follows
+                .SingleOrDefault(f => (f.FollowerId == id && f.FolloweeId == user.ID));
+
+            if (followHistory == null)
             {
-                FollowerId = id,
-                FolloweeId = user.ID
-            };
+                Follow follow = new Follow
+                {
+                    FollowerId = id,
+                    FolloweeId = user.ID
+                };
 
-            _context.Add(follow);
-            _context.SaveChanges();
+                _context.Add(follow);
+                user.Follower += 1;
+            }
 
-            user.Follower += 1;
+            else
+            {
+                _context.Remove(followHistory);
+                user.Follower -= 1;
+            }
+
+            
             _context.Update(user);
             _context.SaveChanges();
         }
