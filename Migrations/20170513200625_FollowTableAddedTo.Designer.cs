@@ -8,7 +8,7 @@ using KuetOverflow.Data;
 namespace KuetOverflow.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20170513200207_FollowTableAddedTo")]
+    [Migration("20170513200625_FollowTableAddedTo")]
     partial class FollowTableAddedTo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

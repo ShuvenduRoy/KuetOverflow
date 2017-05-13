@@ -25,14 +25,12 @@ namespace KuetOverflow.Migrations
                         name: "FK_Follows_TwitterUsers_FolloweeId",
                         column: x => x.FolloweeId,
                         principalTable: "TwitterUsers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Follows_TwitterUsers_FollowerId",
                         column: x => x.FollowerId,
                         principalTable: "TwitterUsers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateIndex(

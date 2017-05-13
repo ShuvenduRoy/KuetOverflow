@@ -28,6 +28,12 @@ namespace KuetOverflow.Data
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
 
+        public DbSet<Activity> Activity { get; set; }
+
+        public DbSet<Tweet> Tweet { get; set; }
+        public DbSet<TwitterUser> TwitterUsers { get; set; }
+        public DbSet<Follow> Follows { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>().ToTable("Course");
@@ -49,11 +55,6 @@ namespace KuetOverflow.Data
                 .HasKey(n => new {n.UserId, n.NotificationId});
         }
 
-        public DbSet<KuetOverflow.Models.SchoolViewModels.Activity> Activity { get; set; }
-
-        public DbSet<KuetOverflow.Models.Tweet> Tweet { get; set; }
-        public DbSet<KuetOverflow.Models.TwitterUser> TwitterUsers { get; set; }
-        public DbSet<Follow> Follows { get; set; }
 
 
 
