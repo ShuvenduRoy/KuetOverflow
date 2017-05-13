@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KuetOverflow.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/Follow")]
+    
     public class FollowController : Controller
     {
 
@@ -33,7 +33,7 @@ namespace KuetOverflow.Controllers.Api
                 FolloweeId = user.ID
             };
 
-            _context.Follows.AddAsync(follow);
+            _context.Add(follow);
             _context.SaveChangesAsync();
         }
     }
