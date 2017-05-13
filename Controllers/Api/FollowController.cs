@@ -35,7 +35,7 @@ namespace KuetOverflow.Controllers.Api
             };
 
             _context.Add(follow);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }
