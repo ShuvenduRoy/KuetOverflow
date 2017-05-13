@@ -95,9 +95,15 @@ $(document).ready(function() {
 
         $.post(url).done(function(val) {
             console.log(val);
-            $('#addFollower').addClass('btn-danger')
-                .html('Unfollow')
-                .removeClass('btn-primary');
+            if (val == 1) {
+                $('#addFollower').addClass('btn-danger')
+                    .html('Unfollow')
+                    .removeClass('btn-primary');
+            } else {
+                $('#addFollower').addClass('btn-primary')
+                    .html('Follow')
+                    .removeClass('btn-danger');
+            }
         });
     });
 
