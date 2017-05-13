@@ -22,7 +22,7 @@ namespace KuetOverflow.Controllers.Api
         }
 
         [HttpPost]
-        public void AddFollower(int id)
+        public int AddFollower(int id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _context.TwitterUsers
@@ -41,17 +41,24 @@ namespace KuetOverflow.Controllers.Api
 
                 _context.Add(follow);
                 user.Follower += 1;
+
+                _context.Update(user);
+                _context.SaveChanges();
+
+                return 1;
             }
 
             else
             {
                 _context.Remove(followHistory);
                 user.Follower -= 1;
+
+                _context.Update(user);
+                _context.SaveChanges();
+
+                return -1;
             }
 
-            
-            _context.Update(user);
-            _context.SaveChanges();
         }
     }
 }

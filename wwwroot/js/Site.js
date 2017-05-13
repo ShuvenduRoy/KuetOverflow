@@ -93,8 +93,8 @@ $(document).ready(function() {
         url = $(this).attr('href');
         console.log(url);
 
-        $.post(url).done(function() {
-            console.log('done');
+        $.post(url).done(function(val) {
+            console.log(val);
             $('#addFollower').addClass('btn-danger')
                 .html('Unfollow')
                 .removeClass('btn-primary');
