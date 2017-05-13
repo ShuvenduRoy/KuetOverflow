@@ -16,10 +16,9 @@
             </div>
             <div class="media-body">
                 <h4 class="media-heading"><b>@Model.User.UserName</b></h4>
-                <div id="TweetUserFollower">
+
                     <b><p>@Model.User.Follower  Followers</p></b>
-                    <button style="text-align: center" class="btn btn-primary">   Follow   </button>
-                </div>
+
             </div>
             
         </div>
@@ -58,7 +57,7 @@
                     </div>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">@tweet.UserName</h4>
+                    <h4 class="media-heading"><a href="/tweets/TweetUser/@Model.User.ID">@tweet.UserName</a></h4>
                     <p><i>@tweet.DateTime</i></p>
                     @tweet.Body
                 </div>

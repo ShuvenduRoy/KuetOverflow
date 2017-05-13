@@ -64,6 +64,8 @@ namespace KuetOverflow.Controllers
 
             var userId = user.UserID;
 
+            var model = new TweetHomePageViewModel();
+
             var tweets = await Queryable.Where<Tweet>(_context.Tweet, t => t.UserId == userId)
                 .AsNoTracking()
                 .ToListAsync();
@@ -74,14 +76,19 @@ namespace KuetOverflow.Controllers
             if (twitterUser == null)
                 return RedirectToAction("Join", new { id = userId });
 
+            model.User = twitterUser;
+            model.User.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
+            model.User.UserName = _userManager.FindByIdAsync(twitterUser.UserID).Result.UserName;
+
 
             foreach (var tweet in tweets)
             {
                 tweet.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
                 tweet.UserName = _userManager.FindByIdAsync(tweet.UserId).Result.UserName;
             }
+            model.Tweets = tweets;
 
-            return View(tweets);
+            return View(model);
         }
 
         //public async Task<IActionResult> Join(string id)
