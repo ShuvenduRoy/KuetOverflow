@@ -53,6 +53,7 @@ namespace KuetOverflow.Data
 
         public DbSet<KuetOverflow.Models.Tweet> Tweet { get; set; }
         public DbSet<KuetOverflow.Models.TwitterUser> TwitterUsers { get; set; }
+        public DbSet<Follow> Follows { get; set; }
 
 
 

@@ -8,9 +8,10 @@ using KuetOverflow.Data;
 namespace KuetOverflow.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20170513200031_FollowTableAdded")]
+    partial class FollowTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -138,24 +139,6 @@ namespace KuetOverflow.Migrations
                     b.HasIndex("StudentID");
 
                     b.ToTable("Enrollment");
-                });
-
-            modelBuilder.Entity("KuetOverflow.Models.Follow", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("FolloweeId");
-
-                    b.Property<int>("FollowerId");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("FolloweeId");
-
-                    b.HasIndex("FollowerId");
-
-                    b.ToTable("Follows");
                 });
 
             modelBuilder.Entity("KuetOverflow.Models.Instructor", b =>
@@ -417,19 +400,6 @@ namespace KuetOverflow.Migrations
                     b.HasOne("KuetOverflow.Models.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("KuetOverflow.Models.Follow", b =>
-                {
-                    b.HasOne("KuetOverflow.Models.TwitterUser", "Followee")
-                        .WithMany()
-                        .HasForeignKey("FolloweeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("KuetOverflow.Models.TwitterUser", "Follower")
-                        .WithMany()
-                        .HasForeignKey("FollowerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
