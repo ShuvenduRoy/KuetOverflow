@@ -35,8 +35,6 @@
         });
 
 
-
-
 });
 
 $(document).ready(function() {
@@ -81,6 +79,25 @@ $(document).ready(function() {
                 $(obj).attr("src", data.picture.data.url);
             });
     });
+
+    $('#addFollower').on('click',
+        'a',
+        function () {
+            var url = $(this).attr('href');
+            console.log(url);
+
+        }
+    );
+
+    $('#addFollower').on('click',function() {
+        url = $(this).attr('href');
+        console.log(url);
+
+        $.post(url).done(function() {
+            console.log('done');
+        });
+    });
+
 
 });
 

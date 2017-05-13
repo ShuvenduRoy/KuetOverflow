@@ -21,6 +21,7 @@ namespace KuetOverflow.Controllers.Api
             _userManager = userManager;
         }
 
+        [HttpPost]
         public void AddFollower(int id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
