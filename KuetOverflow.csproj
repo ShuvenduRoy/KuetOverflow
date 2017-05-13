@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\css\animate.css" />
-    <Content Include="wwwroot\ga.js" />
     <Content Include="wwwroot\images\feature1.jpg" />
     <Content Include="wwwroot\images\feature1.png" />
     <Content Include="wwwroot\images\feature3.PNG" />
@@ -63,7 +62,6 @@
     <Content Include="wwwroot\js\jquery.min.js" />
     <Content Include="wwwroot\js\moment.js" />
     <Content Include="wwwroot\js\underscore-min.js" />
-    <Content Include="wwwroot\logo.png" />
     <Content Include="wwwroot\public\animate.css" />
     <Content Include="wwwroot\public\apple.png" />
     <Content Include="wwwroot\public\behavior_legacy.js" />
@@ -105,10 +103,6 @@
     <Content Include="wwwroot\public\theme.js" />
     <Content Include="wwwroot\public\Thumbs.db" />
     <Content Include="wwwroot\public\yahoo.png" />
-    <Content Include="wwwroot\saved_resource.html" />
-    <Content Include="wwwroot\screen_preview_legacy.css" />
-    <Content Include="wwwroot\social-dbl.png" />
-    <Content Include="wwwroot\yahoo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
