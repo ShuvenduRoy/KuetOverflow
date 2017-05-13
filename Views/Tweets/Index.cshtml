@@ -1,4 +1,4 @@
-@model IEnumerable<KuetOverflow.Models.Tweet>
+@model KuetOverflow.Models.SchoolViewModels.TweetHomePageViewModel
 
 @{
     ViewData["Title"] = "Posts";
@@ -8,7 +8,22 @@
 
 <div class="row">
     <div class="col-md-2">
-        <h2>Left nav panel</h2>
+        <div class="media">
+            <div class="media-left">
+                <div style="float: left">
+                    <img id="user-image-div" class="user-image" src="@Model.User.UserImage" />
+                </div>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><b>@Model.User.UserName</b></h4>
+                <div id="TweetUserFollower">
+                    <b><p>@Model.User.Follower  Followers</p></b>
+                    <button style="text-align: center" class="btn btn-primary">   Follow   </button>
+                </div>
+            </div>
+            
+        </div>
+        
     </div>
     
     <div class="col-md-6">
@@ -34,7 +49,7 @@
         </form>
         
         <hr/>
-        @foreach (var tweet in Model)
+        @foreach (var tweet in Model.Tweets)
         {
             <div class="media">
                 <div class="media-left">
@@ -44,6 +59,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">@tweet.UserName</h4>
+                    <p><i>@tweet.DateTime</i></p>
                     @tweet.Body
                 </div>
             </div>

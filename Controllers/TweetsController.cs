@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,8 @@ namespace KuetOverflow.Controllers
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
+            var model = new TweetHomePageViewModel();
+
             var userId = PrincipalExtensions.FindFirstValue(this.User, ClaimTypes.NameIdentifier);
 
             var tweets = await Queryable.Where<Tweet>(_context.Tweet, t => t.UserId == userId)
@@ -38,15 +41,20 @@ namespace KuetOverflow.Controllers
 
             if (twitterUser == null)
                 return RedirectToAction("Join",new {id=userId});
-               
+
+            model.User = twitterUser;
+            model.User.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
+            model.User.UserName = _userManager.FindByIdAsync(twitterUser.UserID).Result.UserName;
+
 
             foreach (var tweet in tweets)
             {
                 tweet.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
                 tweet.UserName = _userManager.FindByIdAsync(tweet.UserId).Result.UserName;
             }
+            model.Tweets = tweets;
 
-            return View(tweets);
+            return View(model);
         }
 
         public async Task<IActionResult> TweetUser(int id)
