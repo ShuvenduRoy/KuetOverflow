@@ -1,0 +1,13 @@
+﻿@model KuetOverflow.Models.TwitterUser
+
+@{
+    ViewBag.Title = "Join in Tweet";
+    Layout = "_StudentLayout";
+}
+
+<h2>Join in Tweet</h2>
+@Model.UserID;
+
+<form asp-action="Join" asp-route-user="@Model">
+    <input type="submit" value="join" class="btn btn-default"/>
+</form>
