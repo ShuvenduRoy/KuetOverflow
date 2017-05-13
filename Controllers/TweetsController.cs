@@ -49,6 +49,33 @@ namespace KuetOverflow.Controllers
             return View(tweets);
         }
 
+        public async Task<IActionResult> TweetUser(int id)
+        {
+            var user = _context.TwitterUsers
+                .SingleOrDefault(p => p.ID == id);
+
+            var userId = user.UserID;
+
+            var tweets = await Queryable.Where<Tweet>(_context.Tweet, t => t.UserId == userId)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var twitterUser = _context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == userId);
+
+            if (twitterUser == null)
+                return RedirectToAction("Join", new { id = userId });
+
+
+            foreach (var tweet in tweets)
+            {
+                tweet.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
+                tweet.UserName = _userManager.FindByIdAsync(tweet.UserId).Result.UserName;
+            }
+
+            return View(tweets);
+        }
+
         //public async Task<IActionResult> Join(string id)
         //{
         //    var model = new TwitterUser();

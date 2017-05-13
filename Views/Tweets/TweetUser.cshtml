@@ -1,0 +1,57 @@
+﻿@model IEnumerable<KuetOverflow.Models.Tweet>
+
+@{
+    ViewData["Title"] = "Posts";
+    Layout = "_StudentLayout";
+}
+<br />
+
+<div class="row">
+    <div class="col-md-2">
+        <h2>Left nav panel</h2>
+    </div>
+
+    <div class="col-md-6">
+
+        <form asp-action="Create">
+            <div class="form-horizontal">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" name="Body" class="form-control" placeholder="Whats happenging...">
+                            <span class="input-group-btn">
+                                <button type="submit" value="Create" class="btn btn-default">Tweet</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+
+                </div>
+
+            </div>
+        </form>
+
+        <hr />
+        @foreach (var tweet in Model)
+        {
+            <div class="media">
+                <div class="media-left">
+                    <div style="float: left">
+                        <img id="user-image-div" class="user-image" src="@tweet.UserImage" />
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@tweet.UserName</h4>
+                    @tweet.Body
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="col-md-4">
+        <h2>Reserve activity space</h2>
+    </div>
+</div>
