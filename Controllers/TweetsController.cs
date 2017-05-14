@@ -147,6 +147,7 @@ namespace KuetOverflow.Controllers
         {
             var userId = PrincipalExtensions.FindFirstValue(this.User, ClaimTypes.NameIdentifier);
             tweet.UserId = userId;
+            tweet.TweetUserID = _context.TwitterUsers.SingleOrDefault(u => u.UserID == userId).ID;
             tweet.DateTime = DateTime.Now;
             
 
