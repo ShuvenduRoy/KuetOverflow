@@ -39,7 +39,8 @@
                     </div>
                     <div>
                         asked by
-                        <p>@question.UserName</p>
+                        <a asp-action="Details" asp-controller="Activities" asp-route-id="@question.UserId">@question.UserName</a>
+
                     </div>
                 </div>
             </div>

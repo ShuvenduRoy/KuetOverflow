@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         asked by
-                        <p>@Html.DisplayFor(model => model.Question.UserName)</p>
+                        <p><a asp-action="Details" asp-controller="Activities" asp-route-id="@Model.Question.UserId">@Html.DisplayFor(model => model.Question.UserName)</a></p>
                         <p>@Html.DisplayFor(model => model.Question.DateTime)</p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                             </div>
                             <div>
                                 answered by
-                                <p>@answer.UserName</p>
+                                <p><a asp-action="Details" asp-controller="Activities" asp-route-id="@answer.UserId">@answer.UserName</a></p>
                             </div>
                         </div>
                     </div>
