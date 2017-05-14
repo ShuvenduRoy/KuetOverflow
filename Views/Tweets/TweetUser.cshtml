@@ -1,4 +1,5 @@
-﻿@model KuetOverflow.Models.SchoolViewModels.TweetHomePageViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model KuetOverflow.Models.SchoolViewModels.TweetHomePageViewModel
 
 @{
     ViewData["Title"] = "Tweets";
@@ -59,18 +60,19 @@
         <hr />
         @foreach (var tweet in Model.Tweets)
         {
-            <div class="media">
+            @*<div class="media">
                 <div class="media-left">
                     <div style="float: left">
                         <img id="user-image-div" class="user-image" src="@tweet.UserImage" />
                     </div>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="/tweets/TweetUser/@Model.User.ID">@tweet.UserName</a></h4>
+                    <h4 class="media-heading"><a href="/tweets/TweetUser/@tweet.TweetUserID">@tweet.UserName</a></h4>
                     <p><i>@tweet.DateTime</i></p>
                     @tweet.Body
                 </div>
-            </div>
+            </div>*@
+            Html.RenderPartial("_tweet", tweet);
         }
 
     </div>

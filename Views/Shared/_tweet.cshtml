@@ -1,0 +1,16 @@
+@model KuetOverflow.Models.Tweet
+
+
+<div class="media">
+    <div class="media-left">
+        <div style="float: left">
+            <img id="user-image-div" class="user-image" src="@Model.UserImage" />
+        </div>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading"><a href="/tweets/TweetUser/@Model.TweetUserID">@Model.UserName</a></h4>
+        <p><i>@Model.DateTime</i></p>
+        @Model.Body
+    </div>
+</div>
+
