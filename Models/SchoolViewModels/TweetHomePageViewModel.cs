@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KuetOverflow.Models.SchoolViewModels
 {
@@ -6,5 +7,8 @@ namespace KuetOverflow.Models.SchoolViewModels
     {
         public TwitterUser User { get; set; }
         public IEnumerable<Tweet> Tweets { get; set; }
+
+        [NotMapped]
+        public bool IsFollowing { get; set; } = false;
     }
 }

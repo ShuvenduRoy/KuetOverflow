@@ -88,6 +88,12 @@ namespace KuetOverflow.Controllers
             }
             model.Tweets = tweets;
 
+            var Follow = _context.Follows
+                .SingleOrDefault(f => (f.FollowerId == twitterUser.ID && f.FolloweeId == id));
+
+            if (Follow != null)
+                model.IsFollowing = true;
+
             return View(model);
         }
 
