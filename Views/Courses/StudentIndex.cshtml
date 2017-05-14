@@ -27,6 +27,10 @@
 
     <div class="col-md-6">
         <h2>Time line</h2>
+        @foreach (var tweet in Model.Tweets)
+        {
+            <p>@tweet.Body</p>
+        }
 
     </div>
 

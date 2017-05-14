@@ -59,6 +59,20 @@ namespace KuetOverflow.Controllers
 
             model.Enrollments = courseEnrollment;
 
+            var tweetUserId = _context.TwitterUsers
+                .SingleOrDefault(u => u.UserID == userId)
+                .ID;
+
+            var following = _context.Follows
+                .Where(t => t.FollowerId == tweetUserId)
+                .Select(t => t.FollowerId);
+
+            model.Tweets = _context.Tweet
+                .OrderByDescending(x => x.DateTime)
+                .Where(u => following.Contains(u.TweetUserID))
+                .Take(10);
+            
+
 
             try
             {
