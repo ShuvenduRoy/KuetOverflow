@@ -18,7 +18,15 @@
                 <h4 class="media-heading"><b>@Model.User.UserName</b></h4>
                 <div id="TweetUserFollower">
                     <b><p>@Model.User.Follower  Followers</p></b>
-                    <span id="addFollower" href="/Follow/AddFollower/@Model.User.ID" class="btn btn-primary">Follow </span>
+                    @if (@Model.IsFollowing)
+                    {
+                        <span id="addFollower" href="/Follow/AddFollower/@Model.User.ID" class="btn btn-danger">Unfollow</span>
+                    }
+                    @if (@Model.IsFollowing == false)
+                    {
+                        <span id="addFollower" href="/Follow/AddFollower/@Model.User.ID" class="btn btn-primary">Follow </span>
+                    }
+                    
                 </div>
             </div>
 
