@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -44,8 +45,10 @@ namespace KuetOverflow.Controllers
                 .AsNoTracking()
                 .SingleOrDefault();
 
+            var model = new StudentIndexViewModel();
 
-            var courseEnrollment = _context.Enrollments
+
+            var courseEnrollment = await _context.Enrollments
                 .Where(e => e.StudentID == student.ID)
                 .Include(e => e.Course)
                     .ThenInclude(c => c.Department)
@@ -54,10 +57,12 @@ namespace KuetOverflow.Controllers
                 .AsNoTracking()
                 .ToListAsync();
 
+            model.Enrollments = courseEnrollment;
+
 
             try
             {
-                return View(await courseEnrollment);
+                return View(model);
             }
             catch (Exception e)
             {

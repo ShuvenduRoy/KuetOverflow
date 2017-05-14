@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KuetOverflow.Models.Enrollment>
+﻿@model KuetOverflow.Models.SchoolViewModels.StudentIndexViewModel
 @{
     ViewBag.Title = "Courses";
     Layout = "_StudentLayout";
@@ -11,7 +11,7 @@
         <h2>Courses</h2>
         @if (Model != null)
         {
-            foreach (var item in Model)
+            foreach (var item in Model.Enrollments)
             {
 
                     <li class="list-group-item">
