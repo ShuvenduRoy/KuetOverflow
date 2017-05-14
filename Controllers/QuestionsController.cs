@@ -405,5 +405,13 @@ namespace KuetOverflow.Controllers
 
         }
 
+        public async Task<IActionResult> PopularQuestion()
+        {
+            var question = await _context.Question
+                .ToListAsync();
+
+            return View(question);
+        }
+
     }
 }
