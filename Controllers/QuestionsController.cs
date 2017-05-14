@@ -410,7 +410,7 @@ namespace KuetOverflow.Controllers
             var question = await _context.Question
                 .ToListAsync();
 
-            return View(question);
+            return PartialView(question);
         }
 
     }

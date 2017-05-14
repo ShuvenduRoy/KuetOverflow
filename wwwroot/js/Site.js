@@ -28,7 +28,7 @@
         function () {
             var url = $(this).attr('src');
             $.getJSON(url, function (data) {
-                console.log(data);
+
             });
 
             return false;
@@ -40,7 +40,6 @@
 $(document).ready(function() {
     $.getJSON("/api/notifications",
         function (notifications) {
-            console.log(notifications);
             if (notifications.length > 0) {
                 $("#js-notifications-count").text(notifications.length)
                     .addClass("animated bounceInDown")
@@ -57,7 +56,6 @@ $(document).ready(function() {
                     placement: "bottom"
 
                 }).on("shown.bs.popover", function () {
-                    console.log("pop over shown");
                     $.post("/api/notifications/MarkAsRead")
                         .done(function () {
                             $("#js-notifications-count").text(notifications.length)
@@ -71,11 +69,9 @@ $(document).ready(function() {
 
     $('.user-image').each(function(i, obj) {
         var url = $(obj).attr("src");
-        console.log(url);
 
         $.getJSON(url,
             function(data) {
-                console.log(data);
                 $(obj).attr("src", data.picture.data.url);
             });
     });
@@ -84,14 +80,12 @@ $(document).ready(function() {
         'a',
         function () {
             var url = $(this).attr('href');
-            console.log(url);
 
         }
     );
 
     $('#addFollower').on('click',function() {
         url = $(this).attr('href');
-        console.log(url);
 
         $.post(url).done(function(val) {
             console.log(val);
@@ -106,6 +100,8 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#popularQuestion').load('/Questions/PopularQuestion');
 
 
 });

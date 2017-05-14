@@ -27,7 +27,6 @@
     </div>
 
     <div class="col-md-6">
-        <h2>Time line</h2>
         @foreach (var tweet in Model.Tweets)
         {
             Html.RenderPartial("_tweet",tweet);
@@ -37,6 +36,9 @@
 
     <div class="col-md-4">
         <h2>Popular Questions</h2>
+        <div id="popularQuestion">
+            
+        </div>
     </div>
 
 </div>
