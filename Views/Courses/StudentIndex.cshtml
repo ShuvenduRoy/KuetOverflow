@@ -1,4 +1,5 @@
-﻿@model KuetOverflow.Models.SchoolViewModels.StudentIndexViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model KuetOverflow.Models.SchoolViewModels.StudentIndexViewModel
 @{
     ViewBag.Title = "Courses";
     Layout = "_StudentLayout";
@@ -29,7 +30,7 @@
         <h2>Time line</h2>
         @foreach (var tweet in Model.Tweets)
         {
-            <p>@tweet.Body</p>
+            Html.RenderPartial("_tweet",tweet);
         }
 
     </div>

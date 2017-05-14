@@ -71,6 +71,14 @@ namespace KuetOverflow.Controllers
                 .OrderByDescending(x => x.DateTime)
                 .Where(u => following.Contains(u.TweetUserID))
                 .Take(10);
+
+            foreach (var tweet in model.Tweets)
+            {
+                var user = _userManager.FindByIdAsync(tweet.UserId).Result;
+
+                tweet.UserImage = "https://graph.facebook.com/" + user.FbProfile + "/?fields=picture&type=large";
+                tweet.UserName = user.UserName;
+            }
             
 
 
