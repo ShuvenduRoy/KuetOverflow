@@ -5,21 +5,30 @@
 }
 
 
-<div class="list-group col-md-2">
-    <h2>Lectures</h2>
-    <div>
-        @foreach (var lecture in Model.Lectures)
-        {
-            <a class="list-group-item" asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID" asp-route-course_id="@Model.CourseId">
+<div class="row">
+    <div class="list-group col-md-2">
+        <h2>Lectures</h2>
+        <div>
+            @foreach (var lecture in Model.Lectures)
+            {
+                <a class="list-group-item" asp-controller="Lectures" asp-action="Details" asp-route-id="@lecture.ID" asp-route-course_id="@Model.CourseId">
                     @lecture.Title
-            </a>
-        }
+                </a>
+            }
 
+        </div>
     </div>
-</div>
 
 
-<div class="col-md-10">
-    @Html.Partial("QuestionList", Model.Questions)
+    <div class="col-md-7">
+        @Html.Partial("QuestionList", Model.Questions)
+    </div>
+
+    <div class="col-md-3">
+        <h3>Polular question</h3>
+        <div id="popularQuestion">
+            
+        </div>
+    </div>
 </div>
 
