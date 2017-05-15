@@ -18,10 +18,13 @@ namespace KuetOverflow.Controllers
         private readonly SchoolContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
+
+
         public MessagesController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+
         }
 
         // GET: Messages
@@ -29,6 +32,22 @@ namespace KuetOverflow.Controllers
         {
             return View(await _context.Messages.ToListAsync());
         }
+
+        public async Task<IActionResult> GetAllMessages(int id=1)
+        {
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var tweetId = this._context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == userid)
+                .ID;
+
+
+            var messages =await _context.Messages
+                .Where(m => (m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId))
+                .ToListAsync();
+
+            return PartialView("GetAllMessages",messages);
+        }
+
 
         public async Task<IActionResult> UserMessages()
         {

@@ -1,0 +1,8 @@
+﻿@model List<KuetOverflow.Models.Message>
+
+<ul>
+    @foreach (var message in Model)
+    {
+        <p style="border: gray solid 1px; padding: 4px">@message.Body</p>
+    }
+</ul>
