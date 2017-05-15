@@ -38,8 +38,9 @@
         'a',
         function() {
             var url = $(this).attr('href');
+            var id = $(this).attr('user');
 
-            $('#url').html(url);
+            $('#url').html(id);
 
             $('#messages').load(url);
             return false;
@@ -128,7 +129,7 @@ function getAllMessaged() {
     console.log(url);
 
     if (url != '#') {
-        $('#messages').load(url);
+        $('#messages').load('/messages/getallmessages/'+url);
     }
     return false;
 }

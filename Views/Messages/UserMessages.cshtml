@@ -13,7 +13,7 @@
         @foreach (var user in Model)
         {
             <div id="chat_user" class="list-group-item">
-                <a  href="@Url.Action("GetAllMessages", new {id=user.ID})">
+                <a user="@user.ID" href="@Url.Action("GetAllMessages", new {id=user.ID})">
                     @user.UserName
                 </a>
             </div>
