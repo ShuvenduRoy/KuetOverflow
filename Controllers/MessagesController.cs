@@ -130,6 +130,28 @@ namespace KuetOverflow.Controllers
             return View(message);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateByUser([Bind("ID,Body")] Message message, int user)
+        {
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var tweetId = this._context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == userid)
+                .ID;
+
+            message.From = tweetId;
+            message.To = user;
+            message.DateTime = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(message);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
         // GET: Messages/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -214,5 +236,6 @@ namespace KuetOverflow.Controllers
         {
             return _context.Messages.Any(e => e.ID == id);
         }
+
     }
 }
