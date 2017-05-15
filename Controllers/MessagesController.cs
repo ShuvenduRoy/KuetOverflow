@@ -53,6 +53,25 @@ namespace KuetOverflow.Controllers
             return PartialView("GetAllMessages",model);
         }
 
+        public async Task<IActionResult> GetAllUnreadMessages(int id = 1)
+        {
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var tweetId = this._context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == userid)
+                .ID;
+
+
+            var messages = await _context.Messages
+                .Where(m => ((m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId)) && m.IsSeen == false)
+                .ToListAsync();
+
+            var model = new MessagesViewModel();
+            model.Id = id;
+            model.Messages = messages;
+
+            return PartialView("GetAllMessages", model);
+        }
+
 
         public async Task<IActionResult> UserMessages()
         {
@@ -89,6 +108,8 @@ namespace KuetOverflow.Controllers
 
             return View(users);
         }
+
+
 
         // GET: Messages/Details/5
         public async Task<IActionResult> Details(int? id)
