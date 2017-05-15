@@ -39,6 +39,8 @@
         function() {
             var url = $(this).attr('href');
 
+            $('#url').html(url);
+
             $('#messages').load(url);
             return false;
 
@@ -46,7 +48,9 @@
     );
 
 
+
 });
+
 
 $(document).ready(function() {
     $.getJSON("/api/notifications",
@@ -118,3 +122,17 @@ $(document).ready(function() {
 });
 
 
+
+function getAllMessaged() {
+    var url = $('#url').text();
+    console.log(url);
+
+    if (url != '#') {
+        $('#messages').load(url);
+    }
+    return false;
+}
+
+$(document).ready(function () {
+    setInterval("getAllMessaged()",1000);
+});
