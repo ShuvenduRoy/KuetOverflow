@@ -69,7 +69,7 @@ namespace KuetOverflow.Controllers
             model.Id = id;
             model.Messages = messages;
 
-            return PartialView("GetAllMessages", model);
+            return PartialView("GetAllUnReadMessages", model);
         }
 
 

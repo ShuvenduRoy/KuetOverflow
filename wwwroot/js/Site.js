@@ -129,7 +129,7 @@ function getAllMessaged() {
     console.log(url);
 
     if (url != '#') {
-        $.get('/messages/getallmessages/' + url).done(function(data) {
+        $.get('/messages/getallunreadmessages/' + url).done(function(data) {
             $('#messages').append(data)
         });
     }
