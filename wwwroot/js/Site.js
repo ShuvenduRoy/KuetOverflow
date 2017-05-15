@@ -34,6 +34,17 @@
             return false;
         });
 
+    $('#chat_user').on('click',
+        'a',
+        function() {
+            var url = $(this).attr('href');
+
+            $('#messages').load(url);
+            return false;
+
+        }
+    );
+
 
 });
 

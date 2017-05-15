@@ -12,8 +12,8 @@
         <h2>Users</h2>
         @foreach (var user in Model)
         {
-            <div class="list-group-item">
-                <a asp-action="GetAllMessages" asp-route-id="@user.ID">
+            <div id="chat_user" class="list-group-item">
+                <a  href="@Url.Action("GetAllMessages", new {id=user.ID})">
                     @user.UserName
                 </a>
             </div>
