@@ -18,6 +18,11 @@ namespace KuetOverflow.Models
         [NotMapped]
         public string UserImage { get; set; }
 
+        public TwitterUser()
+        {
+            
+        }
+
         public TwitterUser(int id, UserManager<ApplicationUser> _userManager, SchoolContext _context)
         {
             string userId = _context.TwitterUsers.SingleOrDefault(u => u.ID == id).UserID;
