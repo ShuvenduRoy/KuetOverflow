@@ -12,7 +12,9 @@
         <h2>Users</h2>
         @foreach (var user in Model)
         {
-            <div>@user.UserName</div>
+            <div class="list-group-item">
+                @user.UserName
+            </div>
         }
     </div>
     <div class="col-md-8">
