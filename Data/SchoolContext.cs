@@ -33,6 +33,7 @@ namespace KuetOverflow.Data
         public DbSet<Tweet> Tweet { get; set; }
         public DbSet<TwitterUser> TwitterUsers { get; set; }
         public DbSet<Follow> Follows { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
