@@ -76,7 +76,7 @@ namespace KuetOverflow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,From,To,DateTime,IsSeen")] Message message)
+        public async Task<IActionResult> Create([Bind("ID,From,To,Body,DateTime,IsSeen")] Message message)
         {
             if (ModelState.IsValid)
             {

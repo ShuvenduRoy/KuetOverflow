@@ -27,6 +27,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="Body" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Body" class="form-control" />
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="DateTime" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="DateTime" class="form-control" />
