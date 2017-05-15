@@ -5,4 +5,20 @@
     Layout = "_StudentLayout";
 }
 
-<h2>Messages</h2>
+
+
+<div class="row">
+    <div class="col-md-2">
+        Users
+    </div>
+    <div class="col-md-8">
+        <h2>Messages</h2>
+        @foreach (var message in Model)
+        {
+            <div>@message.Body</div>
+        }
+    </div>
+    <div class="col-md-2">
+        Following
+    </div>
+</div>

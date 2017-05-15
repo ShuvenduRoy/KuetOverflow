@@ -44,7 +44,7 @@ namespace KuetOverflow.Controllers
                 
             }
 
-            return View(await _context.Messages.ToListAsync());
+            return View(messages);
         }
 
         // GET: Messages/Details/5
