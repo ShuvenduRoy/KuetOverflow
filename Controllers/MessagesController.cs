@@ -9,16 +9,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
     public class MessagesController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MessagesController(SchoolContext context)
+        public MessagesController(SchoolContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Messages
@@ -38,13 +41,29 @@ namespace KuetOverflow.Controllers
                 .Where(m => m.From == tweetId || m.To == tweetId)
                 .ToListAsync();
 
-            IEnumerable<TwitterUser> users = new List<TwitterUser>();
+            List<TwitterUser> users = new List<TwitterUser>();
+            var hash = new HashSet<int>();
+
             foreach (var message in messages)
             {
-                
+
+                if (message.To == tweetId)
+                {
+                    hash.Add(message.From);
+                }
+                else
+                {
+                    hash.Add(message.To);
+                }
             }
 
-            return View(messages);
+            foreach (var i in hash)
+            {
+                TwitterUser user = new TwitterUser(i, _userManager, _context);
+                users.Add(user);
+            }
+
+            return View(users);
         }
 
         // GET: Messages/Details/5

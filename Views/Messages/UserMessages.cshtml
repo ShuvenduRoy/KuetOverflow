@@ -1,4 +1,4 @@
-﻿@model List<KuetOverflow.Models.Message>
+﻿@model IEnumerable<KuetOverflow.Models.TwitterUser>
 
 @{
     ViewBag.Title = "Messages";
@@ -10,13 +10,14 @@
 <div class="row">
     <div class="col-md-2">
         <h2>Users</h2>
+        @foreach (var user in Model)
+        {
+            <div>@user.UserName</div>
+        }
     </div>
     <div class="col-md-8">
         <h2>Messages</h2>
-        @foreach (var message in Model)
-        {
-            <div>@message.Body</div>
-        }
+
     </div>
     <div class="col-md-2">
         <h2>Following</h2>
