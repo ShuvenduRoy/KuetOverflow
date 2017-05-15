@@ -25,6 +25,7 @@ namespace KuetOverflow.Models
 
         public TwitterUser(int id, UserManager<ApplicationUser> _userManager, SchoolContext _context)
         {
+            ID = id;
             string userId = _context.TwitterUsers.SingleOrDefault(u => u.ID == id).UserID;
 
             UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";

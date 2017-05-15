@@ -13,13 +13,15 @@
         @foreach (var user in Model)
         {
             <div class="list-group-item">
-                @user.UserName
+                <a asp-action="GetAllMessages" asp-route-id="@user.ID">
+                    @user.UserName
+                </a>
             </div>
         }
     </div>
     <div class="col-md-8">
         <h2>Messages</h2>
-        <div>
+        <div id="messages">
             
         </div>
     </div>
