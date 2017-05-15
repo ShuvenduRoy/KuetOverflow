@@ -1,31 +1,30 @@
 ﻿@model KuetOverflow.Models.SchoolViewModels.MessagesViewModel
 
-<ul>
-    <div id="row_Message">
-        @foreach (var message in Model.Messages)
-        {
-            <p style="border: gray solid 1px; padding: 4px">@message.Body</p>
-        }
-    </div>
+
+<div id="row_Message">
+    @foreach (var message in Model.Messages)
+    {
+        <p style="border: gray solid 1px; padding: 4px">@message.Body</p>
+    }
+</div>
     
-    <div>
-        <form asp-action="CreateByUser" asp-route-user="@Model.Id">
-            <div class="form-horizontal">
+<div>
+    <form asp-action="CreateByUser" asp-route-user="@Model.Id">
+        <div class="form-horizontal">
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" name="Body" class="form-control" placeholder="Whats happenging...">
-                            <span class="input-group-btn">
-                                <button type="submit" value="Create" class="btn btn-default">Send</button>
-                            </span>
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-
-                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" name="Body" class="form-control" placeholder="Whats happenging...">
+                        <span class="input-group-btn">
+                            <button type="submit" value="Create" class="btn btn-default">Send</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
 
             </div>
-        </form>
-    </div>
-</ul>
+
+        </div>
+    </form>
+</div>

@@ -1,11 +1,9 @@
 ﻿@model KuetOverflow.Models.SchoolViewModels.MessagesViewModel
 
-<ul>
-    <div id="row_Message">
-        @foreach (var message in Model.Messages)
-        {
-            <p style="border: gray solid 1px; padding: 4px">@message.Body</p>
-        }
-    </div>
 
-</ul>
+<div id="row_Message">
+    @foreach (var message in Model.Messages)
+    {
+        <p style="border: gray solid 1px; padding: 4px">@message.Body</p>
+    }
+</div>
