@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,6 +29,21 @@ namespace KuetOverflow.Controllers
 
         public async Task<IActionResult> UserMessages()
         {
+            var userid = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var tweetId = this._context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == userid)
+                .ID;
+
+            var messages = await _context.Messages
+                .Where(m => m.From == tweetId || m.To == tweetId)
+                .ToListAsync();
+
+            IEnumerable<TwitterUser> users = new List<TwitterUser>();
+            foreach (var message in messages)
+            {
+                
+            }
+
             return View(await _context.Messages.ToListAsync());
         }
 

@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using KuetOverflow.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Models
 {
@@ -14,5 +17,19 @@ namespace KuetOverflow.Models
 
         [NotMapped]
         public string UserImage { get; set; }
+
+        public TwitterUser(int id, UserManager<ApplicationUser> _userManager, SchoolContext _context)
+        {
+            string userId = _context.TwitterUsers.SingleOrDefault(u => u.ID == id).UserID;
+
+            UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(userId).Result.FbProfile + "/?fields=picture&type=large";
+            UserName = _userManager.FindByIdAsync(userId).Result.UserName;
+        }
+
+        public TwitterUser(string id, UserManager<ApplicationUser> _userManager)
+        {
+            UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(id).Result.FbProfile + "/?fields=picture&type=large";
+            UserName = _userManager.FindByIdAsync(id).Result.UserName;
+        }
     }
 }
