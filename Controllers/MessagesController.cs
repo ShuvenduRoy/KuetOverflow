@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
+using KuetOverflow.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
@@ -45,7 +46,11 @@ namespace KuetOverflow.Controllers
                 .Where(m => (m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId))
                 .ToListAsync();
 
-            return PartialView("GetAllMessages",messages);
+            var model = new MessagesViewModel();
+            model.Id = id;
+            model.Messages = messages;
+
+            return PartialView("GetAllMessages",model);
         }
 
 
