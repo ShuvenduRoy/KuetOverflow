@@ -27,9 +27,12 @@
     </div>
 
     <div class="col-md-6">
-        @foreach (var tweet in Model.Tweets)
+        @if (Model.Tweets != null)
         {
-            Html.RenderPartial("_tweet",tweet);
+            foreach (var tweet in Model.Tweets)
+             {
+                 Html.RenderPartial("_tweet",tweet);
+             }
         }
 
     </div>
