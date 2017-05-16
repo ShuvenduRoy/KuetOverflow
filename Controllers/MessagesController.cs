@@ -46,6 +46,14 @@ namespace KuetOverflow.Controllers
                 .Where(m => (m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId))
                 .ToListAsync();
 
+            foreach (var message in messages)
+            {
+                message.IsSeen = true;
+                _context.Update(message);
+            }
+
+            await _context.SaveChangesAsync();
+
             var model = new MessagesViewModel();
             model.Id = id;
             model.Messages = messages;
@@ -64,6 +72,18 @@ namespace KuetOverflow.Controllers
             var messages = await _context.Messages
                 .Where(m => ((m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId)) && m.IsSeen == false)
                 .ToListAsync();
+
+            if (messages.Count > 0)
+            {
+                foreach (var message in messages)
+                {
+                    message.IsSeen = true;
+                    _context.Update(message);
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
 
             var model = new MessagesViewModel();
             model.Id = id;
