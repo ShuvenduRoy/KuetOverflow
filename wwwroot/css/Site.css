@@ -158,3 +158,13 @@ ul.notifications .highlight {
     height: 40px;
     padding-right: 15px;
 }
+
+.user_message {
+    text-align: left
+}
+
+.other_message {
+    text-align: right;
+    background-color: deepskyblue;
+    color: white
+}

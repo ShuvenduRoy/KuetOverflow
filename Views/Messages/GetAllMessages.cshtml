@@ -2,12 +2,16 @@
 
 
 <div id="row_Message">
-    @foreach (var message in Model.Messages)
-    {
-        <p style="border: gray solid 1px; padding: 4px; text-align: @(@Model.Id == @message.To ? "left":"right")">@message.Body</p>
-    }
+    <div class="row">
+        @foreach (var message in Model.Messages)
+        {
+            <div class="col-md-12">
+                <span style=" @(@Model.Id == @message.To ? "text-align: left; background-color:gray; color:white; padding:5px":"text-align: right;background-color: deepskyblue; color: white; padding: 5px;float: right;")">@message.Body</span>
+            </div>
+        }
+    </div>
 </div>
-    
+    <br/>
 <div>
     <form asp-action="CreateByUser" asp-route-user="@Model.Id">
         <div class="form-horizontal">
