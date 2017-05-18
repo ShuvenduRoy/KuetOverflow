@@ -139,3 +139,31 @@ function getAllMessaged() {
 $(document).ready(function () {
     setInterval("getAllMessaged()",1000);
 });
+
+
+function sent_message() {
+    var message = $('#message').val();
+    var url = $('#url').text();
+    console.log(message, url);
+
+    var data = {
+        To: url,
+        Body: message
+    }
+    console.log(data);
+
+    var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
+    $.ajax({
+        type: "POST",
+        url: "/Messages/SentMessage",
+        dataType: 'json',
+        contentType: dataType,
+        data: data,
+        success: function (result) {
+            console.log('Data received: ');
+            console.log(result);
+        }
+    });
+
+
+}

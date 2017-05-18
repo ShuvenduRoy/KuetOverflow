@@ -10,10 +10,12 @@ using Microsoft.EntityFrameworkCore;
 using KuetOverflow.Data;
 using KuetOverflow.Models;
 using KuetOverflow.Models.SchoolViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace KuetOverflow.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private readonly SchoolContext _context;
@@ -172,7 +174,7 @@ namespace KuetOverflow.Controllers
         }
 
         [HttpPost]
-        public async void SentMessage([FromBody] Message message)
+        public void SentMessage(Message message)
         {
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -184,7 +186,7 @@ namespace KuetOverflow.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(message);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
         }
 

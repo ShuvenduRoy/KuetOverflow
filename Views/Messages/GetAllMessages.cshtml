@@ -13,16 +13,15 @@
 </div>
     <br/>
 <div>
-    <form asp-action="CreateByUser" asp-route-user="@Model.Id">
         <div class="form-horizontal">
 
             <div class="form-group">
 
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" name="Body" class="form-control" placeholder="Whats happenging...">
+                        <input type="text" id="message" class="form-control" placeholder="Say Something...">
                         <span class="input-group-btn">
-                            <button type="submit" value="Create" class="btn btn-default">Send</button>
+                            <button type="submit" value="Create" class="btn btn-default" onclick="sent_message()">Send</button>
                         </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
@@ -30,5 +29,4 @@
             </div>
 
         </div>
-    </form>
 </div>
