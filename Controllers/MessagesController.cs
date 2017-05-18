@@ -50,8 +50,11 @@ namespace KuetOverflow.Controllers
 
             foreach (var message in messages)
             {
-                message.IsSeen = true;
-                _context.Update(message);
+                if (message.To == tweetId)
+                {
+                    message.IsSeen = true;
+                    _context.Update(message);
+                }
             }
 
             await _context.SaveChangesAsync();
@@ -72,15 +75,18 @@ namespace KuetOverflow.Controllers
 
 
             var messages = await _context.Messages
-                .Where(m => ((m.From == tweetId && m.To == id) || (m.From == id && m.To == tweetId)) && m.IsSeen == false)
+                .Where(m => ((m.From == id && m.To == tweetId)) && m.IsSeen == false)
                 .ToListAsync();
 
             if (messages.Count > 0)
             {
                 foreach (var message in messages)
                 {
-                    message.IsSeen = true;
-                    _context.Update(message);
+                    if (message.To == tweetId)
+                    {
+                        message.IsSeen = true;
+                        _context.Update(message);
+                    }
                 }
 
                 await _context.SaveChangesAsync();
