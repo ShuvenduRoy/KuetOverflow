@@ -172,6 +172,23 @@ namespace KuetOverflow.Controllers
         }
 
         [HttpPost]
+        public async void SentMessage([FromBody] Message message)
+        {
+            var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            message.From = _context.TwitterUsers
+                .SingleOrDefault(t => t.UserID == UserId)
+                .ID;
+            message.DateTime = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(message);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateByUser([Bind("ID,Body")] Message message, int user)
         {
