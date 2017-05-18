@@ -151,6 +151,7 @@ function sent_message() {
         Body: message
     }
     console.log(data);
+    $('#message').val('');
 
     var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
     $.ajax({
@@ -160,8 +161,7 @@ function sent_message() {
         contentType: dataType,
         data: data,
         success: function (result) {
-            console.log('Data received: ');
-            console.log(result);
+            
         }
     });
 
