@@ -122,8 +122,20 @@ $(document).ready(function() {
 
     $('#popularQuestion').load('/Questions/PopularQuestion');
 
-    $('#popular-people').load('/Tweets/WhoToFollow');
+    //$('#popular-people').load('/Tweets/WhoToFollow');
 
+    $.get('/Tweets/WhoToFollow').done(function(val) {
+        $('#popular-people').html(val);
+
+        $('.user-image').each(function (i, obj) {
+            var url = $(obj).attr("src");
+
+            $.getJSON(url,
+                function (data) {
+                    $(obj).attr("src", data.picture.data.url);
+                });
+        });
+    });
 
 
 });
