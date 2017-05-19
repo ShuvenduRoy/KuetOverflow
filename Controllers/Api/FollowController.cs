@@ -28,21 +28,24 @@ namespace KuetOverflow.Controllers.Api
             var user = _context.TwitterUsers
                 .SingleOrDefault(u => u.UserID == userId);
 
+            var followUser = _context.TwitterUsers
+                .SingleOrDefault(u => u.ID == id);
+
             var followHistory = _context.Follows
-                .SingleOrDefault(f => (f.FollowerId == id && f.FolloweeId == user.ID));
+                .SingleOrDefault(f => (f.FollowerId == user.ID && f.FolloweeId == id));
 
             if (followHistory == null)
             {
                 Follow follow = new Follow
                 {
-                    FollowerId = id,
-                    FolloweeId = user.ID
+                    FollowerId = user.ID,
+                    FolloweeId = id
                 };
 
                 _context.Add(follow);
-                user.Follower += 1;
+                followUser.Follower += 1;
 
-                _context.Update(user);
+                _context.Update(followUser);
                 _context.SaveChanges();
 
                 return 1;
@@ -51,9 +54,9 @@ namespace KuetOverflow.Controllers.Api
             else
             {
                 _context.Remove(followHistory);
-                user.Follower -= 1;
+                followUser.Follower -= 1;
 
-                _context.Update(user);
+                _context.Update(followUser);
                 _context.SaveChanges();
 
                 return -1;
