@@ -4,6 +4,19 @@
 <div class="container">
     @foreach (var user in @Model)
     {
-        <p>@user.UserName</p>
+        <div class="media">
+            <div class="media-left">
+                <div style="float: left">
+                    <img id="user-image-div" class="user-image" src="@user.UserImage" />
+                </div>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><b>@user.UserName</b></h4>
+
+                <b><p>@user.Follower  Followers</p></b>
+
+            </div>
+            
+        </div>
     }
 </div>

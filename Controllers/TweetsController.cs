@@ -251,6 +251,7 @@ namespace KuetOverflow.Controllers
             foreach (var user in users)
             {
                 user.UserName = _userManager.FindByIdAsync(user.UserID).Result.UserName;
+                user.UserImage = "https://graph.facebook.com/" + _userManager.FindByIdAsync(user.UserID).Result.FbProfile + "/?fields=picture&type=large";
             }
 
             return PartialView(users);
