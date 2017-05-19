@@ -130,7 +130,7 @@ function getAllMessaged() {
 
     if (url != '#') {
         $.get('/messages/getallunreadmessages/' + url).done(function(data) {
-            $('#row_Message').append(data)
+            $('#row_Message').append(data);
         });
     }
     return false;
@@ -162,6 +162,10 @@ function sent_message() {
         data: data,
         success: function (result) {
             
+        },
+        error: function (d) {
+            console.log(d.responseText);
+            $('#row_Message').append(d.responseText);
         }
     });
 

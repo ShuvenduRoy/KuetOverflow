@@ -180,7 +180,7 @@ namespace KuetOverflow.Controllers
         }
 
         [HttpPost]
-        public void SentMessage(Message message)
+        public async Task<IActionResult> SentMessage(Message message)
         {
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -192,8 +192,10 @@ namespace KuetOverflow.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(message);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
+
+            return PartialView("GetJustSentMessages", message);
         }
 
         [HttpPost]

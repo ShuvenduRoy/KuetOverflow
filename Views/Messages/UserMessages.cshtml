@@ -11,15 +11,16 @@
     <div class="col-md-2">
         <h2>Users</h2>
         <div id="chat_user" >
-        @foreach (var user in Model)
-        {
+            @foreach (var user in Model)
+            {
 
                 <a class="list-group-item" user="@user.ID" href="@Url.Action("GetAllMessages", new {id=user.ID})">
                     @user.UserName
                 </a>
 
-        }
+            }
         </div>
+
     </div>
     <div class="col-md-6">
         <h2>Messages</h2>
