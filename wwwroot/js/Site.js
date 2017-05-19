@@ -36,7 +36,10 @@
 
     $('#chat_user').on('click',
         'a',
-        function() {
+        function () {
+            setInterval("getAllMessaged()", 1000);
+
+
             var url = $(this).attr('href');
             var id = $(this).attr('user');
 
@@ -139,9 +142,6 @@ function getAllMessaged() {
     return false;
 }
 
-$(document).ready(function () {
-    setInterval("getAllMessaged()",1000);
-});
 
 
 function sent_message() {
