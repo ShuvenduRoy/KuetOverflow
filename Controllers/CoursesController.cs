@@ -67,7 +67,7 @@ namespace KuetOverflow.Controllers
 
                 var following = _context.Follows
                     .Where(t => t.FollowerId == tweetUserId)
-                    .Select(t => t.FollowerId);
+                    .Select(t => t.FolloweeId);
 
                 model.Tweets = _context.Tweet
                     .OrderByDescending(x => x.DateTime)
