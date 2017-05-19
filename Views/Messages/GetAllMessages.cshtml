@@ -6,7 +6,7 @@
         @foreach (var message in Model.Messages)
         {
             <div class="col-md-12">
-                <span style=" @(@Model.Id == @message.To ? "text-align: left; background-color:gray; color:white; padding:5px":"text-align: right;background-color: deepskyblue; color: white; padding: 5px;float: right;")">@message.Body</span>
+                <span style=" @(@Model.Id == @message.To ? "text-align: left; background-color:gray; color:white; padding:5px 20px; border-radius:10px":"text-align: right;background-color: deepskyblue; color: white; float: right;padding:5px 20px; border-radius:10px;")">@message.Body</span>
             </div>
         }
     </div>
