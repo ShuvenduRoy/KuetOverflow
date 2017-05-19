@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="media-body">
-                <h4 class="media-heading"><b>@user.UserName</b></h4>
+                <h4 class="media-heading"><b><a asp-action="TweetUser" asp-route-id="@user.ID">@user.UserName</a></b></h4>
 
                 <b><p>@user.Follower  Followers</p></b>
 
