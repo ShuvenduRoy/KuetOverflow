@@ -243,5 +243,11 @@ namespace KuetOverflow.Controllers
         {
             return Queryable.Any<Tweet>(_context.Tweet, e => e.Id == id);
         }
+
+        public async Task<IActionResult> WhoToFollow()
+        {
+            var users = await _context.TwitterUsers.ToListAsync();
+            return PartialView(users);
+        }
     }
 }

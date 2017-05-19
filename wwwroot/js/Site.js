@@ -119,6 +119,9 @@ $(document).ready(function() {
 
     $('#popularQuestion').load('/Questions/PopularQuestion');
 
+    $('#popular-people').load('/Tweets/WhoToFollow');
+
+
 
 });
 
