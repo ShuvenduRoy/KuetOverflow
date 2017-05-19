@@ -1,8 +1,9 @@
 ﻿@model System.Collections.Generic.List<KuetOverflow.Models.TwitterUser>
 
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
-}
 
-<h2>title</h2>
+<div class="container">
+    @foreach (var user in @Model)
+    {
+        <p>@user.UserName</p>
+    }
+</div>

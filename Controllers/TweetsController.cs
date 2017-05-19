@@ -247,6 +247,12 @@ namespace KuetOverflow.Controllers
         public async Task<IActionResult> WhoToFollow()
         {
             var users = await _context.TwitterUsers.ToListAsync();
+
+            foreach (var user in users)
+            {
+                user.UserName = _userManager.FindByIdAsync(user.UserID).Result.UserName;
+            }
+
             return PartialView(users);
         }
     }
