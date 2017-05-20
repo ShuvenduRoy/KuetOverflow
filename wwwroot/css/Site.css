@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    text-align: justify;
 }
 #studentHeader {
     background-image: url("../images/feature3.PNG");
