@@ -107,7 +107,7 @@ $(document).ready(function() {
         url = $(this).attr('href');
 
         $.post(url).done(function(val) {
-            console.log(val);
+
             if (val == 1) {
                 $('#addFollower').addClass('btn-danger')
                     .html('Unfollow')
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
 function getAllMessaged() {
     var url = $('#url').text();
-    console.log(url);
+
 
     if (url != '#') {
         $.get('/messages/getallunreadmessages/' + url).done(function(data) {
@@ -159,13 +159,13 @@ function getAllMessaged() {
 function sent_message() {
     var message = $('#message').val();
     var url = $('#url').text();
-    console.log(message, url);
+
 
     var data = {
         To: url,
         Body: message
     }
-    console.log(data);
+
     $('#message').val('');
 
     var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
@@ -179,7 +179,7 @@ function sent_message() {
             
         },
         error: function (d) {
-            console.log(d.responseText);
+
             $('#row_Message').append(d.responseText);
         }
     });
